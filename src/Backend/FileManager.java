@@ -15,28 +15,35 @@ public class FileManager {
     private HashMap<String,List<File>> fileList;
 
     public FileManager(){
-        getUniqueFiles();
+        fileList = new HashMap<>();
+        getFiles();
     }
 
-    private void getUniqueFiles(){
-
-        fileList = new HashMap<>();
-
-        File [] files = directory.listFiles(new FilenameFilter() {
+    private void getFiles(){
+        File [] wavFiles = directory.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File directory, String name) {
                 return name.endsWith(".wav");
             }
         });
 
-        for (File wav : files) {
-            addKey(getName(wav),wav);
+        for (File wav : wavFiles) {
+            addFile(wav);
         }
-
-        System.out.println(fileList);
     }
 
-    private String getName(File file){
+    private void addFile(File file){
+        String key = getUserName(file);
+        if(fileList.get(key) == null){
+            List<File> toAdd = new ArrayList<>();
+            toAdd.add(file);
+            fileList.put(key, toAdd );
+        }else   {
+            fileList.get(key).add(file);
+        }
+    }
+
+    private String getUserName(File file){
         //Split filename
         String entireName = file.getName();
         String[] parts = entireName.split("_");
@@ -45,17 +52,6 @@ public class FileManager {
         String nameExt = parts[3];
 
         //Get isolated userName
-        return nameExt.substring(0,nameExt.length()-3);
-
-    }
-
-    private void addKey(String key, File file){
-        if(fileList.get(key) == null){
-            List<File> toAdd = new ArrayList<>();
-            toAdd.add(file);
-            fileList.put(key, toAdd );
-        }else   {
-            fileList.get(key).add(file);
-        }
+        return nameExt.substring(0,nameExt.length()-4);
     }
 }
