@@ -17,7 +17,6 @@ public class FileManager {
     public FileManager() {
         fileList = new HashMap<>();
         getFiles();
-        System.out.println(getUniqueNames());
     }
 
     public List<String> getUniqueNames() {
@@ -64,8 +63,8 @@ public class FileManager {
         //Get user name with extension
         String nameExt = parts[3];
 
-        //Get isolated userName
-        return nameExt.substring(0, nameExt.length() - 4);
+        //Get isolated userName without extension
+        return nameExt.substring(0, nameExt.length() - 4).toUpperCase();
     }
 
     private String getDate(File file) {

@@ -48,5 +48,6 @@
                 </VBox>
             </children>
         </HBox>
+      <Button mnemonicParsing="false" text="Select Files" />
     </children>
 </VBox>
