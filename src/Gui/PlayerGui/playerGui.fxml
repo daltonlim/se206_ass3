@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.PlayerGui.playerGuiController">
+   <children>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select a File to Play" />
+      <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" />
+      <HBox>
+         <children>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Name" />
+                  <ListView fx:id="nameList" onKeyPressed="#updateDates" onKeyReleased="#updateDates" onMouseClicked="#updateDates" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Date" />
+                  <ListView fx:id="dateList" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER">
+         <children>
+            <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" text="Play" />
+            <Button fx:id="stopButton" mnemonicParsing="false" text="Stop" />
+            <Button fx:id="recordButton" mnemonicParsing="false" text="Record own version" />
+            <Button fx:id="reportButton" mnemonicParsing="false" text="Report Bad Recording" />
+         </children>
+      </FlowPane>
+   </children>
+</VBox>

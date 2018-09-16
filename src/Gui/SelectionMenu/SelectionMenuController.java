@@ -1,0 +1,123 @@
+package Gui.SelectionMenu;
+
+import Backend.FileManager;
+import Backend.ListTypes;
+import javafx.fxml.FXML;
+
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+
+import java.net.URL;
+import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class SelectionMenuController implements Initializable {
+
+    private boolean _maxOne;
+    ListTypes _listType = ListTypes.SINGLE;
+    FileManager fileManager;
+
+    @FXML
+    private ListView AvailibleNamesList;
+    @FXML
+    private ListView ChosenNames;
+    @FXML
+    private Button selectNamesButton;
+    @FXML
+    private Button remove;
+    @FXML
+    private Button add;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        _maxOne = true;
+        fileManager = new FileManager();
+        selectNamesButton.setDisable(true);
+
+        //Add availableNames to the list
+        List<String> sortedList = fileManager.getUniqueNames();
+        java.util.Collections.sort(sortedList);
+        AvailibleNamesList.getItems().addAll(sortedList);
+        checkAll();
+    }
+
+    @FXML
+    private void addName() {
+        String name = AvailibleNamesList.getSelectionModel().getSelectedItems().get(0).toString();
+        /*Only allow addition, if max one is not enforced,
+        or if it is, only allow if the list is empty
+         */
+        if (!_maxOne || ChosenNames.getItems().size() == 0) {
+            ChosenNames.getItems().add(name);
+            AvailibleNamesList.getItems().remove(name);
+        }
+        // Resort
+        Collections.sort(ChosenNames.getItems());
+        checkAll();
+    }
+
+    //Make button clickable if one or more names are in mnames to play
+    private void checkAll() {
+        if (ChosenNames.getItems().size() != 0) {
+            selectNamesButton.setDisable(false);
+        } else {
+            selectNamesButton.setDisable(true);
+        }
+        if (AvailibleNamesList.getItems().size() == 0 || ChosenNames.getItems().size() == 1 && _maxOne) {
+            add.setDisable(true);
+        } else {
+            add.setDisable(false);
+        }
+
+        if (ChosenNames.getItems().size() == 0) {
+            remove.setDisable(true);
+        } else {
+            remove.setDisable(false);
+        }
+    }
+
+    @FXML
+    private void removeName() {
+        String name = ChosenNames.getSelectionModel().getSelectedItems().get(0).toString();
+
+        AvailibleNamesList.getItems().add(name);
+        ChosenNames.getItems().remove(name);
+        //Resort
+        Collections.sort(AvailibleNamesList.getItems());
+        checkAll();
+    }
+
+    @FXML
+    public void setSingle() {
+        _maxOne = true;
+        int runs = ChosenNames.getItems().size();
+        for (int i = 1; i < runs; i++) {
+            AvailibleNamesList.getItems().add(ChosenNames.getItems().get(1));
+            ChosenNames.getItems().remove(1);
+        }
+
+        Collections.sort(AvailibleNamesList.getItems());
+
+        _listType = ListTypes.SINGLE;
+        checkAll();
+
+    }
+
+    @FXML
+    public void setRandomised() {
+        _maxOne = false;
+        _listType = ListTypes.RANDOMISEDLIST;
+        checkAll();
+    }
+
+    @FXML
+    public void setOrdered() {
+        _maxOne = false;
+        _listType = ListTypes.ORDEREDLIST;
+        checkAll();
+    }
+
+
+}
