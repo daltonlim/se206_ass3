@@ -1,6 +1,6 @@
 package Tests;
 
-import Backend.FileCreator;
+import Backend.File.FileCreator;
 import org.junit.Test;
 
 public class FileCreatorTest {

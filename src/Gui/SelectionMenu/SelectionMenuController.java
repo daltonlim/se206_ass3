@@ -1,6 +1,6 @@
 package Gui.SelectionMenu;
 
-import Backend.NameManager;
+import Backend.NameManagement.NameManager;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;

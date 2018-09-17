@@ -1,4 +1,4 @@
-package Backend;
+package Backend.NameManagement;
 
 import javax.swing.text.html.ListView;
 import java.io.File;

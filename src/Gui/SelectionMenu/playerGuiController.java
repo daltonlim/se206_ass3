@@ -1,7 +1,7 @@
 package Gui.SelectionMenu;
 
-import Backend.FileLogger;
-import Backend.NameManager;
+import Backend.File.FileLogger;
+import Backend.NameManagement.NameManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -47,7 +47,7 @@ public class playerGuiController implements Initializable {
      * Updates the dateslist when a name is clicked
      */
     @FXML
-    public void updateDates() {
+    private void updateDates() {
         String name = nameList.getSelectionModel().getSelectedItems().get(0).toString();
         //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
         dateList.getItems().remove(0, dateList.getItems().size());
@@ -69,16 +69,15 @@ public class playerGuiController implements Initializable {
     }
 
     @FXML
-    public void play() {
+    private void play() {
         File file = retrieveFile();
-
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
         mediaPlayer.play();
     }
 
-    void initData(List<String> names, NameManager fileManager, Boolean ordered) {
+    public void initData(List<String> names, NameManager fileManager, Boolean ordered) {
         this.fileManager = fileManager;
         if (!ordered) {
             Collections.shuffle(names);
@@ -87,21 +86,23 @@ public class playerGuiController implements Initializable {
     }
 
     @FXML
-    public void report() {
+    private void report() {
         File file = retrieveFile();
         fileLogger.report(file);
+        badWarningLabel.setText("Warning: The selected file has been marked as bad");
     }
 
-    private File retrieveFile(){
+    private File retrieveFile() {
         String name = nameList.getSelectionModel().getSelectedItems().get(0).toString();
         String date = dateList.getSelectionModel().getSelectedItems().get(0).toString();
         return fileManager.getFile(name, date);
     }
 
-    private void isBadFile(){
-        if(fileLogger.isBad(retrieveFile())){
+    @FXML
+    private void isBadFile() {
+        if (fileLogger.isBad(retrieveFile())) {
             badWarningLabel.setText("Warning: The selected file has been marked as bad");
-        }else{
+        } else {
             badWarningLabel.setText("");
         }
     }

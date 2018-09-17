@@ -1,4 +1,6 @@
-package Backend;
+package Backend.NameManagement;
+
+import Backend.File.FileParser;
 
 import java.io.File;
 import java.io.FilenameFilter;

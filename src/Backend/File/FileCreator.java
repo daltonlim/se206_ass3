@@ -1,8 +1,10 @@
 /**
  * This class takes care of the creation, merging and recording of audio
  */
-package Backend;
+package Backend.File;
 
+
+import Backend.NameManagement.NameManager;
 
 import javax.swing.*;
 import java.time.LocalDate;
