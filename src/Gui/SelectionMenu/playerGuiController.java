@@ -1,5 +1,6 @@
 package Gui.SelectionMenu;
 
+import Backend.FileLogger;
 import Backend.NameManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class playerGuiController implements Initializable {
     NameManager fileManager;
-
+    FileLogger fileLogger;
     @FXML
     private MediaView mediaView;
     @FXML
@@ -35,11 +36,8 @@ public class playerGuiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*//TODO fix following block
-        fileManager = new NameManager();
-        nameList.getItems().addAll(fileManager.getUniqueNames());*/
-
         disableButtons(true);
+        fileLogger = FileLogger.getInstance();
     }
 
     /**
@@ -68,14 +66,9 @@ public class playerGuiController implements Initializable {
 
     @FXML
     public void play() {
-        String name = nameList.getSelectionModel().getSelectedItems().get(0).toString();
-        String date = dateList.getSelectionModel().getSelectedItems().get(0).toString();
+        File file = retrieveFile();
 
-//        Media media = new Media(fileManager.getFile(name, date).toURI().toString());
-
-        File file = fileManager.getFile(name, date);
         Media media = new Media(file.toURI().toString());
-
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
         mediaPlayer.play();
@@ -87,5 +80,17 @@ public class playerGuiController implements Initializable {
             Collections.shuffle(names);
         }
         nameList.getItems().addAll(names);
+    }
+
+    @FXML
+    public void report() {
+        File file = retrieveFile();
+        fileLogger.report(file);
+    }
+
+    private File retrieveFile(){
+        String name = nameList.getSelectionModel().getSelectedItems().get(0).toString();
+        String date = dateList.getSelectionModel().getSelectedItems().get(0).toString();
+        return fileManager.getFile(name, date);
     }
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SelectionMenu.playerGuiController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SelectionMenu.playerGuiController">
    <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select a File to Play" />
       <Label fx:id="badWarningLabel" text="Label" />
@@ -33,7 +33,7 @@
             <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" text="Play" />
             <Button fx:id="stopButton" mnemonicParsing="false" text="Stop" />
             <Button fx:id="recordButton" mnemonicParsing="false" text="Record own version" />
-            <Button fx:id="reportButton" mnemonicParsing="false" text="Report Bad Recording" />
+            <Button fx:id="reportButton" mnemonicParsing="false" onAction="#report" text="Report Bad Recording" />
             <Button fx:id="microphoneButton" layoutX="298.0" layoutY="10.0" mnemonicParsing="false" text="Microphone Test" />
          </children>
       </FlowPane>

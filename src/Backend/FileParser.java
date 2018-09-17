@@ -1,7 +1,6 @@
 package Backend;
 
 import java.io.File;
-import java.io.FileFilter;
 
 public class FileParser {
     File file;
@@ -31,4 +30,6 @@ public class FileParser {
         return java.lang.Character.toUpperCase(nameExt[0].charAt(0))
                 + nameExt[0].substring(1).toLowerCase();
     }
+
+
 }
