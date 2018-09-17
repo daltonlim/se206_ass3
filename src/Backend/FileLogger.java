@@ -75,4 +75,8 @@ public class FileLogger {
             }
         }
     }
+
+    public boolean isBad(File file){
+        return loggedList.contains(file.getName());
+    }
 }

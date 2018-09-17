@@ -5,6 +5,7 @@ import Backend.NameManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 public class playerGuiController implements Initializable {
     NameManager fileManager;
     FileLogger fileLogger;
+    @FXML
+    private Label badWarningLabel;
     @FXML
     private MediaView mediaView;
     @FXML
@@ -54,7 +57,8 @@ public class playerGuiController implements Initializable {
 
         //Select first element is list by default
         dateList.getSelectionModel().select(0);
-        play();
+
+        isBadFile();
     }
 
     private void disableButtons(boolean bool) {
@@ -92,5 +96,13 @@ public class playerGuiController implements Initializable {
         String name = nameList.getSelectionModel().getSelectedItems().get(0).toString();
         String date = dateList.getSelectionModel().getSelectedItems().get(0).toString();
         return fileManager.getFile(name, date);
+    }
+
+    private void isBadFile(){
+        if(fileLogger.isBad(retrieveFile())){
+            badWarningLabel.setText("Warning: The selected file has been marked as bad");
+        }else{
+            badWarningLabel.setText("");
+        }
     }
 }
