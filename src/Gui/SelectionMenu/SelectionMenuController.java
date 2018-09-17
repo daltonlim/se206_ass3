@@ -1,7 +1,6 @@
 package Gui.SelectionMenu;
 
 import Backend.NameManager;
-import Backend.ListTypes;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
@@ -20,7 +19,6 @@ import java.util.ResourceBundle;
 public class SelectionMenuController implements Initializable {
 
     private boolean _maxOne;
-    ListTypes _listType = ListTypes.SINGLE;
     NameManager fileManager;
     private boolean ordered;
 
@@ -105,8 +103,6 @@ public class SelectionMenuController implements Initializable {
         }
 
         Collections.sort(AvailibleNamesList.getItems());
-
-        _listType = ListTypes.SINGLE;
         checkAll();
 
     }
@@ -114,7 +110,6 @@ public class SelectionMenuController implements Initializable {
     @FXML
     public void setRandomised() {
         _maxOne = false;
-        _listType = ListTypes.RANDOMISEDLIST;
         checkAll();
         ordered = false;
     }
@@ -122,7 +117,6 @@ public class SelectionMenuController implements Initializable {
     @FXML
     public void setOrdered() {
         _maxOne = false;
-        _listType = ListTypes.ORDEREDLIST;
         checkAll();
         ordered = true;
     }
