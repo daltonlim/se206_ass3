@@ -1,12 +1,16 @@
 package Gui.SelectionMenu;
 
-import Backend.FileManager;
+import Backend.NameManager;
 import Backend.ListTypes;
 import javafx.fxml.FXML;
 
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Collections;
@@ -17,7 +21,8 @@ public class SelectionMenuController implements Initializable {
 
     private boolean _maxOne;
     ListTypes _listType = ListTypes.SINGLE;
-    FileManager fileManager;
+    NameManager fileManager;
+    private boolean ordered;
 
     @FXML
     private ListView AvailibleNamesList;
@@ -33,7 +38,7 @@ public class SelectionMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _maxOne = true;
-        fileManager = new FileManager();
+        fileManager = new NameManager();
         selectNamesButton.setDisable(true);
 
         //Add availableNames to the list
@@ -41,6 +46,7 @@ public class SelectionMenuController implements Initializable {
         java.util.Collections.sort(sortedList);
         AvailibleNamesList.getItems().addAll(sortedList);
         checkAll();
+        ordered = true;
     }
 
     @FXML
@@ -110,6 +116,7 @@ public class SelectionMenuController implements Initializable {
         _maxOne = false;
         _listType = ListTypes.RANDOMISEDLIST;
         checkAll();
+        ordered = false;
     }
 
     @FXML
@@ -117,6 +124,21 @@ public class SelectionMenuController implements Initializable {
         _maxOne = false;
         _listType = ListTypes.ORDEREDLIST;
         checkAll();
+        ordered = true;
+    }
+
+    @FXML
+    public void getPlayerGuiScene() throws Exception{
+        Stage primaryStage =(Stage) add.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(  "playerGui.fxml"));
+
+        Parent root = loader.load();
+
+        playerGuiController controller = loader.<playerGuiController>getController();
+        controller.initData(ChosenNames.getItems(),fileManager,ordered);
+
+        primaryStage.setScene(new Scene(root, 600,600));
+        primaryStage.show();
     }
 
 

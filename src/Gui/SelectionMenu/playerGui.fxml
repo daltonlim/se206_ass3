@@ -6,25 +6,24 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.PlayerGui.playerGuiController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SelectionMenu.playerGuiController">
    <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select a File to Play" />
-      <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" />
-      <HBox>
+      <Label fx:id="badWarningLabel" text="Label" />
+      <HBox alignment="TOP_CENTER">
          <children>
             <VBox alignment="CENTER">
                <children>
-                  <Label text="Name" />
-                  <ListView fx:id="nameList" onKeyPressed="#updateDates" onKeyReleased="#updateDates" onMouseClicked="#updateDates" prefHeight="200.0" prefWidth="200.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available Names" />
+                  <ListView fx:id="nameList" onMouseClicked="#updateDates" />
                </children>
             </VBox>
             <VBox alignment="CENTER">
                <children>
-                  <Label text="Date" />
-                  <ListView fx:id="dateList" prefHeight="200.0" prefWidth="200.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date to play" />
+                  <ListView fx:id="dateList" />
                </children>
             </VBox>
          </children>
@@ -35,6 +34,7 @@
             <Button fx:id="stopButton" mnemonicParsing="false" text="Stop" />
             <Button fx:id="recordButton" mnemonicParsing="false" text="Record own version" />
             <Button fx:id="reportButton" mnemonicParsing="false" text="Report Bad Recording" />
+            <Button fx:id="microphoneButton" layoutX="298.0" layoutY="10.0" mnemonicParsing="false" text="Microphone Test" />
          </children>
       </FlowPane>
    </children>

@@ -1,6 +1,6 @@
-package Gui.PlayerGui;
+package Gui.SelectionMenu;
 
-import Backend.FileManager;
+import Backend.NameManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,10 +11,12 @@ import javafx.scene.media.MediaView;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class playerGuiController implements Initializable {
-    FileManager fileManager;
+    NameManager fileManager;
 
     @FXML
     private MediaView mediaView;
@@ -33,9 +35,9 @@ public class playerGuiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO fix following block
-        fileManager = new FileManager();
-        nameList.getItems().addAll(fileManager.getUniqueNames());
+        /*//TODO fix following block
+        fileManager = new NameManager();
+        nameList.getItems().addAll(fileManager.getUniqueNames());*/
 
         disableButtons(true);
     }
@@ -77,5 +79,13 @@ public class playerGuiController implements Initializable {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
         mediaPlayer.play();
+    }
+
+    void initData(List<String> names, NameManager fileManager, Boolean ordered) {
+        this.fileManager = fileManager;
+        if (!ordered) {
+            Collections.shuffle(names);
+        }
+        nameList.getItems().addAll(names);
     }
 }

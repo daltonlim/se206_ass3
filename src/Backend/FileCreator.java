@@ -26,7 +26,7 @@ public class FileCreator {
      */
     public void generateAudio() {
         String date = getDate();
-        new BashWorker("ffmpeg -y -f alsa -i hw:0 -ac 1 -t 00:00:05 " + FileManager.directory +
+        new BashWorker("ffmpeg -y -f alsa -i hw:0 -ac 1 -t 00:00:05 " + NameManager.directory +
                 "/se206" + date + _fileName + ".wav");
     }
 
