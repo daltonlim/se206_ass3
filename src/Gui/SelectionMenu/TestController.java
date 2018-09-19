@@ -86,7 +86,7 @@ public class TestController implements Initializable{
     @FXML
     public void PlayAction() {
     	try {
-    		String audioFile = NameManager.directory + "/se206" + _Demo.getTime() + _Demo.getName() + ".wav";
+    		String audioFile = _Demo.fileString();
             Media media = new Media(new File(audioFile).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();
