@@ -42,10 +42,10 @@ public class FileCreator {
 
     private String getDate() {
         LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("_d-M-yyyy_H:m:s_");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy_H-m-s_");
         String text = date.format(formatter);
-        LocalDate parsedDate = LocalDate.parse(text, formatter);
-        return text;
+       // LocalDate parsedDate = LocalDate.parse(text, formatter);
+        return "_User-" + text;
     }
 
     /**
