@@ -28,10 +28,6 @@ public class SelectionMenuController implements Initializable {
     private ListView ChosenNames;
     @FXML
     private Button selectNamesButton;
-    @FXML
-    private Button remove;
-    @FXML
-    private Button add;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,17 +65,7 @@ public class SelectionMenuController implements Initializable {
         } else {
             selectNamesButton.setDisable(true);
         }
-        if (AvailibleNamesList.getItems().size() == 0 || ChosenNames.getItems().size() == 1 && _maxOne) {
-            add.setDisable(true);
-        } else {
-            add.setDisable(false);
-        }
 
-        if (ChosenNames.getItems().size() == 0) {
-            remove.setDisable(true);
-        } else {
-            remove.setDisable(false);
-        }
     }
 
     @FXML
@@ -123,7 +109,7 @@ public class SelectionMenuController implements Initializable {
 
     @FXML
     public void getPlayerGuiScene() throws Exception{
-        Stage primaryStage =(Stage) add.getScene().getWindow();
+        Stage primaryStage =(Stage) selectNamesButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(  "playerGui.fxml"));
 
         Parent root = loader.load();

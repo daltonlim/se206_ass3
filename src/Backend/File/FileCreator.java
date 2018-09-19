@@ -68,10 +68,13 @@ public class FileCreator {
 		 new BashWorker("rm "+ NameManager.directory + "/se206" + getTime() + getName() + ".wav");
 	}
 }
+/*
 
+*/
 /**
  * Allows for the easy running of bash commands on a thread different to the EDT
- */
+ *//*
+
 class BashWorker extends SwingWorker<Void, Void> {
     String _command = null;
     
@@ -92,4 +95,4 @@ class BashWorker extends SwingWorker<Void, Void> {
         }
         return null;
     }
-}
+}*/
