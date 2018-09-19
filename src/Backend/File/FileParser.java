@@ -31,5 +31,7 @@ public class FileParser {
                 + nameExt[0].substring(1).toLowerCase();
     }
 
-
+    public File getFile() {
+        return file;
+    }
 }

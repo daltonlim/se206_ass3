@@ -11,11 +11,12 @@ import java.util.List;
 /**
  * This class will provide a list of unique file names, as well as
  * and allow the retrieval of all files with the same name.
+ * SIngle ton as only one name manager needs to exist to account for all the database entries
  */
+
 public class NameManager {
     public static final File directory = new File("audioFiles");
     private HashMap<String, Name> nameList;
-
 
     public NameManager() {
         nameList = new HashMap<>();
@@ -47,10 +48,13 @@ public class NameManager {
         FileParser fileParser = new FileParser(file);
         String name = fileParser.getUserName();
         Name nameToAdd = new Name(name);
-        if (nameList.get(name) != null) {
+
+        if (nameList.containsKey(name)) {
             nameToAdd = nameList.get(name);
         }
-        nameToAdd.addDate(fileParser.getDate(), file);
+
+        nameToAdd.addDate(fileParser);
+
         nameList.put(name, nameToAdd);
     }
 
