@@ -31,17 +31,23 @@
             <VBox alignment="CENTER">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available Names" />
-                  <ListView fx:id="AvailibleNamesList" onMouseClicked="#addName" />
+                  <ListView fx:id="AvailibleNamesList" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Button fx:id="add" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#addName" text="&gt;" />
+                  <Button fx:id="remove" mnemonicParsing="false" onAction="#removeName" text="&lt;" />
                </children>
             </VBox>
             <VBox alignment="CENTER">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Names to Play" />
-                  <ListView fx:id="ChosenNames" onMouseClicked="#removeName" />
+                  <ListView fx:id="ChosenNames" />
                </children>
             </VBox>
          </children>
       </HBox>
-      <Button fx:id="selectNamesButton" mnemonicParsing="false" onMouseClicked="#getPlayerGuiScene" text="Select Names" />
+      <Button fx:id="selectNamesButton" mnemonicParsing="false" onAction="#getPlayerGuiScene" text="Select Names" />
     </children>
 </VBox>

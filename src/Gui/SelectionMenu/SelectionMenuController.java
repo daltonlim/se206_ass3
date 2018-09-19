@@ -29,9 +29,9 @@ public class SelectionMenuController implements Initializable {
     @FXML
     private Button selectNamesButton;
     @FXML
-    private Button remove = new Button();
+    private Button remove;
     @FXML
-    private Button add = new Button();
+    private Button add;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -123,7 +123,7 @@ public class SelectionMenuController implements Initializable {
 
     @FXML
     public void getPlayerGuiScene() throws Exception{
-        Stage primaryStage =(Stage) selectNamesButton.getScene().getWindow();
+        Stage primaryStage =(Stage) add.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(  "playerGui.fxml"));
 
         Parent root = loader.load();
