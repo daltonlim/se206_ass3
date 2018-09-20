@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Backend.File.BashWorker;
 import Backend.File.FileCreator;
 import Backend.NameManagement.NameManager;
 import javafx.beans.value.ChangeListener;
@@ -61,6 +62,9 @@ public class RecordGuiController implements Initializable{
     
     @FXML
     private Button ExitButton;
+    
+    @FXML
+    private Button RestartButton;
 
 	private Task<?> _Recording;
 
@@ -73,10 +77,11 @@ public class RecordGuiController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		 disableButtons(true);
+		 progressbar.setVisible(false);
+		 States.setVisible(false);
 	}
 	
 	 private void disableButtons(boolean b) {
-		 PlayOldButton.setDisable(b);
 		 PlayYoursButton.setDisable(b);
 		 SaveButton.setDisable(b);
 		 NoSaveButton.setDisable(b);
@@ -100,6 +105,9 @@ public class RecordGuiController implements Initializable{
     @FXML
     public void record() throws InterruptedException {
     	RecordButton.setDisable(true);
+    	progressbar.setVisible(true);
+    	States.setVisible(true);
+    	PlayOldButton.setDisable(true);
     	progressbar.setProgress(0.0);
         _Recording = createWorker();
         
@@ -120,11 +128,14 @@ public class RecordGuiController implements Initializable{
 		PlayYoursButton.setDisable(false);
 		SaveButton.setDisable(false);
 		NoSaveButton.setDisable(false);
+		PlayOldButton.setDisable(false);
 	}
 	
     @FXML
     public void playback() throws InterruptedException {
     	try {
+    		 progressbar.setVisible(false);
+    		 States.setVisible(false);
     		String audioFile = NameManager.directory + "/se206" + _FileCreator.getTime() + _FileCreator.getName() + ".wav";
             Media media = new Media(new File(audioFile).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -137,11 +148,13 @@ public class RecordGuiController implements Initializable{
     @FXML
     public void playold() throws InterruptedException {
     	try {
+    		 progressbar.setVisible(false);
+    		 States.setVisible(false);
     		String date = dateList.getSelectionModel().getSelectedItems().get(0).toString();
     		File audioFile = fileManager.getFile(_name, date);
-            Media media = new Media(audioFile.toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.play();
+    		String location = audioFile.toURI().toString();
+   		    new BashWorker("chmod +x "+ location);
+   		    new BashWorker("ffplay -nodisp -autoexit "+ location);
     	} catch (Exception e) {
     		e.printStackTrace();
     	}  
@@ -155,16 +168,33 @@ public class RecordGuiController implements Initializable{
 		selectedName(name);
 		updatelist();
 	}
+	
 	public void updatelist() {
+
 		 fileManager = new NameManager();
 		 dateList.getItems().remove(0, dateList.getItems().size());
 		 dateList.getItems().addAll(fileManager.getFileDatesForName(_name)); 
 	     dateList.getSelectionModel().select(0);
 	     name.setText(_name);
 	}
+	
     @FXML
     public void choose() {
     	PlayOldButton.setDisable(false);
+    }
+    
+    @FXML
+    public void restart() throws IOException {
+        Stage primaryStage =(Stage) RestartButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
+        Parent root = loader.load();
+        
+        RecordGuiController controller = loader.<RecordGuiController>getController();
+       
+        controller.initData(_name);
+   
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
     
     @FXML
@@ -177,17 +207,17 @@ public class RecordGuiController implements Initializable{
     @FXML
     public void nosave() {
     	_FileCreator.removeFile();
-    	updatelist();
     	SaveButton.setDisable(true);
     	NoSaveButton.setDisable(true);
     }
     
     @FXML
     public void exit() throws IOException {
+    	new BashWorker("killall ffplay");
     	Stage primaryStage =(Stage) ExitButton.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("selectionMenu.fxml"));
-    	 primaryStage.setTitle("Hello World");
-    	 primaryStage.setScene(new Scene(root, 600,600));
-    	 primaryStage.show();
+    	primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 600,600));
+    	primaryStage.show();
     }
 }
