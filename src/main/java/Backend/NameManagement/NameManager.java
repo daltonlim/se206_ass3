@@ -1,6 +1,5 @@
 package Backend.NameManagement;
 
-import Backend.File.FileLogger;
 import Backend.File.FileParser;
 
 import java.io.File;

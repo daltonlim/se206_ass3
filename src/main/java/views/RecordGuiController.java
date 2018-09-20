@@ -1,28 +1,23 @@
-package Gui.SelectionMenu;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+package views;
 
 import Backend.File.FileCreator;
 import Backend.NameManagement.NameManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class RecordGuiController implements Initializable {
 
@@ -187,10 +182,5 @@ public class RecordGuiController implements Initializable {
     @FXML
     public void exit() throws IOException {
         SceneManager.getInstance().removeScene();
-       /* Stage primaryStage = (Stage) ExitButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("selectionMenu.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 600, 600));
-        primaryStage.show();*/
     }
 }

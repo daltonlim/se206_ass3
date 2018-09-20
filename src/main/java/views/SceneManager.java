@@ -1,14 +1,11 @@
-package Gui.SelectionMenu;
+package views;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Stack;
 
-public class SceneManager  {
+public class SceneManager {
     private Stack sceneStack;
     private Stage mainStage;
 
@@ -23,7 +20,6 @@ public class SceneManager  {
 
     private SceneManager() {
         sceneStack = new Stack();
-        mainStage = new Stage();
     }
 
     public void addScene(Scene scene) {
@@ -35,6 +31,9 @@ public class SceneManager  {
         sceneStack.pop();
     }
 
+    public Scene getScene(){
+        return (Scene) sceneStack.peek();
+    }
 
     private void setScene() {
         mainStage.setScene((Scene) sceneStack.peek());

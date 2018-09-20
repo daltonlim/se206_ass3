@@ -1,4 +1,4 @@
-package Gui.SelectionMenu;
+package views;
 
 import Backend.File.FileLogger;
 import Backend.NameManagement.NameManager;
@@ -51,25 +51,6 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private void goBack()  throws IOException{
         SceneManager.getInstance().removeScene();
-
-        /*Stage primaryStage = (Stage) microphoneButton.getScene().getWindow();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectionMenu.fxml"));
-        Parent root = (Parent)fxmlLoader.load();
-
-        stage.setTitle("FXML Welcome");
-        stage.setScene(new Scene(root, 300, 275));
-        stage.show();*/
-       /*Stage stage = (Stage) recordButton.getScene().getWindow();
-       stage.close();
-       this.stage.show();*/
-
-
-        /*Parent root = FXMLLoader.load(getClass().getResource("selectionMenu.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 600, 600));
-        primaryStage.show();*/
-
     }
 
 
@@ -85,7 +66,7 @@ public class PlayerGuiController implements Initializable {
      * Updates the dateslist when a name is clicked
      */
     @FXML
-    private void updateDates() {
+    public void updateDates() {
         String name = nameList.getSelectionModel().getSelectedItems().get(0).toString();
         _name = name;
         //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
@@ -166,20 +147,7 @@ public class PlayerGuiController implements Initializable {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
-      //  SceneManager.getInstance().addScene( recordButton.getScene());
     }
-
-
-    Parent root;
-    SelectionMenuController playerGuiController;
-    public void initData(List<String> names, Boolean ordered, SelectionMenuController playerGuiController) {
-        this.playerGuiController = playerGuiController;
-        if (!ordered) {
-            Collections.shuffle(names);
-        }
-        nameList.getItems().addAll(names);
-    }
-
 
     public void initData(List<String> names, Boolean ordered) {
         if (!ordered) {

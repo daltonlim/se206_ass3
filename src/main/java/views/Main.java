@@ -1,4 +1,4 @@
-package Gui.SelectionMenu;
+package views;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,14 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.net.URL;
+
 public class Main extends Application {
 
     private static Stage mainStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectionMenu.fxml"));
+        URL location = this.getClass().getResource("selectionMenu.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = (Parent)fxmlLoader.load();
 
         primaryStage.setTitle("Hello World");
