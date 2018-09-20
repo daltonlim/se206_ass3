@@ -32,12 +32,13 @@ public class SelectionMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _maxOne = true;
-        fileManager = new NameManager();
+        fileManager = NameManager.getInstance();
         selectNamesButton.setDisable(true);
 
         //Add availableNames to the list
-        List<String> sortedList = fileManager.getUniqueNames();
+        List<String> sortedList = fileManager.getAvailableNames();
         java.util.Collections.sort(sortedList);
+        AvailibleNamesList.getItems();
         AvailibleNamesList.getItems().addAll(sortedList);
         checkAll();
         ordered = true;
@@ -108,17 +109,23 @@ public class SelectionMenuController implements Initializable {
     }
 
     @FXML
-    public void getPlayerGuiScene() throws Exception{
-        Stage primaryStage =(Stage) selectNamesButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(  "playerGui.fxml"));
+    public void getPlayerGuiScene() throws Exception {
+        Scene scene = selectNamesButton.getScene();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("playerGui.fxml"));
 
         Parent root = loader.load();
 
-        playerGuiController controller = loader.<playerGuiController>getController();
-        controller.initData(ChosenNames.getItems(),fileManager,ordered);
+        PlayerGuiController controller = loader.<PlayerGuiController>getController();
+        controller.initData(ChosenNames.getItems(), ordered, this);
 
-        primaryStage.setScene(new Scene(root, 600,600));
+
+        SceneManager.getInstance().addScene(scene);
+        Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
+
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
+
+
     }
 
 

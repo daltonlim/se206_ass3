@@ -22,10 +22,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class playerGuiController implements Initializable {
+public class PlayerGuiController implements Initializable {
     NameManager fileManager;
     FileLogger fileLogger;
     String _name;
+    Stage stage;
 
     @FXML
     private Label badWarningLabel;
@@ -46,11 +47,38 @@ public class playerGuiController implements Initializable {
     @FXML
     private Button microphoneButton;
 
+    //todo fix list type not being remembered
+    @FXML
+    private void goBack()  throws IOException{
+        SceneManager.getInstance().removeScene();
+
+        /*Stage primaryStage = (Stage) microphoneButton.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectionMenu.fxml"));
+        Parent root = (Parent)fxmlLoader.load();
+
+        stage.setTitle("FXML Welcome");
+        stage.setScene(new Scene(root, 300, 275));
+        stage.show();*/
+       /*Stage stage = (Stage) recordButton.getScene().getWindow();
+       stage.close();
+       this.stage.show();*/
+
+
+        /*Parent root = FXMLLoader.load(getClass().getResource("selectionMenu.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.show();*/
+
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         disableButtons(true);
         fileLogger = FileLogger.getInstance();
+        fileManager = NameManager.getInstance();
+        nameList.getItems().addAll(fileManager.getSelectedNames());
     }
 
     /**
@@ -86,14 +114,6 @@ public class playerGuiController implements Initializable {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
         mediaPlayer.play();
-    }
-
-    public void initData(List<String> names, NameManager fileManager, Boolean ordered) {
-        this.fileManager = fileManager;
-        if (!ordered) {
-            Collections.shuffle(names);
-        }
-        nameList.getItems().addAll(names);
     }
 
     @FXML
@@ -141,9 +161,33 @@ public class playerGuiController implements Initializable {
 
         controller.initData(_name);
 
+        SceneManager.getInstance().addScene(recordButton.getScene());
+
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+      //  SceneManager.getInstance().addScene( recordButton.getScene());
     }
 
+
+    Parent root;
+    SelectionMenuController playerGuiController;
+    public void initData(List<String> names, Boolean ordered, SelectionMenuController playerGuiController) {
+        this.playerGuiController = playerGuiController;
+        if (!ordered) {
+            Collections.shuffle(names);
+        }
+        nameList.getItems().addAll(names);
+    }
+
+
+    public void initData(List<String> names, Boolean ordered) {
+        if (!ordered) {
+            Collections.shuffle(names);
+        }
+        nameList.getItems().addAll(names);
+    }
+
+    Scene scene;
 
 }

@@ -157,7 +157,7 @@ public class RecordGuiController implements Initializable {
     }
 
     public void updatelist() {
-        fileManager = new NameManager();
+        fileManager = NameManager.getInstance();
         dateList.getItems().remove(0, dateList.getItems().size());
         dateList.getItems().addAll(fileManager.getFileDatesForName(_name));
         dateList.getSelectionModel().select(0);
@@ -186,10 +186,11 @@ public class RecordGuiController implements Initializable {
 
     @FXML
     public void exit() throws IOException {
-        Stage primaryStage = (Stage) ExitButton.getScene().getWindow();
+        SceneManager.getInstance().removeScene();
+       /* Stage primaryStage = (Stage) ExitButton.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("selectionMenu.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 600, 600));
-        primaryStage.show();
+        primaryStage.show();*/
     }
 }
