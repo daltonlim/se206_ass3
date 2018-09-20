@@ -6,21 +6,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Backend.File.FileCreator;
-import Backend.NameManagement.NameManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 
 public class TestController implements Initializable{
    
@@ -86,7 +81,7 @@ public class TestController implements Initializable{
     @FXML
     public void PlayAction() {
     	try {
-    		String audioFile = NameManager.directory + "/se206" + _Demo.getTime() + _Demo.getName() + ".wav";
+    		String audioFile = _Demo.fileString();
             Media media = new Media(new File(audioFile).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();
@@ -97,11 +92,8 @@ public class TestController implements Initializable{
     
     @FXML
     public void ExitAction() throws IOException {
-    	Stage primaryStage =(Stage) ExitButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("selectionMenu.fxml"));
-    	 primaryStage.setTitle("Hello World");
-    	 primaryStage.setScene(new Scene(root, 600,600));
-    	 primaryStage.show();
+        SceneManager.getInstance().removeScene();
+
     }
     
 	@Override

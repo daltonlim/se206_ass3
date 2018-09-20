@@ -24,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class playerGuiController implements Initializable {
+public class PlayerGuiController implements Initializable {
     NameManager fileManager;
     FileLogger fileLogger;
     String _name;
@@ -50,19 +50,28 @@ public class playerGuiController implements Initializable {
     private Button DeleteButton;
 
     
+    //todo fix list type not being remembered
+    @FXML
+    private void goBack()  throws IOException{
+        SceneManager.getInstance().removeScene();
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         disableButtons(true);
         fileLogger = FileLogger.getInstance();
+        fileManager = NameManager.getInstance();
+        nameList.getItems().addAll(fileManager.getSelectedNames());
     }
 
     /**
      * Updates the dateslist when a name is clicked
      */
     @FXML
-    private void updateDates() {
+    public void updateDates() {
         String name = nameList.getSelectionModel().getSelectedItems().get(0).toString();
-       _name= name;
+        _name = name;
         //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
         dateList.getItems().remove(0, dateList.getItems().size());
         dateList.getItems().addAll(fileManager.getFileDatesForName(name));
@@ -75,7 +84,7 @@ public class playerGuiController implements Initializable {
         isBadFile();
     }
 
-	private void disableButtons(boolean bool) {
+    private void disableButtons(boolean bool) {
         playButton.setDisable(bool);
         stopButton.setDisable(bool);
         reportButton.setDisable(bool);
@@ -121,7 +130,7 @@ public class playerGuiController implements Initializable {
     private void report() {
         File file = retrieveFile();
         fileLogger.report(file);
-        badWarningLabel.setText("Warning: The selected file has been marked as bad");
+        setBadWarningLabel();
     }
 
     private File retrieveFile() {
@@ -130,37 +139,56 @@ public class playerGuiController implements Initializable {
         return fileManager.getFile(name, date);
     }
 
+    private void setBadWarningLabel() {
+        badWarningLabel.setText("Warning: The selected recording had been reported as bad.");
+    }
+
     @FXML
     private void isBadFile() {
         if (fileLogger.isBad(retrieveFile())) {
-            badWarningLabel.setText("Warning: The selected file has been marked as bad");
+            setBadWarningLabel();
         } else {
             badWarningLabel.setText("");
         }
     }
-    
+
     @FXML
     private void MicrophoneTest() throws IOException {
-        Stage primaryStage =(Stage) microphoneButton.getScene().getWindow();
+        Stage primaryStage = (Stage) microphoneButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Test.fxml"));
         Parent root = loader.load();
-        primaryStage.setScene(new Scene(root));
+
+        SceneManager.getInstance().addScene(recordButton.getScene());
+
+
+        primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
     }
-    
+
     @FXML
     private void recordAudio() throws IOException {
-        Stage primaryStage =(Stage) recordButton.getScene().getWindow();
+        Stage primaryStage = (Stage) recordButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
-        
+
         RecordGuiController controller = loader.<RecordGuiController>getController();
-       
+
         controller.initData(_name);
-   
-        primaryStage.setScene(new Scene(root));
+
+        SceneManager.getInstance().addScene(recordButton.getScene());
+
+        primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
+
     }
-    
-    
+
+    public void initData(List<String> names, Boolean ordered) {
+        if (!ordered) {
+            Collections.shuffle(names);
+        }
+        nameList.getItems().addAll(names);
+    }
+
+    Scene scene;
+
 }

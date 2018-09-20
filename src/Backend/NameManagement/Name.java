@@ -1,6 +1,7 @@
 package Backend.NameManagement;
 
-import javax.swing.text.html.ListView;
+import Backend.File.FileParser;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +17,8 @@ public class Name {
         dateFileList = new HashMap<>();
     }
 
-    public void addDate(String date, File dateFile) {
-        dateFileList.put(date, dateFile);
+    public void addDate(FileParser fileParser) {
+        dateFileList.put(fileParser.getDate(), fileParser.getFile());
     }
 
     public File getFile(String date) {

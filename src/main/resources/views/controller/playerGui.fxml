@@ -11,11 +11,7 @@
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SelectionMenu.PlayerGuiController">
    <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select a File to Play" />
-<<<<<<< HEAD
-      <Label fx:id="badWarningLabel" text=" " textFill="#e10f0f" />
-=======
       <Label fx:id="badWarningLabel" text=" " textFill="#ae0404" />
->>>>>>> master
       <HBox alignment="TOP_CENTER">
          <children>
             <VBox alignment="CENTER">
@@ -35,10 +31,9 @@
       <FlowPane alignment="CENTER" columnHalignment="CENTER">
          <children>
             <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" text="Play" />
-            <Button fx:id="stopButton" mnemonicParsing="false" onAction="#stop" text="Stop" />
+            <Button fx:id="stopButton" mnemonicParsing="false" text="Stop" />
             <Button fx:id="recordButton" mnemonicParsing="false" onAction="#recordAudio" text="Record own version" />
             <Button fx:id="reportButton" mnemonicParsing="false" onAction="#report" text="Report Bad Recording" />
-            <Button fx:id="DeleteButton" mnemonicParsing="false" onAction="#delete" text="Delete" />
             <Button fx:id="microphoneButton" layoutX="298.0" layoutY="10.0" mnemonicParsing="false" onAction="#MicrophoneTest" text="Microphone Test" />
             <Button fx:id="rechoose" mnemonicParsing="false" onAction="#goBack" text="Rechoose Names" />
          </children>

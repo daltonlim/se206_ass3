@@ -6,16 +6,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.net.URL;
+
 public class Main extends Application {
 
     private static Stage mainStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("selectionMenu.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 600,600));
+        URL location = this.getClass().getResource("selectionMenu.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(location);
+        Parent root = (Parent)fxmlLoader.load();
+
+        primaryStage.setTitle("Name Sayer");
+        Scene scene = new Scene(root, 600,600);
+        primaryStage.setScene(scene);
         primaryStage.show();
+        SceneManager.getInstance().setMainStage(primaryStage);
     }
 
 

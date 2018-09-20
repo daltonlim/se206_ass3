@@ -27,9 +27,11 @@ public class FileParser {
         String[] nameExt = parts[3].split("\\.");
 
         //Get isolated userName without extension in sentence case
-        return java.lang.Character.toUpperCase(nameExt[0].charAt(0))
+        return Character.toUpperCase(nameExt[0].charAt(0))
                 + nameExt[0].substring(1).toLowerCase();
     }
 
-
+    public File getFile() {
+        return file;
+    }
 }
