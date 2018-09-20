@@ -128,6 +128,10 @@ public class PlayerGuiController implements Initializable {
         Stage primaryStage = (Stage) microphoneButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Test.fxml"));
         Parent root = loader.load();
+
+        SceneManager.getInstance().addScene(recordButton.getScene());
+
+
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
