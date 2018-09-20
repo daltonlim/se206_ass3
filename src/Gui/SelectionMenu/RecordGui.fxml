@@ -12,19 +12,25 @@
    <children>
       <VBox alignment="CENTER" layoutX="298.0" prefHeight="415.0" prefWidth="302.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Old version" />
-            <ListView fx:id="dateList" onMouseClicked="#choose" />
+            <ListView fx:id="dateList" onMouseClicked="#choose" prefHeight="415.0" prefWidth="302.0" />
          </children>
       </VBox>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="15.0" prefWidth="246.0" text="You can record your own version for" />
-      <Label fx:id="States" layoutX="37.0" layoutY="93.0" prefHeight="15.0" prefWidth="200.0" />
-      <Button fx:id="RecordButton" layoutX="14.0" layoutY="183.0" mnemonicParsing="false" onAction="#record" text="Record" />
-      <Button fx:id="PlayYoursButton" layoutX="96.0" layoutY="183.0" mnemonicParsing="false" onAction="#playback" text="PlayYours" />
-      <Button fx:id="PlayOldButton" layoutX="198.0" layoutY="183.0" mnemonicParsing="false" onAction="#playold" text="PlayOld" />
-      <Button fx:id="SaveButton" layoutX="128.0" layoutY="355.0" mnemonicParsing="false" onAction="#save" text="Save" />
-      <Button fx:id="NoSaveButton" layoutX="198.0" layoutY="355.0" mnemonicParsing="false" onAction="#nosave" text="Don't Save" />
-      <ProgressBar fx:id="progressbar" layoutX="37.0" layoutY="129.0" prefWidth="200.0" progress="0.0" />
-      <Button fx:id="ExitButton" layoutX="15.0" layoutY="355.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
-      <Label fx:id="name" layoutX="14.0" layoutY="37.0" />
+      <Label layoutX="22.0" layoutY="22.0" prefHeight="18.0" prefWidth="258.0" text="You can record your own version for">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="States" layoutX="50.0" layoutY="172.0" prefHeight="15.0" prefWidth="200.0" />
+      <Button fx:id="RecordButton" layoutX="3.0" layoutY="239.0" mnemonicParsing="false" onAction="#record" prefHeight="25.0" prefWidth="296.0" text="Record" />
+      <Button fx:id="PlayYoursButton" layoutX="3.0" layoutY="289.0" mnemonicParsing="false" onAction="#playback" prefHeight="25.0" prefWidth="296.0" text="PlayYours" />
+      <Button fx:id="PlayOldButton" layoutX="2.0" layoutY="264.0" mnemonicParsing="false" onAction="#playold" prefHeight="25.0" prefWidth="296.0" text="PlayOld" />
+      <Button fx:id="SaveButton" layoutX="2.0" layoutY="314.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="296.0" text="Save" />
+      <Button fx:id="NoSaveButton" layoutX="2.0" layoutY="339.0" mnemonicParsing="false" onAction="#nosave" prefHeight="25.0" prefWidth="296.0" text="Don't Save" />
+      <ProgressBar fx:id="progressbar" layoutX="50.0" layoutY="198.0" prefWidth="200.0" progress="0.0" />
+      <Button fx:id="ExitButton" layoutX="2.0" layoutY="389.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="296.0" text="Exit" />
+      <Label fx:id="name" layoutX="95.0" layoutY="61.0" prefHeight="52.0" prefWidth="180.0" textAlignment="CENTER" textFill="#f50202">
+         <font>
+            <Font size="34.0" />
+         </font></Label>
+      <Button fx:id="RestartButton" layoutX="2.0" layoutY="364.0" mnemonicParsing="false" onAction="#restart" prefHeight="25.0" prefWidth="296.0" text="Restart" />
    </children>
 </AnchorPane>

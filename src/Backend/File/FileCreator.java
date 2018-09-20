@@ -39,6 +39,22 @@ public class FileCreator {
         return "_User-" + text;
     }
 
+    /**
+     * return the current date stored in function
+     * @return
+     */
+	public String getTime() {
+		return _date;		
+	}
+	
+	 /**
+     * return the current name stored in function
+     * @return
+     */
+	public String getName() {
+		return _fileName;
+	}
+    
     public void removeFile() {
         new BashWorker("rm " + fileString());
     }
@@ -46,4 +62,5 @@ public class FileCreator {
     public String fileString() {
         return NameManager.directory + "/se206" + _date + _fileName + ".wav";
     }
+
 }

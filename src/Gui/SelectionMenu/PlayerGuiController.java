@@ -1,5 +1,7 @@
 package Gui.SelectionMenu;
 
+import Backend.File.BashWorker;
+import Backend.File.FileCreator;
 import Backend.File.FileLogger;
 import Backend.NameManagement.NameManager;
 import javafx.fxml.FXML;
@@ -26,12 +28,9 @@ public class PlayerGuiController implements Initializable {
     NameManager fileManager;
     FileLogger fileLogger;
     String _name;
-    Stage stage;
-
+    
     @FXML
     private Label badWarningLabel;
-    @FXML
-    private MediaView mediaView;
     @FXML
     private ListView nameList;
     @FXML
@@ -47,6 +46,10 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private Button microphoneButton;
 
+    @FXML
+    private Button DeleteButton;
+
+    
     //todo fix list type not being remembered
     @FXML
     private void goBack()  throws IOException{
@@ -90,11 +93,37 @@ public class PlayerGuiController implements Initializable {
 
     @FXML
     private void play() {
-        File file = retrieveFile();
-        Media media = new Media(file.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaView.setMediaPlayer(mediaPlayer);
-        mediaPlayer.play();
+    	try {
+    		 File file = retrieveFile();
+    		 String location = file.toURI().toString();
+    		 new BashWorker("chmod +x "+ location);
+    		 new BashWorker("ffplay -nodisp -autoexit "+ location);
+    	} catch(Exception e) {
+             e.printStackTrace();
+    	}
+    }
+
+    @FXML
+    private void stop() {   	
+        new BashWorker("killall ffplay");
+    }
+    
+    @FXML
+    private void delete() {   
+    	File file = retrieveFile();
+		String location = file.toURI().toString();
+		//System.out.println(location);
+		//new BashWorker("chmod +x "+ location);
+        new BashWorker("rm " + location);
+        updateDates();
+    }
+    
+    public void initData(List<String> names, NameManager fileManager, Boolean ordered) {
+        this.fileManager = fileManager;
+        if (!ordered) {
+            Collections.shuffle(names);
+        }
+        nameList.getItems().addAll(names);
     }
 
     @FXML
