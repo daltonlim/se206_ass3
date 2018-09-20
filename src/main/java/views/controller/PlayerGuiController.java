@@ -1,4 +1,4 @@
-package views;
+package views.controller;
 
 import Backend.File.FileLogger;
 import Backend.NameManagement.NameManager;
@@ -14,6 +14,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import views.SceneManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -132,7 +133,7 @@ public class PlayerGuiController implements Initializable {
         SceneManager.getInstance().addScene(recordButton.getScene());
 
 
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
     }
 
@@ -148,7 +149,7 @@ public class PlayerGuiController implements Initializable {
 
         SceneManager.getInstance().addScene(recordButton.getScene());
 
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
 
     }

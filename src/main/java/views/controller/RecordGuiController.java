@@ -1,4 +1,4 @@
-package views;
+package views.controller;
 
 import Backend.File.FileCreator;
 import Backend.NameManagement.NameManager;
@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import views.SceneManager;
 
 import java.io.File;
 import java.io.IOException;

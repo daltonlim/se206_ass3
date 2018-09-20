@@ -1,4 +1,4 @@
-package views;
+package views.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +21,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import views.SceneManager;
 
 public class TestController implements Initializable{
    

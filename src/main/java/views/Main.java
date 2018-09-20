@@ -14,11 +14,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL location = this.getClass().getResource("selectionMenu.fxml");
+        URL location = this.getClass().getResource("controller/selectionMenu.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = (Parent)fxmlLoader.load();
 
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Name Sayer");
         Scene scene = new Scene(root, 600,600);
         primaryStage.setScene(scene);
         primaryStage.show();
