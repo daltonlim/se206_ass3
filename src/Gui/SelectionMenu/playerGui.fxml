@@ -11,11 +11,8 @@
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SelectionMenu.PlayerGuiController">
    <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select a File to Play" />
-<<<<<<< HEAD
-      <Label fx:id="badWarningLabel" text=" " textFill="#e10f0f" />
-=======
+
       <Label fx:id="badWarningLabel" text=" " textFill="#ae0404" />
->>>>>>> master
       <HBox alignment="TOP_CENTER">
          <children>
             <VBox alignment="CENTER">
