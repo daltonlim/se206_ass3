@@ -54,7 +54,7 @@ public class FileCreator {
     }
 
     public void removeFile() {
-       new File(fileString()).delete();
+        new File(fileString()).delete();
     }
 
     public String fileString() {

@@ -32,13 +32,14 @@ public class SceneManager {
 
     public void removeScene() {
         setScene();
+
         sceneStack.pop();
         controllerStack.pop();
-
         //Ensure dates update accordingly
-        if (controllerStack.size() != 0 && controllerStack.peek() instanceof PlayerGuiController) {
+        if (controllerStack.size() != 0 && controllerStack.peek() instanceof PlayerGuiController2) {
             ((PlayerGuiController) controllerStack.peek()).updateDates();
         }
+
 
     }
 

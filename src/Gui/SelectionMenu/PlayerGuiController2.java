@@ -37,13 +37,7 @@ public class PlayerGuiController2 implements Initializable {
     @FXML
     private ListView dateList;
     @FXML
-    private Button playButton;
-    @FXML
-    private Button stopButton;
-    @FXML
     private Button recordButton;
-    @FXML
-    private Button reportButton;
     @FXML
     private Button microphoneButton;
 
@@ -108,6 +102,8 @@ public class PlayerGuiController2 implements Initializable {
 
     @FXML
     private void play() {
+        if(worker!=null)
+        worker.kill();
         try {
             File file = retrieveFile();
             String location = file.toURI().toString();
@@ -115,19 +111,6 @@ public class PlayerGuiController2 implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void stop() {
-        worker.kill();
-    }
-
-    @FXML
-    private void delete() {
-        File file = retrieveFile();
-        file.delete();
-        fileManager.removeFile(file);
-        updateDates();
     }
 
     public void initData(List<String> names, Boolean ordered) {
