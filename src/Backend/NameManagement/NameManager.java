@@ -16,12 +16,10 @@ import java.util.List;
  */
 
 public class NameManager {
-    private boolean ordered;
-    private boolean _maxOne;
-    private List<String> selectedNames;
     private List<String> availableNames;
-    private List<String> allNames;
     private static NameManager instance;
+    public static final File directory = new File("audioFiles");
+    private HashMap<String, Name> nameList;
 
     public static NameManager getInstance() {
         if (instance == null) {
@@ -30,37 +28,23 @@ public class NameManager {
         return instance;
     }
 
-    public void setSelectedNames(List<String> selectedNames) {
-        this.selectedNames = selectedNames;
-        availableNames.removeAll(selectedNames);
+    public void removeFile(File file) {
+        FileParser fileParser = new FileParser(file);
+        if (fileParser.getDate().contains("ser")) {
+            nameList.get(fileParser.getUserName()).remove(fileParser);
+        }
     }
 
     public List<String> getAvailableNames() {
         return availableNames;
     }
 
-    public List<String> getSelectedNames() {
-        if (!ordered) {
-            Collections.shuffle(selectedNames);
-        }
-        return selectedNames;
-    }
 
-    public void setOrdered(boolean ordered) {
-        this.ordered = ordered;
-    }
-
-    public static final File directory = new File("audioFiles");
-    private HashMap<String, Name> nameList;
-
-
-    public NameManager() {
+    private NameManager() {
         nameList = new HashMap<>();
         getFiles();
         availableNames = new ArrayList<>(nameList.keySet());
-        selectedNames = new ArrayList<>();
-        ordered = true;
-        _maxOne = true;
+
     }
 
 
@@ -81,7 +65,7 @@ public class NameManager {
         return nameList.get(name).getFile(date);
     }
 
-    private void addFile(File file) {
+    public void addFile(File file) {
         FileParser fileParser = new FileParser(file);
         String name = fileParser.getUserName();
         Name nameToAdd = new Name(name);
@@ -96,7 +80,10 @@ public class NameManager {
     }
 
     public List<String> getFileDatesForName(String name) {
-        return nameList.get(name).returnDates();
+
+        List<String> toReturn =  nameList.get(name).returnDates();
+        Collections.sort(toReturn);
+        return toReturn;
     }
 
 

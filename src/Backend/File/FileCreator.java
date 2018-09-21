@@ -6,6 +6,7 @@ package Backend.File;
 
 import Backend.NameManagement.NameManager;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -40,23 +41,20 @@ public class FileCreator {
     }
 
     /**
-     * return the current date stored in function
-     * @return
-     */
-	public String getTime() {
-		return _date;		
-	}
-	
-	 /**
      * return the current name stored in function
+     *
      * @return
      */
-	public String getName() {
-		return _fileName;
-	}
-    
+    public String getName() {
+        return _fileName;
+    }
+
+    public File getFile() {
+        return new File(fileString());
+    }
+
     public void removeFile() {
-        new BashWorker("rm " + fileString());
+       new File(fileString()).delete();
     }
 
     public String fileString() {

@@ -7,7 +7,8 @@ import javax.swing.SwingWorker;
  */
 public class BashWorker extends SwingWorker<Void, Void> {
     String _command = null;
-    
+    Process _process;
+
     public BashWorker(String command) {
         _command = command;
         this.execute();
@@ -17,12 +18,16 @@ public class BashWorker extends SwingWorker<Void, Void> {
     protected Void doInBackground() {
         try {
             ProcessBuilder builder = new ProcessBuilder("bash", "-c", _command);
-            Process process = builder.start();
+            _process = builder.start();
 
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
         }
         return null;
+    }
+
+    public void kill() {
+        _process.destroy();
     }
 }

@@ -86,6 +86,7 @@ public class    RecordGuiController implements Initializable {
 		 disableButtons(true);
 		 progressbar.setVisible(false);
 		 States.setVisible(false);
+		 fileManager = NameManager.getInstance();
 	}
 	
 	 private void disableButtons(boolean b) {
@@ -177,7 +178,6 @@ public class    RecordGuiController implements Initializable {
 	
 	public void updatelist() {
 
-		 fileManager = new NameManager();
 		 dateList.getItems().remove(0, dateList.getItems().size());
 		 dateList.getItems().addAll(fileManager.getFileDatesForName(_name)); 
 	     dateList.getSelectionModel().select(0);
@@ -205,6 +205,8 @@ public class    RecordGuiController implements Initializable {
     
     @FXML
     public void save() {
+        fileManager.addFile(_FileCreator.getFile());
+
         updatelist();
         SaveButton.setDisable(true);
         NoSaveButton.setDisable(true);
@@ -213,6 +215,7 @@ public class    RecordGuiController implements Initializable {
     @FXML
     public void nosave() {
     	_FileCreator.removeFile();
+    	NameManager.getInstance().removeFile(_FileCreator.getFile());
     	SaveButton.setDisable(true);
     	NoSaveButton.setDisable(true);
 

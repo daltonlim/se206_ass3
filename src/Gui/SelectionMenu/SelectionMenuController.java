@@ -119,7 +119,7 @@ public class SelectionMenuController implements Initializable {
         controller.initData(ChosenNames.getItems(), ordered);
 
 
-        SceneManager.getInstance().addScene(scene);
+        SceneManager.getInstance().addScene(scene,controller);
         Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
 
         primaryStage.setScene(new Scene(root, 600, 600));

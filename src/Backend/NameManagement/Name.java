@@ -21,9 +21,14 @@ public class Name {
         dateFileList.put(fileParser.getDate(), fileParser.getFile());
     }
 
+    public void remove(FileParser fileParser) {
+        dateFileList.remove(fileParser.getDate());
+    }
+
     public File getFile(String date) {
         return dateFileList.get(date);
     }
+
 
     public List<String> returnDates() {
         return new ArrayList(dateFileList.keySet());

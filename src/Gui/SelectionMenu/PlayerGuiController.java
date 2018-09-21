@@ -12,9 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -28,7 +25,7 @@ public class PlayerGuiController implements Initializable {
     NameManager fileManager;
     FileLogger fileLogger;
     String _name;
-    
+
     @FXML
     private Label badWarningLabel;
     @FXML
@@ -46,10 +43,12 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private Button microphoneButton;
 
+    private BashWorker worker;
     @FXML
     private Button DeleteButton;
 
-    
+
+
     //todo fix list type not being remembered
     @FXML
     private void goBack()  throws IOException{
@@ -62,7 +61,6 @@ public class PlayerGuiController implements Initializable {
         disableButtons(true);
         fileLogger = FileLogger.getInstance();
         fileManager = NameManager.getInstance();
-        nameList.getItems().addAll(fileManager.getSelectedNames());
     }
 
     /**
@@ -96,28 +94,25 @@ public class PlayerGuiController implements Initializable {
     	try {
     		 File file = retrieveFile();
     		 String location = file.toURI().toString();
-    		 new BashWorker("chmod +x "+ location);
-    		 new BashWorker("ffplay -nodisp -autoexit "+ location);
+    		worker =  new BashWorker("ffplay -nodisp -autoexit "+ location);
     	} catch(Exception e) {
              e.printStackTrace();
     	}
     }
 
     @FXML
-    private void stop() {   	
-        new BashWorker("killall ffplay");
+    private void stop() {
+        worker.kill();
     }
-    
+
     @FXML
-    private void delete() {   
+    private void delete() {
     	File file = retrieveFile();
-		String location = file.toURI().toString();
-		//System.out.println(location);
-		//new BashWorker("chmod +x "+ location);
-        new BashWorker("rm " + location);
+        file.delete();
+        fileManager.removeFile(file);
         updateDates();
     }
-    
+
     public void initData(List<String> names, NameManager fileManager, Boolean ordered) {
         this.fileManager = fileManager;
         if (!ordered) {
@@ -158,7 +153,7 @@ public class PlayerGuiController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Test.fxml"));
         Parent root = loader.load();
 
-        SceneManager.getInstance().addScene(recordButton.getScene());
+        SceneManager.getInstance().addScene(recordButton.getScene(),loader.getController());
 
 
         primaryStage.setScene(new Scene(root,600,600));
@@ -175,7 +170,7 @@ public class PlayerGuiController implements Initializable {
 
         controller.initData(_name);
 
-        SceneManager.getInstance().addScene(recordButton.getScene());
+        SceneManager.getInstance().addScene(recordButton.getScene(),controller);
 
         primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
