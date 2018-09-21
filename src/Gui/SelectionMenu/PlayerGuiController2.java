@@ -205,7 +205,7 @@ public class PlayerGuiController2 implements Initializable {
 
         SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
     }
