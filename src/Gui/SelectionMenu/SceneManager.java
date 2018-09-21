@@ -36,16 +36,17 @@ public class SceneManager {
         controllerStack.pop();
 
         //Ensure dates update accordingly
-        if(controllerStack.peek() instanceof PlayerGuiController){
+        if (controllerStack.size() != 0 && controllerStack.peek() instanceof PlayerGuiController) {
             ((PlayerGuiController) controllerStack.peek()).updateDates();
         }
 
     }
 
-    public Scene getScene(){
+    public Scene getScene() {
         return (Scene) sceneStack.peek();
     }
-    public Initializable getController(){
+
+    public Initializable getController() {
         return (Initializable) controllerStack.peek();
     }
 
@@ -54,7 +55,7 @@ public class SceneManager {
         mainStage.show();
     }
 
-    public void setMainStage(Stage stage){
+    public void setMainStage(Stage stage) {
         this.mainStage = stage;
     }
 }

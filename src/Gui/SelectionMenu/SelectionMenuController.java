@@ -110,12 +110,11 @@ public class SelectionMenuController implements Initializable {
     @FXML
     public void getPlayerGuiScene() throws Exception {
         Scene scene = selectNamesButton.getScene();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("playerGui.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("playerGui2.fxml"));
 
-        URL location = this.getClass().getResource("playerGui.fxml");
         Parent root = loader.load();
 
-        PlayerGuiController controller = loader.<PlayerGuiController>getController();
+        PlayerGuiController2 controller = loader.getController();
         controller.initData(ChosenNames.getItems(), ordered);
 
 
