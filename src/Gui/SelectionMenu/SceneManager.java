@@ -37,7 +37,7 @@ public class SceneManager {
         controllerStack.pop();
         //Ensure dates update accordingly
         if (controllerStack.size() != 0 && controllerStack.peek() instanceof PlayerGuiController2) {
-            ((PlayerGuiController) controllerStack.peek()).updateDates();
+            ((PlayerGuiController2) controllerStack.peek()).updateDates();
         }
 
 

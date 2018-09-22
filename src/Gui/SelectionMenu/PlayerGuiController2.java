@@ -2,6 +2,7 @@ package Gui.SelectionMenu;
 
 import Backend.File.BashWorker;
 import Backend.File.FileLogger;
+import Backend.File.FileParser;
 import Backend.NameManagement.NameManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -185,6 +186,7 @@ public class PlayerGuiController2 implements Initializable {
         RecordGuiController controller = loader.<RecordGuiController>getController();
 
         controller.initData(_name);
+
 
         SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
