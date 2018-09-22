@@ -50,6 +50,7 @@ public class PlayerGuiController implements Initializable {
     //Return to previous window
     @FXML
     private void goBack() throws IOException {
+        stop();
         SceneManager.getInstance().removeScene();
     }
 
@@ -112,14 +113,19 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private void play() {
-        if (worker != null)
-            worker.kill();
+        stop();
         try {
             File file = retrieveFile();
             String location = file.toURI().toString();
             worker = new BashWorker("ffplay -nodisp -autoexit " + location);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void stop() {
+        if (worker != null) {
+            worker.kill();
         }
     }
 
@@ -196,6 +202,7 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private void MicrophoneTest() throws IOException {
+        stop();
         Stage primaryStage = (Stage) microphoneButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Test.fxml"));
         Parent root = loader.load();
@@ -210,6 +217,7 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private void recordAudio() throws IOException {
+        stop();
         Stage primaryStage = (Stage) recordButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
@@ -220,7 +228,7 @@ public class PlayerGuiController implements Initializable {
 
         SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
-        primaryStage.setScene(new Scene(root,600,600));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
 
     }

@@ -127,6 +127,7 @@ public class RecordGuiController implements Initializable {
 
     @FXML
     public void playOld() throws InterruptedException {
+
         try {
             States.setVisible(false);
             File audioFile = fileParser.getFile();
@@ -150,6 +151,7 @@ public class RecordGuiController implements Initializable {
 
     @FXML
     public void restart() throws IOException {
+        stop();
         fileCreator.removeFile();
         Stage primaryStage = (Stage) recordButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
