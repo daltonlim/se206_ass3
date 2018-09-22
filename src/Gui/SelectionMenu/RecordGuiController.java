@@ -26,36 +26,26 @@ import javafx.stage.Stage;
 public class RecordGuiController implements Initializable {
     @FXML
     private Label States;
-
     @FXML
     private Label nameLabel;
-
     @FXML
     private Button PlayOldButton;
     @FXML
     private Button RestartButton;
-
     @FXML
     private Button recordButton;
-
     @FXML
     private Button PlayYoursButton;
-
     @FXML
     private ProgressBar progressbar;
-
     @FXML
     private Button SaveButton;
-
     @FXML
     private Button NoSaveButton;
 
     private Task<?> _Recording;
-
     private FileCreator fileCreator;
-
     private FileParser fileParser;
-
     private BashWorker bashWorker;
 
     @Override
@@ -114,13 +104,18 @@ public class RecordGuiController implements Initializable {
         }
     }
 
-
     private void RecordingIsFinished() {
         disableButtons(false);
     }
 
+    private void play(File audioFile) {
+        stop();
+        String location = audioFile.toURI().toString();
+        bashWorker = new BashWorker("ffplay -nodisp -autoexit " + location);
+    }
+
     @FXML
-    public void playback() throws InterruptedException {
+    public void playNew() throws InterruptedException {
         try {
             File audioFile = new File(fileCreator.fileString());
             play(audioFile);
@@ -129,16 +124,8 @@ public class RecordGuiController implements Initializable {
         }
     }
 
-    private void play(File audioFile) {
-        if (bashWorker != null) {
-            bashWorker.kill();
-        }
-        String location = audioFile.toURI().toString();
-        bashWorker = new BashWorker("ffplay -nodisp -autoexit " + location);
-    }
-
     @FXML
-    public void playold() throws InterruptedException {
+    public void playOld() throws InterruptedException {
         try {
             progressbar.setVisible(false);
             States.setVisible(false);
@@ -191,6 +178,13 @@ public class RecordGuiController implements Initializable {
 
     @FXML
     public void exit() {
+        stop();
         SceneManager.getInstance().removeScene();
+    }
+
+    private void stop(){
+        if(bashWorker!=null){
+            bashWorker.kill();
+        }
     }
 }
