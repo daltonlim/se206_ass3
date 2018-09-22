@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import Backend.File.BashWorker;
 
 import Backend.File.FileCreator;
+import Backend.File.FileParser;
 import Backend.NameManagement.NameManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,35 +20,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import static javax.swing.text.html.HTML.Tag.HEAD;
-
-public class    RecordGuiController implements Initializable {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
+public class RecordGuiController implements Initializable {
     @FXML
     private Label States;
 
     @FXML
-    private Button PlayOldButton;
+    private Label nameLabel;
 
     @FXML
-    private Button RecordButton;
+    private Button PlayOldButton;
+    @FXML
+    private Button RestartButton;
+
+    @FXML
+    private Button recordButton;
 
     @FXML
     private Button PlayYoursButton;
@@ -56,133 +45,116 @@ public class    RecordGuiController implements Initializable {
     private ProgressBar progressbar;
 
     @FXML
-    private ListView dateList;
-
-    @FXML
     private Button SaveButton;
 
     @FXML
     private Button NoSaveButton;
 
-    @FXML
-    private Label name;
+    private Task<?> _Recording;
 
-    @FXML
-    private Button ExitButton;
-    
-    @FXML
-    private Button RestartButton;
+    private FileCreator fileCreator;
 
-	private Task<?> _Recording;
+    private FileParser fileParser;
 
-	private FileCreator _FileCreator;
-	
-	private String _name;
+    private BashWorker bashWorker;
 
-	NameManager fileManager;
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		 disableButtons(true);
-		 progressbar.setVisible(false);
-		 States.setVisible(false);
-	}
-	
-	 private void disableButtons(boolean b) {
-		 PlayYoursButton.setDisable(b);
-		 SaveButton.setDisable(b);
-		 NoSaveButton.setDisable(b);
-	}
-	 
-	public Task<?> createWorker() {
-	        return new Task<Object>() {
-	            @Override
-	            protected Object call() throws Exception {
-	                for (int i = 0; i < 5; i++) {
-	                    Thread.sleep(1000);
-	                    updateMessage("Recording Completed : " + ((i*20)+20)  + "%");
-	                    updateProgress(i + 1, 5);
-	                }
-	                RecordingIsFinished(); 
-	                return true;
-	            }
-	        };  	    
-	 }
-	
-    @FXML
-    public void record() throws InterruptedException {
-    	RecordButton.setDisable(true);
-    	progressbar.setVisible(true);
-    	States.setVisible(true);
-    	PlayOldButton.setDisable(true);
-    	progressbar.setProgress(0.0);
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        disableButtons(true);
+        progressbar.setVisible(false);
+        States.setVisible(false);
+    }
 
-        _Recording = createWorker();
+    private void disableButtons(boolean b) {
+        PlayOldButton.setDisable(b);
+        PlayYoursButton.setDisable(b);
+        SaveButton.setDisable(b);
+        NoSaveButton.setDisable(b);
+        RestartButton.setDisable(b);
+    }
 
-        progressbar.progressProperty().unbind();
-
-        progressbar.progressProperty().bind(_Recording.progressProperty());
-
-        _Recording.messageProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                States.setText(newValue);
+    public Task<?> createWorker() {
+        return new Task<Object>() {
+            @Override
+            protected Object call() throws Exception {
+                for (int i = 0; i < 5; i++) {
+                    Thread.sleep(1000);
+                    updateMessage("Recording Completed : " + ((i * 20) + 20) + "%");
+                    updateProgress(i + 1, 5);
+                }
+                RecordingIsFinished();
+                return true;
             }
-        });
-        new Thread(_Recording).start();
-        _FileCreator = new FileCreator(_name);
-    }
-
-
-    private void RecordingIsFinished() {
-        PlayYoursButton.setDisable(false);
-        SaveButton.setDisable(false);
-        NoSaveButton.setDisable(false);
+        };
     }
 
     @FXML
-    public void playback() throws InterruptedException {
+    public void record() {
         try {
-            String audioFile = _FileCreator.fileString();
-            Media media = new Media(new File(audioFile).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.play();
+            progressbar.setVisible(true);
+            States.setVisible(true);
+            PlayOldButton.setDisable(true);
+            progressbar.setProgress(0.0);
+
+            _Recording = createWorker();
+
+            progressbar.progressProperty().unbind();
+
+            progressbar.progressProperty().bind(_Recording.progressProperty());
+
+            _Recording.messageProperty().addListener(new ChangeListener<String>() {
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    States.setText(newValue);
+                }
+            });
+            new Thread(_Recording).start();
+            fileCreator.generateAudio();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @FXML
-    public void playold() throws InterruptedException {
-    	try {
-    		 progressbar.setVisible(false);
-    		 States.setVisible(false);
-    		String date = dateList.getSelectionModel().getSelectedItems().get(0).toString();
-    		File audioFile = fileManager.getFile(_name, date);
-    		String location = audioFile.toURI().toString();
-   		    new BashWorker("chmod +x "+ location);
-   		    new BashWorker("ffplay -nodisp -autoexit "+ location);
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}  
+
+    private void RecordingIsFinished() {
+        disableButtons(false);
     }
 
-	public void selectedName(String name) {
-		_name = name;		
-	}
+    @FXML
+    public void playback() throws InterruptedException {
+        try {
+            File audioFile = new File(fileCreator.fileString());
+            play(audioFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	public void initData(String name) {
-		selectedName(name);
-		updatelist();
-	}
-	
-	public void updatelist() {
+    private void play(File audioFile) {
+        if (bashWorker != null) {
+            bashWorker.kill();
+        }
+        String location = audioFile.toURI().toString();
+        bashWorker = new BashWorker("ffplay -nodisp -autoexit " + location);
+    }
 
-		 fileManager = NameManager.getInstance();
-		 dateList.getItems().remove(0, dateList.getItems().size());
-		 dateList.getItems().addAll(fileManager.getFileDatesForName(_name)); 
-	     dateList.getSelectionModel().select(0);
-	     name.setText(_name);
-	}
+    @FXML
+    public void playold() throws InterruptedException {
+        try {
+            progressbar.setVisible(false);
+            States.setVisible(false);
+            File audioFile = fileParser.getFile();
+            play(audioFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initData(File file) {
+        fileParser = new FileParser(file);
+        String name = fileParser.getUserName();
+        fileCreator = new FileCreator(name);
+        nameLabel.setText(name);
+    }
 
     @FXML
     public void choose() {
@@ -191,38 +163,34 @@ public class    RecordGuiController implements Initializable {
 
     @FXML
     public void restart() throws IOException {
-        Stage primaryStage =(Stage) RestartButton.getScene().getWindow();
+        fileCreator.removeFile();
+        Stage primaryStage = (Stage) recordButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
-        
+
         RecordGuiController controller = loader.<RecordGuiController>getController();
-       
-        controller.initData(_name);
-   
-        primaryStage.setScene(new Scene(root));
+
+        controller.initData(fileParser.getFile());
+
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
-    
+
     @FXML
     public void save() {
-        NameManager.getInstance().addFile(_FileCreator.getFile());
-
-        updatelist();
-        SaveButton.setDisable(true);
-        NoSaveButton.setDisable(true);
+        NameManager.getInstance().addFile(fileCreator.getFile());
+        exit();
     }
 
     @FXML
     public void nosave() {
-    	_FileCreator.removeFile();
-    	NameManager.getInstance().removeFile(_FileCreator.getFile());
-    	SaveButton.setDisable(true);
-    	NoSaveButton.setDisable(true);
-
+        fileCreator.removeFile();
+        NameManager.getInstance().removeFile(fileCreator.getFile());
+        exit();
     }
 
     @FXML
-    public void exit() throws IOException {
+    public void exit() {
         SceneManager.getInstance().removeScene();
     }
 }

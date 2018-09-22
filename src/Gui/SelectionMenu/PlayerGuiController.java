@@ -1,7 +1,6 @@
 package Gui.SelectionMenu;
 
 import Backend.File.BashWorker;
-import Backend.File.FileCreator;
 import Backend.File.FileLogger;
 import Backend.File.FileParser;
 import Backend.NameManagement.NameManager;
@@ -26,56 +25,51 @@ public class PlayerGuiController implements Initializable {
     NameManager fileManager;
     FileLogger fileLogger;
     String _name;
+    private int index = 0;
 
     @FXML
     private Label badWarningLabel;
     @FXML
-    private ListView nameList;
+    private Button nextName;
+    @FXML
+    private Button lastName;
+    @FXML
+    private Label nameLabel;
     @FXML
     private ListView dateList;
     @FXML
-    private Button playButton;
-    @FXML
-    private Button stopButton;
-    @FXML
     private Button recordButton;
-    @FXML
-    private Button reportButton;
     @FXML
     private Button microphoneButton;
 
     private BashWorker worker;
+
+    private List<String> _chosenNames;
+
+
+    //Return to previous window
     @FXML
-    private Button DeleteButton;
-
-
-
-    //todo fix list type not being remembered
-    @FXML
-    private void goBack()  throws IOException{
+    private void goBack() throws IOException {
         SceneManager.getInstance().removeScene();
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        disableButtons(true);
         fileLogger = FileLogger.getInstance();
         fileManager = NameManager.getInstance();
     }
 
     /**
-     * Updates the dateslist when a name is clicked
+     * Updates the dateslist when a button is clicked
      */
     @FXML
     public void updateDates() {
-        String name = nameList.getSelectionModel().getSelectedItems().get(0).toString();
-        _name = name;
+        nameLabel.setText(_name);
         //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
         dateList.getItems().remove(0, dateList.getItems().size());
-        dateList.getItems().addAll(fileManager.getFileDatesForName(name));
+        dateList.getItems().addAll(fileManager.getFileDatesForName(_name));
 
-        disableButtons(false);
 
         //Select first element is list by default
         dateList.getSelectionModel().select(0);
@@ -83,45 +77,86 @@ public class PlayerGuiController implements Initializable {
         isBadFile();
     }
 
-    private void disableButtons(boolean bool) {
-        playButton.setDisable(bool);
-        stopButton.setDisable(bool);
-        reportButton.setDisable(bool);
-        recordButton.setDisable(bool);
+    /**
+     * Get the next name in the selected names list and display them.
+     */
+    @FXML
+    public void getNext() {
+        if (_chosenNames.get(index++) != null) {
+            _name = _chosenNames.get(index);
+            nameLabel.setText(_name);
+        } else {
+            index--;
+        }
+        updateDates();
+        checkButtons();
     }
 
+    /**
+     * Get the previous name in the selected names list
+     */
+    @FXML
+    public void getLast() {
+        if (_chosenNames.get(index--) != null) {
+            _name = _chosenNames.get(index);
+        } else {
+            index++;
+        }
+        checkButtons();
+        updateDates();
+
+    }
+
+    /**
+     * Play the file selected
+     */
     @FXML
     private void play() {
-    	try {
-    		 File file = retrieveFile();
-    		 String location = file.toURI().toString();
-    		worker =  new BashWorker("ffplay -nodisp -autoexit "+ location);
-    	} catch(Exception e) {
-             e.printStackTrace();
-    	}
+        if (worker != null)
+            worker.kill();
+        try {
+            File file = retrieveFile();
+            String location = file.toURI().toString();
+            worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    @FXML
-    private void stop() {
-        worker.kill();
-    }
-
-    @FXML
-    private void delete() {
-    	File file = retrieveFile();
-        file.delete();
-        fileManager.removeFile(file);
-        updateDates();
-    }
-
-    public void initData(List<String> names, NameManager fileManager, Boolean ordered) {
-        this.fileManager = fileManager;
+    /**
+     * Setup the needed variables
+     */
+    public void initData(List<String> names, Boolean ordered) {
         if (!ordered) {
             Collections.shuffle(names);
         }
-        nameList.getItems().addAll(names);
+        _chosenNames = names;
+        index = 0;
+        _name = names.get(0);
+
+        nameLabel.setText(_name);
+        checkButtons();
+        updateDates();
     }
 
+    /**
+     * Method to ensure the next and previous buttons are enabled when required
+     */
+    private void checkButtons() {
+        nextName.setDisable(false);
+        lastName.setDisable(false);
+
+        if (_chosenNames.indexOf(_name) == _chosenNames.size() - 1) {
+            nextName.setDisable(true);
+        }
+        if (_chosenNames.indexOf(_name) == 0) {
+            lastName.setDisable(true);
+        }
+    }
+
+    /**
+     * Report the selected file as bad
+     */
     @FXML
     private void report() {
         File file = retrieveFile();
@@ -129,16 +164,24 @@ public class PlayerGuiController implements Initializable {
         setBadWarningLabel();
     }
 
+    /**
+     * Retrieve the fiole currently selected in the list
+     */
     private File retrieveFile() {
-        String name = nameList.getSelectionModel().getSelectedItems().get(0).toString();
         String date = dateList.getSelectionModel().getSelectedItems().get(0).toString();
-        return fileManager.getFile(name, date);
+        return fileManager.getFile(_name, date);
     }
 
+    /**
+     * Set warning label
+     */
     private void setBadWarningLabel() {
         badWarningLabel.setText("Warning: The selected recording had been reported as bad.");
     }
 
+    /**
+     * Check if a recording has been marked as bad and throw an error message if required
+     */
     @FXML
     private void isBadFile() {
         if (fileLogger.isBad(retrieveFile())) {
@@ -148,19 +191,23 @@ public class PlayerGuiController implements Initializable {
         }
     }
 
+    /**
+     * Method to load the microphone test scene.
+     */
     @FXML
     private void MicrophoneTest() throws IOException {
         Stage primaryStage = (Stage) microphoneButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Test.fxml"));
         Parent root = loader.load();
 
-        SceneManager.getInstance().addScene(recordButton.getScene(),loader.getController());
-
-
-        primaryStage.setScene(new Scene(root,600,600));
+        SceneManager.getInstance().addScene(recordButton.getScene(), loader.getController());
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
 
+    /**
+     * Method to load the record audio scene
+     */
     @FXML
     private void recordAudio() throws IOException {
         Stage primaryStage = (Stage) recordButton.getScene().getWindow();
@@ -169,22 +216,12 @@ public class PlayerGuiController implements Initializable {
 
         RecordGuiController controller = loader.<RecordGuiController>getController();
 
-        controller.initData(_name);
+        controller.initData(retrieveFile());
 
-        SceneManager.getInstance().addScene(recordButton.getScene(),controller);
+        SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
         primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
 
     }
-
-    public void initData(List<String> names, Boolean ordered) {
-        if (!ordered) {
-            Collections.shuffle(names);
-        }
-        nameList.getItems().addAll(names);
-    }
-
-    Scene scene;
-
 }

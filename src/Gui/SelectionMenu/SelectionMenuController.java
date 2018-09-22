@@ -22,12 +22,15 @@ public class SelectionMenuController implements Initializable {
     private boolean ordered;
 
     @FXML
-    private ListView AvailibleNamesList;
+    private ListView availibleNamesList;
     @FXML
-    private ListView ChosenNames;
+    private ListView selectedNames;
     @FXML
     private Button selectNamesButton;
 
+    /**
+     * Initialiser method
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _maxOne = true;
@@ -37,30 +40,33 @@ public class SelectionMenuController implements Initializable {
         //Add availableNames to the list
         List<String> sortedList = fileManager.getAvailableNames();
         Collections.sort(sortedList);
-        AvailibleNamesList.getItems();
-        AvailibleNamesList.getItems().addAll(sortedList);
+        availibleNamesList.getItems();
+        availibleNamesList.getItems().addAll(sortedList);
         checkAll();
         ordered = true;
     }
 
+    /**
+     * Add a name to the selected names list, and remove from the available names
+     */
     @FXML
     private void addName() {
-        String name = AvailibleNamesList.getSelectionModel().getSelectedItems().get(0).toString();
+        String name = availibleNamesList.getSelectionModel().getSelectedItems().get(0).toString();
         /*Only allow addition, if max one is not enforced,
         or if it is, only allow if the list is empty
          */
-        if (!_maxOne || ChosenNames.getItems().size() == 0) {
-            ChosenNames.getItems().add(name);
-            AvailibleNamesList.getItems().remove(name);
+        if (!_maxOne || selectedNames.getItems().size() == 0) {
+            selectedNames.getItems().add(name);
+            availibleNamesList.getItems().remove(name);
         }
         // Resort
-        Collections.sort(ChosenNames.getItems());
+        Collections.sort(selectedNames.getItems());
         checkAll();
     }
 
-    //Make button clickable if one or more names are in mnames to play
+    //Make button clickable if one or more names are in names to play
     private void checkAll() {
-        if (ChosenNames.getItems().size() != 0) {
+        if (selectedNames.getItems().size() != 0) {
             selectNamesButton.setDisable(false);
         } else {
             selectNamesButton.setDisable(true);
@@ -68,31 +74,39 @@ public class SelectionMenuController implements Initializable {
 
     }
 
+    /**
+     * Removes a name from the selectedNames and adds it bach to available names
+     */
     @FXML
     private void removeName() {
-        String name = ChosenNames.getSelectionModel().getSelectedItems().get(0).toString();
-
-        AvailibleNamesList.getItems().add(name);
-        ChosenNames.getItems().remove(name);
+        String name = selectedNames.getSelectionModel().getSelectedItems().get(0).toString();
+        availibleNamesList.getItems().add(name);
+        selectedNames.getItems().remove(name);
         //Resort
-        Collections.sort(AvailibleNamesList.getItems());
+        Collections.sort(availibleNamesList.getItems());
         checkAll();
     }
 
+    /**
+     * Set the single flag to true when the corresponding button is pressed
+     */
     @FXML
     public void setSingle() {
         _maxOne = true;
-        int runs = ChosenNames.getItems().size();
+        int runs = selectedNames.getItems().size();
         for (int i = 1; i < runs; i++) {
-            AvailibleNamesList.getItems().add(ChosenNames.getItems().get(1));
-            ChosenNames.getItems().remove(1);
+            availibleNamesList.getItems().add(selectedNames.getItems().get(1));
+            selectedNames.getItems().remove(1);
         }
 
-        Collections.sort(AvailibleNamesList.getItems());
+        Collections.sort(availibleNamesList.getItems());
         checkAll();
 
     }
 
+    /**
+     * Set correct flags when randomised list button pressed.
+     */
     @FXML
     public void setRandomised() {
         _maxOne = false;
@@ -100,6 +114,9 @@ public class SelectionMenuController implements Initializable {
         ordered = false;
     }
 
+    /**
+     * Set correct fields when an ordered list is requested.
+     */
     @FXML
     public void setOrdered() {
         _maxOne = false;
@@ -107,15 +124,18 @@ public class SelectionMenuController implements Initializable {
         ordered = true;
     }
 
+    /**
+     * Starts the player gui scene
+     */
     @FXML
     public void getPlayerGuiScene() throws Exception {
         Scene scene = selectNamesButton.getScene();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("playerGui2.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("playerGui.fxml"));
 
         Parent root = loader.load();
 
-        PlayerGuiController2 controller = loader.getController();
-        controller.initData(ChosenNames.getItems(), ordered);
+        PlayerGuiController controller = loader.getController();
+        controller.initData(selectedNames.getItems(), ordered);
 
 
         SceneManager.getInstance().addScene(scene,controller);

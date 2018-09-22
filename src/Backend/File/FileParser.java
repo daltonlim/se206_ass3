@@ -2,6 +2,10 @@ package Backend.File;
 
 import java.io.File;
 
+/**
+ * A class which takes care of the parsing of files, retrieving the date, name,
+ * and file associated with a file.
+ */
 public class FileParser {
     File file;
 
@@ -9,6 +13,10 @@ public class FileParser {
         this.file = file;
     }
 
+    /**
+     * Returns the date in the file name.
+     * @return
+     */
     public String getDate() {
         //Split filename
         String entireName = file.getName();
@@ -18,6 +26,10 @@ public class FileParser {
         return parts[1] + "_" + parts[2];
     }
 
+    /**
+     * Returns the name in the file name.
+     * @return
+     */
     public String getUserName() {
         //Split filename
         String entireName = file.getName();
@@ -31,6 +43,9 @@ public class FileParser {
                 + nameExt[0].substring(1).toLowerCase();
     }
 
+    /**
+     * Returns the file.
+     */
     public File getFile() {
         return file;
     }

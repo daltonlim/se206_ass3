@@ -14,7 +14,7 @@ public class Main2 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL location = this.getClass().getResource("playerGui2.fxml");
+        URL location = this.getClass().getResource("playerGui.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = (Parent)fxmlLoader.load();
 

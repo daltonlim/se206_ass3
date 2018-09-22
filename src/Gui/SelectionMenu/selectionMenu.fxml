@@ -31,13 +31,13 @@
             <VBox alignment="CENTER">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available Names" />
-                  <ListView fx:id="AvailibleNamesList" onMouseClicked="#addName" />
+                  <ListView fx:id="availibleNamesList" onMouseClicked="#addName" />
                </children>
             </VBox>
             <VBox alignment="CENTER">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Names to Play" />
-                  <ListView fx:id="ChosenNames" onMouseClicked="#removeName" />
+                  <ListView fx:id="selectedNames" onMouseClicked="#removeName" />
                </children>
             </VBox>
          </children>

@@ -8,9 +8,14 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
+/**
+ * Main program to start the application
+ */
 public class Main extends Application {
 
-    private static Stage mainStage;
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -24,11 +29,6 @@ public class Main extends Application {
         primaryStage.show();
 
         SceneManager.getInstance().setMainStage(primaryStage);
-//        SceneManager.getInstance().addScene(scene,fxmlLoader.getController());
     }
 
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
