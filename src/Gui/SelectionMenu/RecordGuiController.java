@@ -35,6 +35,8 @@ public class RecordGuiController implements Initializable {
     @FXML
     private Button recordButton;
     @FXML
+    private Button ExitButton;
+    @FXML
     private Button PlayYoursButton;
     @FXML
     private ProgressBar progressbar;
@@ -51,7 +53,6 @@ public class RecordGuiController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         disableButtons(true);
-        progressbar.setVisible(false);
         States.setVisible(false);
     }
 
@@ -81,7 +82,7 @@ public class RecordGuiController implements Initializable {
     @FXML
     public void record() {
         try {
-            progressbar.setVisible(true);
+            ExitButton.setVisible(false);
             States.setVisible(true);
             PlayOldButton.setDisable(true);
             progressbar.setProgress(0.0);
@@ -127,7 +128,6 @@ public class RecordGuiController implements Initializable {
     @FXML
     public void playOld() throws InterruptedException {
         try {
-            progressbar.setVisible(false);
             States.setVisible(false);
             File audioFile = fileParser.getFile();
             play(audioFile);

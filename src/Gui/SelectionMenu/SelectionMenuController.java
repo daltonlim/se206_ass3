@@ -17,10 +17,9 @@ import java.util.ResourceBundle;
 
 public class SelectionMenuController implements Initializable {
 
-    private boolean _maxOne;
+    private boolean single;
     NameManager fileManager;
     private boolean ordered;
-
     @FXML
     private ListView availibleNamesList;
     @FXML
@@ -33,7 +32,7 @@ public class SelectionMenuController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        _maxOne = true;
+        single = true;
         fileManager = NameManager.getInstance();
         selectNamesButton.setDisable(true);
 
@@ -55,12 +54,20 @@ public class SelectionMenuController implements Initializable {
         /*Only allow addition, if max one is not enforced,
         or if it is, only allow if the list is empty
          */
-        if (!_maxOne || selectedNames.getItems().size() == 0) {
+        if (!single || selectedNames.getItems().size() == 0) {
+            selectedNames.getItems().add(name);
+            availibleNamesList.getItems().remove(name);
+            Collections.sort(selectedNames.getItems());
+        }
+        if(single)
+        {
+            availibleNamesList.getItems().addAll(selectedNames.getItems());
+            selectedNames.getItems().remove(0);
+            Collections.sort(availibleNamesList.getItems());
             selectedNames.getItems().add(name);
             availibleNamesList.getItems().remove(name);
         }
         // Resort
-        Collections.sort(selectedNames.getItems());
         checkAll();
     }
 
@@ -92,7 +99,7 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setSingle() {
-        _maxOne = true;
+        single = true;
         int runs = selectedNames.getItems().size();
         for (int i = 1; i < runs; i++) {
             availibleNamesList.getItems().add(selectedNames.getItems().get(1));
@@ -109,7 +116,7 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setRandomised() {
-        _maxOne = false;
+        single = false;
         checkAll();
         ordered = false;
     }
@@ -119,7 +126,7 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setOrdered() {
-        _maxOne = false;
+        single = false;
         checkAll();
         ordered = true;
     }
@@ -138,7 +145,7 @@ public class SelectionMenuController implements Initializable {
         controller.initData(selectedNames.getItems(), ordered);
 
 
-        SceneManager.getInstance().addScene(scene,controller);
+        SceneManager.getInstance().addScene(scene, controller);
         Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
 
         primaryStage.setScene(new Scene(root, 600, 600));
@@ -146,8 +153,6 @@ public class SelectionMenuController implements Initializable {
 
 
     }
-
-    
 
 
 }
