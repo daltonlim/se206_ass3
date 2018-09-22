@@ -1,6 +1,7 @@
-package Gui.SelectionMenu;
+package Gui.Controllers;
 
 import Backend.NameManagement.NameManager;
+import Gui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -137,7 +138,7 @@ public class SelectionMenuController implements Initializable {
     @FXML
     public void getPlayerGuiScene() throws Exception {
         Scene scene = selectNamesButton.getScene();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("playerGui.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlayerGui.fxml"));
 
         Parent root = loader.load();
 

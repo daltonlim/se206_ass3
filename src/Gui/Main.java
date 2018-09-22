@@ -1,4 +1,4 @@
-package Gui.SelectionMenu;
+package Gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL location = this.getClass().getResource("selectionMenu.fxml");
+        URL location = this.getClass().getResource("Controllers/SelectionMenu.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = (Parent)fxmlLoader.load();
 

@@ -62,15 +62,17 @@ public class NameManager {
      * A way to parse only the wav files in the wav directory
      */
     private void getFiles() {
-        File[] wavFiles = directory.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File directory, String name) {
-                return name.endsWith(".wav");
-            }
-        });
+        if(directory.exists()) {
+            File[] wavFiles = directory.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File directory, String name) {
+                    return name.endsWith(".wav");
+                }
+            });
 
-        for (File wav : wavFiles) {
-            addFile(wav);
+            for (File wav : wavFiles) {
+                addFile(wav);
+            }
         }
     }
 

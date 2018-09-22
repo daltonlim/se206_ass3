@@ -1,32 +1,23 @@
-package Gui.SelectionMenu;
+package Gui.Controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Backend.File.FileCreator;
-import Backend.NameManagement.NameManager;
+import Gui.SceneManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.TargetDataLine;
 
-public class TestController implements Initializable {
+public class TestMicController implements Initializable {
 
 
     @FXML

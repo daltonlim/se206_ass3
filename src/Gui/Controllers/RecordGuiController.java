@@ -1,4 +1,4 @@
-package Gui.SelectionMenu;
+package Gui.Controllers;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import Backend.File.BashWorker;
 import Backend.File.FileCreator;
 import Backend.File.FileParser;
 import Backend.NameManagement.NameManager;
+import Gui.SceneManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
@@ -82,6 +83,7 @@ public class RecordGuiController implements Initializable {
     @FXML
     public void record() {
         try {
+            recordButton.setDisable(true);
             ExitButton.setVisible(false);
             States.setVisible(true);
             PlayOldButton.setDisable(true);
@@ -142,11 +144,6 @@ public class RecordGuiController implements Initializable {
         String name = fileParser.getUserName();
         fileCreator = new FileCreator(name);
         nameLabel.setText(name);
-    }
-
-    @FXML
-    public void choose() {
-        PlayOldButton.setDisable(false);
     }
 
     @FXML

@@ -1,9 +1,9 @@
-package Gui.SelectionMenu;
+package Gui.Controllers;
 
 import Backend.File.BashWorker;
 import Backend.File.FileLogger;
-import Backend.File.FileParser;
 import Backend.NameManagement.NameManager;
+import Gui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -204,7 +204,7 @@ public class PlayerGuiController implements Initializable {
     private void MicrophoneTest() throws IOException {
         stop();
         Stage primaryStage = (Stage) microphoneButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Test.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TestMic.fxml"));
         Parent root = loader.load();
 
         SceneManager.getInstance().addScene(recordButton.getScene(), loader.getController());
