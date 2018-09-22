@@ -8,13 +8,13 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
-public class Main extends Application {
+public class Main2 extends Application {
 
     private static Stage mainStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL location = this.getClass().getResource("selectionMenu.fxml");
+        URL location = this.getClass().getResource("playerGui2.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = (Parent)fxmlLoader.load();
 

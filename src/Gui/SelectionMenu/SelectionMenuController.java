@@ -2,7 +2,6 @@ package Gui.SelectionMenu;
 
 import Backend.NameManagement.NameManager;
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -28,20 +27,17 @@ public class SelectionMenuController implements Initializable {
     private ListView ChosenNames;
     @FXML
     private Button selectNamesButton;
-    @FXML
-    private Button remove;
-    @FXML
-    private Button add;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _maxOne = true;
-        fileManager = new NameManager();
+        fileManager = NameManager.getInstance();
         selectNamesButton.setDisable(true);
 
         //Add availableNames to the list
-        List<String> sortedList = fileManager.getUniqueNames();
-        java.util.Collections.sort(sortedList);
+        List<String> sortedList = fileManager.getAvailableNames();
+        Collections.sort(sortedList);
+        AvailibleNamesList.getItems();
         AvailibleNamesList.getItems().addAll(sortedList);
         checkAll();
         ordered = true;
@@ -69,17 +65,7 @@ public class SelectionMenuController implements Initializable {
         } else {
             selectNamesButton.setDisable(true);
         }
-        if (AvailibleNamesList.getItems().size() == 0 || ChosenNames.getItems().size() == 1 && _maxOne) {
-            add.setDisable(true);
-        } else {
-            add.setDisable(false);
-        }
 
-        if (ChosenNames.getItems().size() == 0) {
-            remove.setDisable(true);
-        } else {
-            remove.setDisable(false);
-        }
     }
 
     @FXML
@@ -122,18 +108,26 @@ public class SelectionMenuController implements Initializable {
     }
 
     @FXML
-    public void getPlayerGuiScene() throws Exception{
-        Stage primaryStage =(Stage) add.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(  "playerGui.fxml"));
+    public void getPlayerGuiScene() throws Exception {
+        Scene scene = selectNamesButton.getScene();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("playerGui2.fxml"));
 
         Parent root = loader.load();
 
-        playerGuiController controller = loader.<playerGuiController>getController();
-        controller.initData(ChosenNames.getItems(),fileManager,ordered);
+        PlayerGuiController2 controller = loader.getController();
+        controller.initData(ChosenNames.getItems(), ordered);
 
-        primaryStage.setScene(new Scene(root, 600,600));
+
+        SceneManager.getInstance().addScene(scene,controller);
+        Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
+
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
+
+
     }
+
+    
 
 
 }

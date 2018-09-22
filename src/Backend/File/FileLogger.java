@@ -11,7 +11,6 @@ public class FileLogger {
     private static final FileLogger instance = new FileLogger();
 
     private String logFile;
-    private PrintWriter writer;
 
     private FileLogger() {
         logFile = "Logs/log.txt";

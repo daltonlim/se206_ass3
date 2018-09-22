@@ -5,26 +5,48 @@ import Backend.File.FileParser;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 /**
  * This class will provide a list of unique file names, as well as
  * and allow the retrieval of all files with the same name.
+ * SIngle ton as only one name manager needs to exist to account for all the database entries
  */
+
 public class NameManager {
+    private List<String> availableNames;
+    private static NameManager instance;
     public static final File directory = new File("audioFiles");
     private HashMap<String, Name> nameList;
 
+    public static NameManager getInstance() {
+        if (instance == null) {
+            instance = new NameManager();
+        }
+        return instance;
+    }
 
-    public NameManager() {
+    public void removeFile(File file) {
+        FileParser fileParser = new FileParser(file);
+        if (fileParser.getDate().contains("ser")) {
+            nameList.get(fileParser.getUserName()).remove(fileParser);
+        }
+    }
+
+    public List<String> getAvailableNames() {
+        return availableNames;
+    }
+
+
+    private NameManager() {
         nameList = new HashMap<>();
         getFiles();
+        availableNames = new ArrayList<>(nameList.keySet());
+
     }
 
-    public List<String> getUniqueNames() {
-        return new ArrayList<>(nameList.keySet());
-    }
 
     private void getFiles() {
         File[] wavFiles = directory.listFiles(new FilenameFilter() {
@@ -43,19 +65,25 @@ public class NameManager {
         return nameList.get(name).getFile(date);
     }
 
-    private void addFile(File file) {
+    public void addFile(File file) {
         FileParser fileParser = new FileParser(file);
         String name = fileParser.getUserName();
         Name nameToAdd = new Name(name);
-        if (nameList.get(name) != null) {
+
+        if (nameList.containsKey(name)) {
             nameToAdd = nameList.get(name);
         }
-        nameToAdd.addDate(fileParser.getDate(), file);
+
+        nameToAdd.addDate(fileParser);
+
         nameList.put(name, nameToAdd);
     }
 
     public List<String> getFileDatesForName(String name) {
-        return nameList.get(name).returnDates();
+
+        List<String> toReturn =  nameList.get(name).returnDates();
+        Collections.sort(toReturn);
+        return toReturn;
     }
 
 

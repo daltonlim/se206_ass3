@@ -6,29 +6,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SelectionMenu.RecordGuiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="368.0" prefWidth="299.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SelectionMenu.RecordGuiController">
    <children>
-      <VBox alignment="CENTER" layoutX="298.0" prefHeight="415.0" prefWidth="302.0">
-         <children>
-            <ListView fx:id="dateList" onMouseClicked="#choose" prefHeight="415.0" prefWidth="302.0" />
-         </children>
-      </VBox>
+      <VBox alignment="CENTER" layoutX="298.0" prefHeight="415.0" prefWidth="0.0" />
       <Label layoutX="22.0" layoutY="22.0" prefHeight="18.0" prefWidth="258.0" text="You can record your own version for">
          <font>
             <Font size="14.0" />
          </font></Label>
       <Label fx:id="States" layoutX="50.0" layoutY="172.0" prefHeight="15.0" prefWidth="200.0" />
-      <Button fx:id="RecordButton" layoutX="3.0" layoutY="239.0" mnemonicParsing="false" onAction="#record" prefHeight="25.0" prefWidth="296.0" text="Record" />
-      <Button fx:id="PlayYoursButton" layoutX="3.0" layoutY="289.0" mnemonicParsing="false" onAction="#playback" prefHeight="25.0" prefWidth="296.0" text="PlayYours" />
-      <Button fx:id="PlayOldButton" layoutX="2.0" layoutY="264.0" mnemonicParsing="false" onAction="#playold" prefHeight="25.0" prefWidth="296.0" text="PlayOld" />
-      <Button fx:id="SaveButton" layoutX="2.0" layoutY="314.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="296.0" text="Save" />
-      <Button fx:id="NoSaveButton" layoutX="2.0" layoutY="339.0" mnemonicParsing="false" onAction="#nosave" prefHeight="25.0" prefWidth="296.0" text="Don't Save" />
+      <VBox layoutX="2.0" layoutY="239.0">
+         <children>
+            <Button fx:id="RecordButton" layoutX="3.0" layoutY="239.0" mnemonicParsing="false" onAction="#record" prefHeight="25.0" prefWidth="296.0" text="Record" />
+            <Button fx:id="PlayOldButton" layoutX="2.0" layoutY="264.0" mnemonicParsing="false" onAction="#playold" prefHeight="25.0" prefWidth="296.0" text="Play the old version" />
+            <Button fx:id="PlayYoursButton" layoutX="3.0" layoutY="289.0" mnemonicParsing="false" onAction="#playback" prefHeight="25.0" prefWidth="296.0" text="Play your own version" />
+            <Button fx:id="SaveButton" layoutX="2.0" layoutY="314.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="296.0" text="Save and Back" />
+            <Button fx:id="NoSaveButton" layoutX="2.0" layoutY="339.0" mnemonicParsing="false" onAction="#nosave" prefHeight="25.0" prefWidth="296.0" text="Exit" />
+         </children>
+      </VBox>
       <ProgressBar fx:id="progressbar" layoutX="50.0" layoutY="198.0" prefWidth="200.0" progress="0.0" />
-      <Button fx:id="ExitButton" layoutX="2.0" layoutY="389.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="296.0" text="Exit" />
-      <Label fx:id="name" layoutX="95.0" layoutY="61.0" prefHeight="52.0" prefWidth="180.0" textAlignment="CENTER" textFill="#f50202">
+      <Label fx:id="name" layoutX="87.0" layoutY="65.0" prefHeight="52.0" prefWidth="180.0" textAlignment="CENTER" textFill="#f50202">
          <font>
             <Font size="34.0" />
          </font></Label>
-      <Button fx:id="RestartButton" layoutX="2.0" layoutY="364.0" mnemonicParsing="false" onAction="#restart" prefHeight="25.0" prefWidth="296.0" text="Restart" />
    </children>
 </AnchorPane>
