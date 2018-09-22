@@ -44,7 +44,7 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="RestartButton" mnemonicParsing="false" onAction="#restart" prefWidth="110.0" text="Restart" />
+            <Button fx:id="RestartButton" mnemonicParsing="false" onAction="#restart" prefWidth="110.0" text="Re-record" />
             <Button fx:id="ExitButton" mnemonicParsing="false" onAction="#exit" text="Exit" />
          </children>
       </VBox>
