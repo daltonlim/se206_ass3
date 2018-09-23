@@ -27,7 +27,7 @@ public class TestMicController implements Initializable {
     private ProgressBar PB;
 
 
-    Task<?> _Recording;
+    Task<?> recording;
     private Thread thread;
 
 
@@ -42,15 +42,15 @@ public class TestMicController implements Initializable {
     public void buttonAction()  {
         try {
             PB.setProgress(0.0);
-            _Recording = createWorker();
+            recording = createWorker();
             PB.progressProperty().unbind();
-            PB.progressProperty().bind(_Recording.progressProperty());
-            _Recording.messageProperty().addListener(new ChangeListener<String>() {
+            PB.progressProperty().bind(recording.progressProperty());
+            recording.messageProperty().addListener(new ChangeListener<String>() {
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     States.setText(newValue);
                 }
             });
-            thread = new Thread(_Recording);
+            thread = new Thread(recording);
             thread.start();
         } catch (Exception e) {
             e.printStackTrace();

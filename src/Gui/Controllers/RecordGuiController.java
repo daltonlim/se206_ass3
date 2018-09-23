@@ -26,27 +26,27 @@ import javafx.stage.Stage;
 
 public class RecordGuiController implements Initializable {
     @FXML
-    private Label States;
+    private Label states;
     @FXML
     private Label nameLabel;
     @FXML
-    private Button PlayOldButton;
+    private Button playOldButton;
     @FXML
-    private Button RestartButton;
+    private Button restartButton;
     @FXML
     private Button recordButton;
     @FXML
-    private Button ExitButton;
+    private Button exitButton;
     @FXML
-    private Button PlayYoursButton;
+    private Button playYoursButton;
     @FXML
     private ProgressBar progressbar;
     @FXML
-    private Button SaveButton;
+    private Button saveButton;
     @FXML
-    private Button NoSaveButton;
+    private Button noSaveButton;
 
-    private Task<?> _Recording;
+    private Task<?> recording;
     private FileCreator fileCreator;
     private FileParser fileParser;
     private BashWorker bashWorker;
@@ -54,17 +54,20 @@ public class RecordGuiController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         disableButtons(true);
-        States.setVisible(false);
+        states.setVisible(false);
     }
 
     private void disableButtons(boolean b) {
-        PlayOldButton.setDisable(b);
-        PlayYoursButton.setDisable(b);
-        SaveButton.setDisable(b);
-        NoSaveButton.setDisable(b);
-        RestartButton.setDisable(b);
+        playOldButton.setDisable(b);
+        playYoursButton.setDisable(b);
+        saveButton.setDisable(b);
+        noSaveButton.setDisable(b);
+        restartButton.setDisable(b);
     }
 
+    /**
+     * a task connects with progress bar
+     */
     public Task<?> createWorker() {
         return new Task<Object>() {
             @Override
@@ -80,43 +83,55 @@ public class RecordGuiController implements Initializable {
         };
     }
 
+    /**
+     * record the own version
+     */
     @FXML
     public void record() {
         try {
             recordButton.setDisable(true);
-            ExitButton.setVisible(false);
-            States.setVisible(true);
-            PlayOldButton.setDisable(true);
+            exitButton.setVisible(false);
+            states.setVisible(true);
+            playOldButton.setDisable(true);
             progressbar.setProgress(0.0);
 
-            _Recording = createWorker();
+            recording = createWorker();
 
             progressbar.progressProperty().unbind();
 
-            progressbar.progressProperty().bind(_Recording.progressProperty());
+            progressbar.progressProperty().bind(recording.progressProperty());
 
-            _Recording.messageProperty().addListener(new ChangeListener<String>() {
+            recording.messageProperty().addListener(new ChangeListener<String>() {
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    States.setText(newValue);
+                    states.setText(newValue);
                 }
             });
-            new Thread(_Recording).start();
+            new Thread(recording).start();
             fileCreator.generateAudio();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * users can do more thing after recording
+     */
     private void RecordingIsFinished() {
         disableButtons(false);
     }
 
+    /**
+     * Play the file selected
+     */
     private void play(File audioFile) {
         stop();
         String location = audioFile.toURI().toString();
         bashWorker = new BashWorker("ffplay -nodisp -autoexit " + location);
     }
 
+    /**
+     * Play the own version
+     */
     @FXML
     public void playNew() throws InterruptedException {
         try {
@@ -127,11 +142,14 @@ public class RecordGuiController implements Initializable {
         }
     }
 
+    /**
+     * Play the original version
+     */
     @FXML
     public void playOld() throws InterruptedException {
 
         try {
-            States.setVisible(false);
+            states.setVisible(false);
             File audioFile = fileParser.getFile();
             play(audioFile);
         } catch (Exception e) {
@@ -139,6 +157,10 @@ public class RecordGuiController implements Initializable {
         }
     }
 
+
+    /**
+     * setup variables needed
+     */
     public void initData(File file) {
         fileParser = new FileParser(file);
         String name = fileParser.getUserName();
@@ -146,6 +168,9 @@ public class RecordGuiController implements Initializable {
         nameLabel.setText(name);
     }
 
+    /**
+     * refresh the record window, can record again
+     */
     @FXML
     public void restart() throws IOException {
         stop();
@@ -162,12 +187,18 @@ public class RecordGuiController implements Initializable {
         primaryStage.show();
     }
 
+    /**
+     * save the own version and exit
+     */
     @FXML
     public void save() {
         NameManager.getInstance().addFile(fileCreator.getFile());
         exit();
     }
 
+    /**
+     * delete the own version and exit
+     */
     @FXML
     public void nosave() {
         fileCreator.removeFile();
@@ -175,12 +206,18 @@ public class RecordGuiController implements Initializable {
         exit();
     }
 
+    /**
+     * back to previous window
+     */
     @FXML
     public void exit() {
         stop();
         SceneManager.getInstance().removeScene();
     }
 
+    /**
+     * kill all process
+     */
     private void stop(){
         if(bashWorker!=null){
             bashWorker.kill();

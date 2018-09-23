@@ -14,11 +14,11 @@ import java.time.format.DateTimeFormatter;
  * This class takes care of the creation and merging of videos via various BashWorker commands
  */
 public class FileCreator {
-    private String _fileName;
-    private String _date; // storing date when it is generated
+    private String fileName;
+    private String date; // storing date when it is generated
 
     public FileCreator(String fileName) {
-        _fileName = fileName;
+        this.fileName = fileName;
     }
 
     /**
@@ -26,9 +26,9 @@ public class FileCreator {
      */
     public void generateAudio() {
         String date = getDate();
-        _date = date;
+        this.date = date;
         new BashWorker("ffmpeg -f pulse -i default -t 5 " + NameManager.directory +
-                "/se206" + date + _fileName + ".wav");
+                "/se206" + date + fileName + ".wav");
 
     }
 
@@ -48,7 +48,7 @@ public class FileCreator {
      * @return
      */
     public String getName() {
-        return _fileName;
+        return fileName;
     }
 
     /**
@@ -73,7 +73,7 @@ public class FileCreator {
      * @return
      */
     public String fileString() {
-        return NameManager.directory + "/se206" + _date + _fileName + ".wav";
+        return NameManager.directory + "/se206" + date + fileName + ".wav";
     }
 
 }

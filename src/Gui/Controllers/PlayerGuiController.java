@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 public class PlayerGuiController implements Initializable {
     private NameManager fileManager;
     private FileLogger fileLogger;
-    private String _name;
+    private String name;
     private int index = 0;
 
     @FXML
@@ -47,7 +47,7 @@ public class PlayerGuiController implements Initializable {
 
     private BashWorker worker;
 
-    private List<String> _chosenNames;
+    private List<String> chosenNames;
 
 
     //Return to previous window
@@ -69,10 +69,10 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     public void updateDates() {
-        nameLabel.setText(_name);
+        nameLabel.setText(name);
         //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
         dateList.getItems().remove(0, dateList.getItems().size());
-        dateList.getItems().addAll(fileManager.getFileDatesForName(_name));
+        dateList.getItems().addAll(fileManager.getFileDatesForName(name));
 
 
         //Select first element is list by default
@@ -87,10 +87,10 @@ public class PlayerGuiController implements Initializable {
     @FXML
     public void getNext() {
 
-        if(index != _chosenNames.size() - 1){
+        if(index != chosenNames.size() - 1){
             index ++;
-            _name = _chosenNames.get(index);
-            nameLabel.setText(_name);
+            name = chosenNames.get(index);
+            nameLabel.setText(name);
         }
         updateDates();
         checkButtons();
@@ -103,7 +103,7 @@ public class PlayerGuiController implements Initializable {
     public void getLast() {
         if (index !=0 ) {
             index--;
-            _name = _chosenNames.get(index);
+            name = chosenNames.get(index);
         }
         checkButtons();
         updateDates();
@@ -135,14 +135,14 @@ public class PlayerGuiController implements Initializable {
      * Setup the needed variables
      */
     void initData(List<String> names, Boolean ordered) {
-        _chosenNames = new ArrayList<>(names);
+        chosenNames = new ArrayList<>(names);
         if (!ordered) {
-            Collections.shuffle(_chosenNames);
+            Collections.shuffle(chosenNames);
         }
         index = 0;
-        _name = _chosenNames.get(0);
+        name = chosenNames.get(0);
 
-        nameLabel.setText(_name);
+        nameLabel.setText(name);
         checkButtons();
         updateDates();
     }
@@ -154,10 +154,10 @@ public class PlayerGuiController implements Initializable {
         nextName.setDisable(false);
         lastName.setDisable(false);
 
-        if (_chosenNames.indexOf(_name) == _chosenNames.size() - 1) {
+        if (chosenNames.indexOf(name) == chosenNames.size() - 1) {
             nextName.setDisable(true);
         }
-        if (_chosenNames.indexOf(_name) == 0) {
+        if (chosenNames.indexOf(name) == 0) {
             lastName.setDisable(true);
         }
     }
@@ -182,7 +182,7 @@ public class PlayerGuiController implements Initializable {
      */
     private File retrieveFile() {
         String date = dateList.getSelectionModel().getSelectedItems().get(0).toString();
-        return fileManager.getFile(_name, date);
+        return fileManager.getFile(name, date);
     }
 
     /**
