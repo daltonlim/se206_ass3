@@ -19,7 +19,6 @@ public class FileCreator {
 
     public FileCreator(String fileName) {
         _fileName = fileName;
-        generateAudio();
     }
 
     /**
@@ -33,6 +32,9 @@ public class FileCreator {
 
     }
 
+    /**
+     * Gets current date
+     */
     private String getDate() {
         LocalDateTime date = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy_H-m-s_");
@@ -49,14 +51,25 @@ public class FileCreator {
         return _fileName;
     }
 
+    /**
+     * Returns the current file
+     * @return
+     */
     public File getFile() {
         return new File(fileString());
     }
 
+    /**
+     * Deletes the file
+     */
     public void removeFile() {
         new File(fileString()).delete();
     }
 
+    /**
+     * Returns the filestring for use in a bashworker elsewhere
+     * @return
+     */
     public String fileString() {
         return NameManager.directory + "/se206" + _date + _fileName + ".wav";
     }

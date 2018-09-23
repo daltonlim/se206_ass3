@@ -26,7 +26,7 @@ public class BashWorker extends SwingWorker<Void, Void> {
         }
         return null;
     }
-    
+
     public void kill() {
         _process.destroy();
     }
