@@ -17,14 +17,15 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class PlayerGuiController implements Initializable {
-    NameManager fileManager;
-    FileLogger fileLogger;
-    String _name;
+    private NameManager fileManager;
+    private FileLogger fileLogger;
+    private String _name;
     private int index = 0;
 
     @FXML
@@ -33,6 +34,8 @@ public class PlayerGuiController implements Initializable {
     private Button nextName;
     @FXML
     private Button lastName;
+    @FXML
+    private Button reportButton;
     @FXML
     private Label nameLabel;
     @FXML
@@ -49,7 +52,7 @@ public class PlayerGuiController implements Initializable {
 
     //Return to previous window
     @FXML
-    private void goBack() throws IOException {
+    private void goBack()  {
         stop();
         SceneManager.getInstance().removeScene();
     }
@@ -83,11 +86,11 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     public void getNext() {
-        if (_chosenNames.get(index++) != null) {
+
+        if(index != _chosenNames.size() - 1){
+            index ++;
             _name = _chosenNames.get(index);
             nameLabel.setText(_name);
-        } else {
-            index--;
         }
         updateDates();
         checkButtons();
@@ -98,10 +101,9 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     public void getLast() {
-        if (_chosenNames.get(index--) != null) {
+        if (index !=0 ) {
+            index--;
             _name = _chosenNames.get(index);
-        } else {
-            index++;
         }
         checkButtons();
         updateDates();
@@ -132,13 +134,13 @@ public class PlayerGuiController implements Initializable {
     /**
      * Setup the needed variables
      */
-    public void initData(List<String> names, Boolean ordered) {
+    void initData(List<String> names, Boolean ordered) {
+        _chosenNames = new ArrayList<>(names);
         if (!ordered) {
-            Collections.shuffle(names);
+            Collections.shuffle(_chosenNames);
         }
-        _chosenNames = names;
         index = 0;
-        _name = names.get(0);
+        _name = _chosenNames.get(0);
 
         nameLabel.setText(_name);
         checkButtons();
@@ -166,12 +168,17 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private void report() {
         File file = retrieveFile();
-        fileLogger.report(file);
-        setBadWarningLabel();
+        if (isBadFile()) {
+            fileLogger.unReport(file);
+            noReport();
+        } else {
+            fileLogger.report(file);
+            setBadWarningLabel();
+        }
     }
 
     /**
-     * Retrieve the fiole currently selected in the list
+     * Retrieve the file currently selected in the list
      */
     private File retrieveFile() {
         String date = dateList.getSelectionModel().getSelectedItems().get(0).toString();
@@ -183,18 +190,29 @@ public class PlayerGuiController implements Initializable {
      */
     private void setBadWarningLabel() {
         badWarningLabel.setText("Warning: The selected recording had been reported as bad.");
+        reportButton.setText("Unreport");
     }
 
     /**
      * Check if a recording has been marked as bad and throw an error message if required
      */
     @FXML
-    private void isBadFile() {
+    private boolean isBadFile() {
         if (fileLogger.isBad(retrieveFile())) {
             setBadWarningLabel();
+            return true;
         } else {
-            badWarningLabel.setText("");
+            noReport();
+            return false;
         }
+    }
+
+    /**
+     * Remove warning label
+     */
+    private void noReport() {
+        badWarningLabel.setText("");
+        reportButton.setText("Report");
     }
 
     /**
@@ -222,7 +240,7 @@ public class PlayerGuiController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
 
-        RecordGuiController controller = loader.<RecordGuiController>getController();
+        RecordGuiController controller = loader.getController();
 
         controller.initData(retrieveFile());
 

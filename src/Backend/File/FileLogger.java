@@ -11,12 +11,12 @@ import java.util.Scanner;
  */
 public class FileLogger {
 
-    List<String> loggedList;
+    private List<String> loggedList;
     private static final FileLogger instance = new FileLogger();
     private String logFile;
 
     private FileLogger() {
-        logFile = "Logs/log.txt";
+        logFile = "Logs/badRecordings.txt";
         checkDir();
         checkLogFile();
         loggedList = new ArrayList<>();
@@ -68,34 +68,55 @@ public class FileLogger {
 
     /**
      * Returns singleton instance
-     * @return
      */
     public static FileLogger getInstance() {
         return instance;
     }
 
     /**
-     * Adds file to the list and appends it to the file
+     * Adds file to the list
      */
     public void report(File file) {
         String toLog = file.getName();
 
         if (!loggedList.contains(toLog)) {
             loggedList.add(toLog);
-            try (FileWriter fw = new FileWriter(logFile, true);
-                 BufferedWriter bw = new BufferedWriter(fw);
-                 PrintWriter out = new PrintWriter(bw)) {
-                out.println(file.getName());
-            } catch (IOException e) {
-                e.printStackTrace();
+        }
+    }
+
+    /**
+     * Removes file to the list
+     */
+    public void unReport(File file) {
+        String toLog = file.getName();
+
+        if (loggedList.contains(toLog)) {
+            loggedList.remove(toLog);
+        }
+    }
+
+    /**
+     * Writes log to file
+     */
+    public void writeToFile() {
+        try {
+            FileWriter fw = new FileWriter(logFile, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw);
+            for (String file : loggedList) {
+                out.println(file);
             }
+            out.close();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     /**
      * Way to check if a file has previously been reported as bad.
      */
-    public boolean isBad(File file){
+    public boolean isBad(File file) {
         return loggedList.contains(file.getName());
     }
 }

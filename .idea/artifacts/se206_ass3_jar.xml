@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/se206_ass3_jar</output-path>
     <root id="archive" name="se206_ass3.jar">
       <element id="module-output" name="se206_ass3" />
-      <element id="library" level="module" name="JUnit4" module-name="se206_ass3" />
     </root>
   </artifact>
 </component>

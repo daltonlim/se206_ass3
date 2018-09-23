@@ -15,7 +15,6 @@ public class FileParser {
 
     /**
      * Returns the date in the file name.
-     * @return
      */
     public String getDate() {
         //Split filename
@@ -28,6 +27,7 @@ public class FileParser {
 
     /**
      * Returns the name in the file name.
+     *
      * @return
      */
     public String getUserName() {

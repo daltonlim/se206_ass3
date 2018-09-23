@@ -39,6 +39,7 @@ public class Name {
 
     /**
      * Retrieve the file associated with a date
+     *
      * @param date a date string
      * @return the file associated with the date string
      */
@@ -48,6 +49,7 @@ public class Name {
 
     /**
      * A method to return the list of dates associated with a name.
+     *
      * @return
      */
     public List<String> returnDates() {

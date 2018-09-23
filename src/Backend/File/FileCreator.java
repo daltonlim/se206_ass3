@@ -53,6 +53,7 @@ public class FileCreator {
 
     /**
      * Returns the current file
+     *
      * @return
      */
     public File getFile() {
@@ -68,6 +69,7 @@ public class FileCreator {
 
     /**
      * Returns the filestring for use in a bashworker elsewhere
+     *
      * @return
      */
     public String fileString() {

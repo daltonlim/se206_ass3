@@ -16,7 +16,7 @@
               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You are currently practicing" />
             <HBox alignment="CENTER" spacing="30.0">
                <children>
-                  <Button fx:id="lastName" mnemonicParsing="false" onMouseClicked="#getLast" text="&lt;" />
+                  <Button fx:id="lastName" mnemonicParsing="false" onAction="#getLast" onKeyPressed="#getLast" onMouseClicked="#getLast" text="&lt;" />
                   <Label fx:id="nameLabel" text="Name">
                      <font>
                         <Font size="32.0" />

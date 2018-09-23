@@ -30,7 +30,6 @@ public class NameManager {
 
     /**
      * Retrieve singleton instance
-     * @return
      */
     public static NameManager getInstance() {
         if (instance == null) {
@@ -41,6 +40,7 @@ public class NameManager {
 
     /**
      * Removes a specified file from the name manager
+     *
      * @param file the file to remove from the database
      */
     public void removeFile(File file) {
@@ -52,6 +52,7 @@ public class NameManager {
 
     /**
      * A method to find all names a person has
+     *
      * @return A list of all available names for which there are files.
      */
     public List<String> getAvailableNames() {
@@ -62,7 +63,7 @@ public class NameManager {
      * A way to parse only the wav files in the wav directory
      */
     private void getFiles() {
-        if(directory.exists()) {
+        if (directory.exists()) {
             File[] wavFiles = directory.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File directory, String name) {
@@ -73,13 +74,16 @@ public class NameManager {
             for (File wav : wavFiles) {
                 addFile(wav);
             }
+        }else{
+            directory.mkdir();
         }
     }
 
     /**
      * Returns the file associated with a name and date
+     *
      * @param name the name within the file
-     * @param date  the date within the file
+     * @param date the date within the file
      * @return the file associated with the above
      */
     public File getFile(String name, String date) {
@@ -88,7 +92,8 @@ public class NameManager {
 
     /**
      * This adds a file to the database, usually when a new recording has been generated
-     * @param file
+     *
+     * @param file file to add
      */
     public void addFile(File file) {
         FileParser fileParser = new FileParser(file);
@@ -106,11 +111,12 @@ public class NameManager {
 
     /**
      * Returns the list of dates for a specified name.
+     *
      * @param name name to which dates will be found for
-     * @return  A list of dates related to that name
+     * @return A list of dates related to that name
      */
     public List<String> getFileDatesForName(String name) {
-        List<String> toReturn =  nameList.get(name).returnDates();
+        List<String> toReturn = nameList.get(name).returnDates();
         Collections.sort(toReturn);
         return toReturn;
     }
