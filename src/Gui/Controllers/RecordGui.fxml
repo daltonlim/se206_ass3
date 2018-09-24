@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.RecordGuiController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.RecordGuiController">
    <children>
       <Label alignment="CENTER" prefHeight="18.0" prefWidth="258.0" text="You are currently recording for">
          <font>

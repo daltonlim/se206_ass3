@@ -75,6 +75,7 @@ public class TestMicController implements Initializable {
             protected Object call() throws Exception {
                 try {
                     while (true) {
+                        // Code taken from https://stackoverflow.com/questions/26574326/how-to-calculate-the-level-amplitude-db-of-audio-signal-in-java
                         AudioFormat fmt = new AudioFormat(44100f, 16, 1, true, false);
                         final int bufferByteSize = 2048;
 
