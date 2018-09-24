@@ -1,7 +1,9 @@
 # se206_ass3
 This is a java applet which helps to record audio, playback, and practise names in general. 
 Multiple reocrdings of a single name can be quickly and easily viewed, and a small prompt ensures that the user knows when a bad Recording is present.
+
 ![](demo.gif)
+
 Please run java -jar se206_ass3.jar on the command line to start the app.
 To add a name onto the selected list, please click on it in the available names list.
 All recoding have a date prefixed with user and are saved to the same audio files folder for easy access.
