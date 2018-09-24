@@ -104,6 +104,7 @@ public class PlayerGuiController implements Initializable {
         if (index !=0 ) {
             index--;
             name = chosenNames.get(index);
+            nameLabel.setText(name);
         }
         checkButtons();
         updateDates();
