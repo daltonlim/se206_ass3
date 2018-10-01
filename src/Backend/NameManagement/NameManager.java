@@ -4,10 +4,7 @@ import Backend.File.FileParser;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class will provide a list of unique file names, as well as and allow the retrieval
@@ -23,8 +20,7 @@ public class NameManager {
 
     private NameManager() {
         nameList = new HashMap<>();
-        getFiles();
-        availableNames = new ArrayList<>(nameList.keySet());
+        getFiles(directory);
 
     }
 
@@ -62,21 +58,21 @@ public class NameManager {
     /**
      * A way to parse only the wav files in the wav directory
      */
-    private void getFiles() {
-        if (directory.exists()) {
-            File[] wavFiles = directory.listFiles(new FilenameFilter() {
+    public void getFiles(File file) {
+        if (file.exists()) {
+            File[] wavFiles = file.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File directory, String name) {
                     return name.endsWith(".wav");
                 }
             });
-
             for (File wav : wavFiles) {
                 addFile(wav);
             }
         }else{
-            directory.mkdir();
+            file.mkdir();
         }
+        availableNames = new ArrayList<>(nameList.keySet());
     }
 
     /**
@@ -120,6 +116,4 @@ public class NameManager {
         Collections.sort(toReturn);
         return toReturn;
     }
-
-
 }
