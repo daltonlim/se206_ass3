@@ -29,15 +29,12 @@ public class TextFileParser {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
                 String name = scanner.nextLine();
-
-
+                name = sentenceCase(name);
                 String[] nameArray = name.split("[ -]");
                 boolean present = true;
+                List<String> partialList = new ArrayList<>();
 
                 for (int i = 0; i < nameArray.length; i++) {
-                    nameArray[i] =  Character.toUpperCase(nameArray[i].charAt(0))
-                            + nameArray[i].substring(1).toLowerCase();
-                    List<String> partialList = new ArrayList<>();
                     if (availableNames.contains(nameArray[i])) {
                         partialList.add(nameArray[i]);
                     } else {
@@ -57,6 +54,18 @@ public class TextFileParser {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private String sentenceCase(String name) {
+        char[] chars = name.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (i == 0 || chars[i - 1] == ' ' || chars[i - 1] == '-') {
+                chars[i] = Character.toUpperCase(chars[i]);
+            } else {
+                chars[i] = Character.toLowerCase(chars[i]);
+            }
+        }
+        return new String(chars);
     }
 
 

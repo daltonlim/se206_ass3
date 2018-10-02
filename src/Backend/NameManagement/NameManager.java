@@ -1,6 +1,6 @@
 package Backend.NameManagement;
 
-import Backend.File.FileParser;
+import Backend.File.FileNameParser;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -40,7 +40,7 @@ public class NameManager {
      * @param file the file to remove from the database
      */
     public void removeFile(File file) {
-        FileParser fileParser = new FileParser(file);
+        FileNameParser fileParser = new FileNameParser(file);
         if (fileParser.getDate().contains("ser")) {
             nameList.get(fileParser.getUserName()).remove(fileParser);
         }
@@ -92,7 +92,7 @@ public class NameManager {
      * @param file file to add
      */
     public void addFile(File file) {
-        FileParser fileParser = new FileParser(file);
+        FileNameParser fileParser = new FileNameParser(file);
         String name = fileParser.getUserName();
         Name nameToAdd = new Name(name);
 

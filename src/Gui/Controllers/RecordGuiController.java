@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import Backend.File.BashWorker;
 
 import Backend.File.FileCreator;
-import Backend.File.FileParser;
+import Backend.File.FileNameParser;
 import Backend.NameManagement.NameManager;
 import Gui.SceneManager;
 import javafx.beans.value.ChangeListener;
@@ -48,7 +48,7 @@ public class RecordGuiController implements Initializable {
 
     private Task<?> recording;
     private FileCreator fileCreator;
-    private FileParser fileParser;
+    private FileNameParser fileParser;
     private BashWorker bashWorker;
 
     @Override
@@ -162,7 +162,7 @@ public class RecordGuiController implements Initializable {
      * setup variables needed
      */
     public void initData(File file) {
-        fileParser = new FileParser(file);
+        fileParser = new FileNameParser(file);
         String name = fileParser.getUserName();
         fileCreator = new FileCreator(name);
         nameLabel.setText(name);

@@ -6,10 +6,10 @@ import java.io.File;
  * A class which takes care of the parsing of files, retrieving the date, name,
  * and file associated with a file.
  */
-public class FileParser {
+public class FileNameParser {
     File file;
 
-    public FileParser(File file) {
+    public FileNameParser(File file) {
         this.file = file;
     }
 
