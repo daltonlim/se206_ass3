@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import Backend.File.BashWorker;
 
 import Backend.File.FileCreator;
-import Backend.File.FileParser;
+import Backend.File.FileNameParser;
 import Backend.NameManagement.NameManager;
 import Gui.SceneManager;
 import javafx.beans.value.ChangeListener;
@@ -24,50 +24,47 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
-/**
- * A class controls the Record window 
- */
 public class RecordGuiController implements Initializable {
     @FXML
-    private Label States;
+    private Label states;
     @FXML
     private Label nameLabel;
     @FXML
-    private Button PlayOldButton;
+    private Button playOldButton;
     @FXML
-    private Button RestartButton;
+    private Button restartButton;
     @FXML
     private Button recordButton;
     @FXML
-    private Button ExitButton;
+    private Button exitButton;
     @FXML
-    private Button PlayYoursButton;
+    private Button playYoursButton;
     @FXML
     private ProgressBar progressbar;
     @FXML
-    private Button SaveButton;
+    private Button saveButton;
     @FXML
-    private Button NoSaveButton;
+    private Button noSaveButton;
 
-    private Task<?> _Recording;
+    private Task<?> recording;
     private FileCreator fileCreator;
-    private FileParser fileParser;
+    private FileNameParser fileParser;
     private BashWorker bashWorker;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         disableButtons(true);
-        States.setVisible(false);
+        states.setVisible(false);
     }
 
     private void disableButtons(boolean b) {
-        PlayOldButton.setDisable(b);
-        PlayYoursButton.setDisable(b);
-        SaveButton.setDisable(b);
-        NoSaveButton.setDisable(b);
-        RestartButton.setDisable(b);
+        playOldButton.setDisable(b);
+        playYoursButton.setDisable(b);
+        saveButton.setDisable(b);
+        noSaveButton.setDisable(b);
+        restartButton.setDisable(b);
     }
-    
+
     /**
      * a task connects with progress bar
      */
@@ -93,23 +90,23 @@ public class RecordGuiController implements Initializable {
     public void record() {
         try {
             recordButton.setDisable(true);
-            ExitButton.setVisible(false);
-            States.setVisible(true);
-            PlayOldButton.setDisable(true);
+            exitButton.setVisible(false);
+            states.setVisible(true);
+            playOldButton.setDisable(true);
             progressbar.setProgress(0.0);
 
-            _Recording = createWorker();
+            recording = createWorker();
 
             progressbar.progressProperty().unbind();
 
-            progressbar.progressProperty().bind(_Recording.progressProperty());
+            progressbar.progressProperty().bind(recording.progressProperty());
 
-            _Recording.messageProperty().addListener(new ChangeListener<String>() {
+            recording.messageProperty().addListener(new ChangeListener<String>() {
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    States.setText(newValue);
+                    states.setText(newValue);
                 }
             });
-            new Thread(_Recording).start();
+            new Thread(recording).start();
             fileCreator.generateAudio();
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,7 +149,7 @@ public class RecordGuiController implements Initializable {
     public void playOld() throws InterruptedException {
 
         try {
-            States.setVisible(false);
+            states.setVisible(false);
             File audioFile = fileParser.getFile();
             play(audioFile);
         } catch (Exception e) {
@@ -160,11 +157,12 @@ public class RecordGuiController implements Initializable {
         }
     }
 
+
     /**
      * setup variables needed
      */
     public void initData(File file) {
-        fileParser = new FileParser(file);
+        fileParser = new FileNameParser(file);
         String name = fileParser.getUserName();
         fileCreator = new FileCreator(name);
         nameLabel.setText(name);
@@ -225,4 +223,9 @@ public class RecordGuiController implements Initializable {
             bashWorker.kill();
         }
     }
+
+	public void initDataX(String name) {
+		fileCreator = new FileCreator("name");
+        nameLabel.setText(name);	
+	}
 }

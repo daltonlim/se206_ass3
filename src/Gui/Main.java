@@ -1,11 +1,13 @@
 package Gui;
 
+import Backend.File.FileLogger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 
 /**
@@ -21,7 +23,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         URL location = this.getClass().getResource("Controllers/SelectionMenu.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
-        Parent root = (Parent)fxmlLoader.load();
+        Parent root = fxmlLoader.load();
 
         primaryStage.setTitle("Name Sayer");
         Scene scene = new Scene(root, 600,600);
@@ -31,4 +33,9 @@ public class Main extends Application {
         SceneManager.getInstance().setMainStage(primaryStage);
     }
 
+    @Override
+    public void stop() throws Exception {
+        FileLogger.getInstance().writeToFile();
+        super.stop();
+    }
 }

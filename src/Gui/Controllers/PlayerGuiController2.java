@@ -20,14 +20,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.ResourceBundle;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-
-public class PlayerGuiController implements Initializable {
+public class PlayerGuiController2 implements Initializable {
     private NameManager fileManager;
     private FileLogger fileLogger;
     private String name;
@@ -53,7 +48,6 @@ public class PlayerGuiController implements Initializable {
     private BashWorker worker;
 
     private List<String> chosenNames;
-    private String[] nameArray;
 
 
     //Return to previous window
@@ -76,21 +70,15 @@ public class PlayerGuiController implements Initializable {
     @FXML
     public void updateDates() {
         nameLabel.setText(name);
-        if(isSingleWord()) {
-        	 //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
-            dateList.getItems().remove(0, dateList.getItems().size());
-            dateList.getItems().addAll(fileManager.getFileDatesForName(name));
+        //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
+        dateList.getItems().remove(0, dateList.getItems().size());
+        dateList.getItems().addAll(fileManager.getFileDatesForName(name));
 
 
-            //Select first element is list by default
-            dateList.getSelectionModel().select(0);
+        //Select first element is list by default
+        dateList.getSelectionModel().select(0);
 
-            isBadFile();
-        } else {
-        	 dateList.getItems().remove(0, dateList.getItems().size());
-        	 dateList.getItems().add("no file");
-        }
-        
+        isBadFile();
     }
 
     /**
@@ -123,46 +111,18 @@ public class PlayerGuiController implements Initializable {
 
     }
 
-    public boolean isSingleWord() {
-    	nameArray = name.split("[ -]");
-    	if(nameArray.length>1) {
-    		return false;
-    	}
-    	return true;
-    }
     /**
-     * Play the file selected or play the combination 
+     * Play the file selected
      */
     @FXML
     private void play() {
         stop();
-        if(isSingleWord()) {
-        	try {
-                File file = retrieveFile();
-                String location = file.toURI().toString();
-                worker = new BashWorker("ffplay -nodisp -autoexit " + location);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-        	for (int i = 0; i < nameArray.length; i++) {
-        		try {
-        			List<String> Dates = fileManager.getFileDatesForName(nameArray[i]);
-        			int index = new Random().nextInt(Dates.size());
-            		String oldestDate = Dates.get(index);
-            		File file = fileManager.getFile(nameArray[i], oldestDate);
-            		String location = file.toURI().toString();
-                    worker = new BashWorker("ffplay -nodisp -autoexit " + location);
-                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-                    AudioFormat format = audioInputStream.getFormat();
-                    long frames = audioInputStream.getFrameLength();
-                    double durationInSeconds = (frames+0.0) / format.getFrameRate();
-                    int time = (int) (durationInSeconds*1000);
-                    Thread.sleep(time);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }	
-        	}
+        try {
+            File file = retrieveFile();
+            String location = file.toURI().toString();
+            worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -278,19 +238,16 @@ public class PlayerGuiController implements Initializable {
     private void recordAudio() throws IOException {
         stop();
         Stage primaryStage = (Stage) recordButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("dummy.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
 
-        dummy controller = loader.getController();
-        if (isSingleWord()) {
-        	controller.initData(retrieveFile());
-        } else {
-        	controller.initDataX(name);
-        }
+        RecordGuiController controller = loader.getController();
+
+        controller.initData(retrieveFile());
 
         SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
 
     }

@@ -1,6 +1,6 @@
 package Backend.NameManagement;
 
-import Backend.File.FileParser;
+import Backend.File.FileNameParser;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,19 +26,20 @@ public class Name {
     /**
      * Add date to a name
      */
-    public void addDate(FileParser fileParser) {
+    public void addDate(FileNameParser fileParser) {
         dateFileList.put(fileParser.getDate(), fileParser.getFile());
     }
 
     /**
      * Remove a date from a name, usually when the file doesnt exist anymore.
      */
-    public void remove(FileParser fileParser) {
+    public void remove(FileNameParser fileParser) {
         dateFileList.remove(fileParser.getDate());
     }
 
     /**
      * Retrieve the file associated with a date
+     *
      * @param date a date string
      * @return the file associated with the date string
      */
@@ -48,6 +49,7 @@ public class Name {
 
     /**
      * A method to return the list of dates associated with a name.
+     *
      * @return
      */
     public List<String> returnDates() {

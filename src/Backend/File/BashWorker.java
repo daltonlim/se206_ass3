@@ -6,19 +6,19 @@ import javax.swing.SwingWorker;
  * Allows for the easy running of bash commands on a thread different to the EDT
  */
 public class BashWorker extends SwingWorker<Void, Void> {
-    String _command = null;
-    Process _process;
+    String command = null;
+    Process process;
 
     public BashWorker(String command) {
-        _command = command;
+        this.command = command;
         this.execute();
     }
 
     @Override
     protected Void doInBackground() {
         try {
-            ProcessBuilder builder = new ProcessBuilder("bash", "-c", _command);
-            _process = builder.start();
+            ProcessBuilder builder = new ProcessBuilder("bash", "-c", command);
+            process = builder.start();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -28,6 +28,6 @@ public class BashWorker extends SwingWorker<Void, Void> {
     }
 
     public void kill() {
-        _process.destroy();
+        process.destroy();
     }
 }
