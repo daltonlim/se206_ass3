@@ -16,43 +16,56 @@ public class TextFileParser {
     private File file;
 
     public TextFileParser(File file) {
-        availableNames = NameManager.getInstance().getAvailableNames();
         this.file = file;
+        init();
+        parseFile();
+    }
+
+    private void init() {
+        availableNames = NameManager.getInstance().getAvailableNames();
         namesToAdd = new ArrayList<>();
         partialNames = new ArrayList<>();
         notPossibleNames = new ArrayList<>();
-        parseNames();
     }
 
-    private void parseNames() {
+    public TextFileParser(String name) {
+        init();
+        parseName(name);
+    }
+
+    private void parseFile() {
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
                 String name = scanner.nextLine();
-                name = sentenceCase(name);
-                String[] nameArray = name.split("[ -]");
-                boolean present = true;
-                List<String> partialList = new ArrayList<>();
-
-                for (int i = 0; i < nameArray.length; i++) {
-                    if (availableNames.contains(nameArray[i])) {
-                        partialList.add(nameArray[i]);
-                    } else {
-                        present = false;
-                    }
-                    if (i == nameArray.length - 1) {
-                        if (present) {
-                            namesToAdd.add(name);
-                        } else {
-                            notPossibleNames.add(name);
-                            partialNames.addAll(partialList);
-                        }
-                    }
-                }
+                parseName(name);
             }
             scanner.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void parseName(String name) {
+        name = sentenceCase(name);
+        String[] nameArray = name.split("[ -]");
+        boolean present = true;
+        List<String> partialList = new ArrayList<>();
+
+        for (int i = 0; i < nameArray.length; i++) {
+            if (availableNames.contains(nameArray[i])) {
+                partialList.add(nameArray[i]);
+            } else {
+                present = false;
+            }
+            if (i == nameArray.length - 1) {
+                if (present) {
+                    namesToAdd.add(name);
+                } else {
+                    notPossibleNames.add(name);
+                    partialNames.addAll(partialList);
+                }
+            }
         }
     }
 

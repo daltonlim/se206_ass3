@@ -8,20 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.xml.soap.Text;
 import java.io.File;
 import java.net.URL;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SelectionMenuController implements Initializable {
 
@@ -34,6 +29,8 @@ public class SelectionMenuController implements Initializable {
     private ListView selectedNames;
     @FXML
     private Button selectNamesButton;
+    @FXML
+    private TextField searchField;
 
     /**
      * Initialiser method
@@ -153,13 +150,7 @@ public class SelectionMenuController implements Initializable {
         fileChooser.setTitle("Open Resource File");
         File file = fileChooser.showOpenDialog(selectNamesButton.getScene().getWindow());
         TextFileParser textFileParser = new TextFileParser(file);
-        selectedNames.getItems().addAll(textFileParser.getNamesToAdd());
-        availibleNamesList.getItems().removeAll(textFileParser.getNamesToAdd());
-        Collections.sort(selectedNames.getItems());
-
-        if (!textFileParser.getNotPossibleNames().isEmpty()) {
-            alertBox(textFileParser);
-        }
+        addNames(textFileParser);
     }
 
     /**
@@ -169,17 +160,28 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     private void alertBox(TextFileParser textFileParser) {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Invalid Names");
-        alert.setHeaderText("Invalid names selected. Would you like to add partial names?");
+        alert.setHeaderText("Invalid names detected. Would you like to add partial names?");
         alert.setContentText(textFileParser.getNotPossibleNames().toString());
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
+            //TODo remove this duplicate
             selectedNames.getItems().addAll(textFileParser.getPartialNames());
             availibleNamesList.getItems().removeAll(textFileParser.getPartialNames());
+            removeDuplicates(selectedNames.getItems());
             Collections.sort(selectedNames.getItems());
         }
+
+    }
+
+    private void removeDuplicates(List<String> stringList) {
+        Set<String> hashSet = new HashSet<>();
+        hashSet.addAll(stringList);
+        stringList.clear();
+        stringList.addAll(hashSet);
     }
 
     /**
@@ -213,9 +215,25 @@ public class SelectionMenuController implements Initializable {
         if (selectedDirectory != null) {
             fileManager.getFiles(selectedDirectory);
         }
-        availibleNamesList.getItems().remove(0,availibleNamesList.getItems().size());
+        availibleNamesList.getItems().remove(0, availibleNamesList.getItems().size());
         setupList();
     }
 
+    @FXML
+    private void searchNames() {
 
+        TextFileParser textFileParser = new TextFileParser(searchField.getText());
+        addNames(textFileParser);
+    }
+
+    private void addNames(TextFileParser textFileParser){
+        selectedNames.getItems().addAll(textFileParser.getNamesToAdd());
+        availibleNamesList.getItems().removeAll(textFileParser.getNamesToAdd());
+        Collections.sort(selectedNames.getItems());
+        removeDuplicates(selectedNames.getItems());
+
+        if (!textFileParser.getNotPossibleNames().isEmpty()) {
+            alertBox(textFileParser);
+        }
+    }
 }
