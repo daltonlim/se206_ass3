@@ -164,7 +164,7 @@ public class SelectionMenuController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Invalid Names");
         alert.setHeaderText("Invalid names detected. Would you like to add partial names?");
-        alert.setContentText(textFileParser.getNotPossibleNames().toString());
+        alert.setContentText(textFileParser.getNotPossibleNameString());
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {

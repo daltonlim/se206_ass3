@@ -80,7 +80,7 @@ public class Name {
         if (goodFiles.size() == 0) {
             goodFiles = dateList;
         }
-
+        //Generate random key
         String key = goodFiles.get(new Random().nextInt(goodFiles.size()));
         return dateFileList.get(key);
 

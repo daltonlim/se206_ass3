@@ -35,6 +35,8 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private Button lastName;
     @FXML
+    private Button deleteButton;
+    @FXML
     private Button reportButton;
     @FXML
     private Label nameLabel;
@@ -154,6 +156,7 @@ public class PlayerGuiController implements Initializable {
     private void checkButtons() {
         nextName.setDisable(false);
         lastName.setDisable(false);
+        deleteButton.setDisable(true);
 
         if (chosenNames.indexOf(name) == chosenNames.size() - 1) {
             nextName.setDisable(true);
@@ -187,6 +190,15 @@ public class PlayerGuiController implements Initializable {
     }
 
     /**
+     * Deletes the file if it contains a user recording
+     */
+    @FXML
+    private void deleteFile(){
+            retrieveFile().delete();
+            fileManager.removeFile(retrieveFile());
+            updateDates();
+    }
+    /**
      * Set warning label
      */
     private void setBadWarningLabel() {
@@ -199,6 +211,14 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private boolean isBadFile() {
+        if(retrieveFile().getName().contains("ser")){
+            deleteButton.setDisable(false);
+
+        }else {
+            deleteButton.setDisable(true);
+        }
+
+
         if (fileLogger.isBad(retrieveFile())) {
             setBadWarningLabel();
             return true;
@@ -207,6 +227,8 @@ public class PlayerGuiController implements Initializable {
             return false;
         }
     }
+
+
 
     /**
      * Remove warning label

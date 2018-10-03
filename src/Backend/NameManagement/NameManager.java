@@ -16,11 +16,13 @@ public class NameManager {
     private List<String> availableNames;
     private static NameManager instance;
     public static final File directory = new File("audioFiles");
+    public static final File userDirectory = new File("userFiles");
     private HashMap<String, Name> nameList;
 
     private NameManager() {
         nameList = new HashMap<>();
         getFiles(directory);
+        getFiles(userDirectory);
 
     }
 
@@ -41,9 +43,8 @@ public class NameManager {
      */
     public void removeFile(File file) {
         FileNameParser fileParser = new FileNameParser(file);
-        if (fileParser.getDate().contains("ser")) {
+
             nameList.get(fileParser.getUserName()).remove(fileParser);
-        }
     }
 
     /**
