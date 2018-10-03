@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import Backend.File.BashWorker;
 
@@ -77,7 +78,7 @@ public class dummy implements Initializable {
     }
 
 	private void disableButtons(boolean b) {
-        //PlayOldButton.setDisable(b);
+		stopButton.setDisable(b);
         PlayYoursButton.setDisable(b);
         RestartButton.setDisable(b);
     }
@@ -103,6 +104,7 @@ public class dummy implements Initializable {
             recordButton.setDisable(true);
             States.setVisible(true);
             PlayOldButton.setDisable(true);
+            stopButton.setDisable(false);
             progressbar.setProgress(0.0);
 
             _Recording = createWorker();
@@ -150,7 +152,10 @@ public class dummy implements Initializable {
         	try {
                 States.setVisible(false);
                 File audioFile = fileParser.getFile();
-                play(audioFile);
+                Clip clip = AudioSystem.getClip();
+    			clip.open(AudioSystem.getAudioInputStream(audioFile));
+    			clip.start();
+               // play(audioFile);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -161,8 +166,11 @@ public class dummy implements Initializable {
         			int index = new Random().nextInt(Dates.size());
             		String oldestDate = Dates.get(index);
             		File file = fileManager.getFile(nameArray[i], oldestDate);
-            		String location = file.toURI().toString();
-                    worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+            		//String location = file.toURI().toString();
+        			Clip clip = AudioSystem.getClip();
+        			clip.open(AudioSystem.getAudioInputStream(file));
+        			clip.start();
+                  //  worker = new BashWorker("ffplay -nodisp -autoexit " + location);
                     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                     AudioFormat format = audioInputStream.getFormat();
                     long frames = audioInputStream.getFrameLength();
@@ -244,7 +252,13 @@ public class dummy implements Initializable {
 
     @FXML
     public void stopRecording() {
-    	 
+    	stopButton.setDisable(true);
+    	fileCreator.kill();
+    	RecordingIsFinished();
+    	_Recording.cancel(true);
+    	 States.setText("You stop ");
+    	 progressbar.progressProperty().unbind();
+    	 progressbar.progressProperty().setValue(100);
     }
     
     private void stop(){

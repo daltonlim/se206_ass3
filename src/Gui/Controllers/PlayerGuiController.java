@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -26,6 +27,9 @@ import java.util.ResourceBundle;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
 
 public class PlayerGuiController implements Initializable {
     private NameManager fileManager;
@@ -49,11 +53,15 @@ public class PlayerGuiController implements Initializable {
     private Button recordButton;
     @FXML
     private Button microphoneButton;
+    @FXML
+    private Slider slider;
 
     private BashWorker worker;
 
     private List<String> chosenNames;
     private String[] nameArray;
+    private Clip clip;
+    private FloatControl volume;
 
 
     //Return to previous window
@@ -68,6 +76,25 @@ public class PlayerGuiController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         fileLogger = FileLogger.getInstance();
         fileManager = NameManager.getInstance();
+        slider.setValue(100);
+    }
+    
+    @FXML
+    public void setVolume() throws LineUnavailableException {
+
+    }
+    
+    public float getVolume() throws LineUnavailableException {
+        float range = (volume.getMaximum() - volume.getMinimum())/100;
+        float gain = (float) ((range *slider.getValue()) + volume.getMinimum());
+        if (gain > volume.getMaximum()) {
+        	gain=volume.getMaximum();
+        } else if(gain < volume.getMinimum()) {
+        	gain=volume.getMinimum();
+        } else {
+        	
+        }
+        return gain;
     }
 
     /**
@@ -139,8 +166,11 @@ public class PlayerGuiController implements Initializable {
         if(isSingleWord()) {
         	try {
                 File file = retrieveFile();
-                String location = file.toURI().toString();
-                worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+                Clip clip = AudioSystem.getClip();
+    			clip.open(AudioSystem.getAudioInputStream(file));
+    			volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+    			volume.setValue(getVolume());
+    			clip.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -152,7 +182,12 @@ public class PlayerGuiController implements Initializable {
             		String oldestDate = Dates.get(index);
             		File file = fileManager.getFile(nameArray[i], oldestDate);
             		String location = file.toURI().toString();
-                    worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+            		clip = AudioSystem.getClip();
+        			clip.open(AudioSystem.getAudioInputStream(file));
+        			volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        			volume.setValue(getVolume());
+        			clip.start();
+                    //worker = new BashWorker("ffplay -nodisp -autoexit " + location);
                     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                     AudioFormat format = audioInputStream.getFormat();
                     long frames = audioInputStream.getFrameLength();
@@ -290,7 +325,7 @@ public class PlayerGuiController implements Initializable {
 
         SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
 
     }

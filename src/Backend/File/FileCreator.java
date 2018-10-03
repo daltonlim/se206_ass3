@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class FileCreator {
     private String fileName;
     private String date; // storing date when it is generated
+	private BashWorker bashworker;
 
     public FileCreator(String fileName) {
         this.fileName = fileName;
@@ -27,11 +28,15 @@ public class FileCreator {
     public void generateAudio() {
         String date = getDate();
         this.date = date;
-        new BashWorker("ffmpeg -f pulse -i default -t 5 " + NameManager.directory +
+        bashworker = new BashWorker("ffmpeg -f pulse -i default -t 5 " + NameManager.directory +
                 "/se206" + date + fileName + ".wav");
 
     }
 
+    
+    public void kill() {
+    	bashworker.kill();
+    }
     /**
      * Gets current date
      */
