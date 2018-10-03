@@ -69,7 +69,7 @@ public class NameManager {
             for (File wav : wavFiles) {
                 addFile(wav);
             }
-        }else{
+        } else {
             file.mkdir();
         }
         availableNames = new ArrayList<>(nameList.keySet());
@@ -115,5 +115,10 @@ public class NameManager {
         List<String> toReturn = nameList.get(name).returnDates();
         Collections.sort(toReturn);
         return toReturn;
+    }
+
+    public File getRandomGoodFile(String name) {
+        Name available = nameList.get(name);
+       return available.randomBestName();
     }
 }
