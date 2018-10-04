@@ -21,6 +21,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ResourceBundle;
+
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -43,6 +45,8 @@ public class PlayerGuiController implements Initializable {
     private Button nextName;
     @FXML
     private Button lastName;
+    @FXML
+    private Button deleteButton;
     @FXML
     private Button reportButton;
     @FXML
@@ -229,6 +233,7 @@ public class PlayerGuiController implements Initializable {
     private void checkButtons() {
         nextName.setDisable(false);
         lastName.setDisable(false);
+        deleteButton.setDisable(true);
 
         if (chosenNames.indexOf(name) == chosenNames.size() - 1) {
             nextName.setDisable(true);
@@ -262,6 +267,15 @@ public class PlayerGuiController implements Initializable {
     }
 
     /**
+     * Deletes the file if it contains a user recording
+     */
+    @FXML
+    private void deleteFile(){
+            retrieveFile().delete();
+            fileManager.removeFile(retrieveFile());
+            updateDates();
+    }
+    /**
      * Set warning label
      */
     private void setBadWarningLabel() {
@@ -274,6 +288,14 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private boolean isBadFile() {
+        if(retrieveFile().getName().contains("ser")){
+            deleteButton.setDisable(false);
+
+        }else {
+            deleteButton.setDisable(true);
+        }
+
+
         if (fileLogger.isBad(retrieveFile())) {
             setBadWarningLabel();
             return true;

@@ -16,11 +16,13 @@ public class NameManager {
     private List<String> availableNames;
     private static NameManager instance;
     public static final File directory = new File("audioFiles");
+    public static final File userDirectory = new File("userFiles");
     private HashMap<String, Name> nameList;
 
     private NameManager() {
         nameList = new HashMap<>();
         getFiles(directory);
+        getFiles(userDirectory);
 
     }
 
@@ -115,5 +117,10 @@ public class NameManager {
         List<String> toReturn = nameList.get(name).returnDates();
         Collections.sort(toReturn);
         return toReturn;
+    }
+
+    public File getRandomGoodFile(String name) {
+        Name available = nameList.get(name);
+        return available.randomBestName();
     }
 }

@@ -28,12 +28,12 @@ public class FileCreator {
     public void generateAudio() {
         String date = getDate();
         this.date = date;
-        bashworker = new BashWorker("ffmpeg -f pulse -i default -t 5 " + NameManager.directory +
+        new BashWorker("ffmpeg -f pulse -i default -t 5 " + NameManager.userDirectory+
                 "/se206" + date + fileName + ".wav");
 
     }
 
-    
+
     public void kill() {
     	bashworker.kill();
     }
@@ -78,7 +78,7 @@ public class FileCreator {
      * @return
      */
     public String fileString() {
-        return NameManager.directory + "/se206" + date + fileName + ".wav";
+        return NameManager.userDirectory+ "/se206" + date + fileName + ".wav";
     }
 
 }

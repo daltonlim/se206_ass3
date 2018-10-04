@@ -12,6 +12,7 @@ public class TextFileParser {
     private List<String> availableNames;
     private List<String> namesToAdd;
     private List<String> notPossibleNames;
+    private String notPossibleNameString;
     private List<String> partialNames;
     private File file;
 
@@ -22,6 +23,7 @@ public class TextFileParser {
     }
 
     private void init() {
+        notPossibleNameString = "";
         availableNames = NameManager.getInstance().getAvailableNames();
         namesToAdd = new ArrayList<>();
         partialNames = new ArrayList<>();
@@ -62,7 +64,12 @@ public class TextFileParser {
                 if (present) {
                     namesToAdd.add(name);
                 } else {
-                    notPossibleNames.add(name);
+                   String toChange = name + "-->" + partialList.toString() + "\n";
+                   toChange = toChange.replace("[","");
+                    toChange = toChange.replace("]","");
+
+                    notPossibleNameString += toChange;
+                    notPossibleNames.add(toChange);
                     partialNames.addAll(partialList);
                 }
             }
@@ -89,6 +96,11 @@ public class TextFileParser {
     public List<String> getNotPossibleNames() {
         return notPossibleNames;
     }
+
+    public String getNotPossibleNameString() {
+        return notPossibleNameString;
+    }
+
 
     public List<String> getPartialNames() {
         return partialNames;

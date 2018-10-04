@@ -1,0 +1,1563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="se206_ass3:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Finally merged" />
+    <ignored path="JavaFxApplication.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/se206_ass3$TextFileParserTest_TestSomething.ic" NAME="TextFileParserTest.TestSomething Coverage Results" MODIFIED="1538367986736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Tests.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="492973275">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="58" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.13" value="2" />
+          <entry key="project.open.time.14" value="2" />
+          <entry key="project.open.time.15" value="2" />
+          <entry key="project.open.time.16" value="6" />
+          <entry key="project.open.time.17" value="5" />
+          <entry key="project.open.time.18" value="6" />
+          <entry key="project.open.time.19" value="4" />
+          <entry key="project.open.time.2" value="4" />
+          <entry key="project.open.time.20" value="6" />
+          <entry key="project.open.time.22" value="3" />
+          <entry key="project.open.time.23" value="2" />
+          <entry key="project.open.time.24" value="4" />
+          <entry key="project.open.time.25" value="3" />
+          <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.27" value="2" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.open.time.30" value="2" />
+          <entry key="project.open.time.31" value="1" />
+          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.47" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="64" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="bak" value="1" />
+          <entry key="css" value="7" />
+          <entry key="fxml" value="92" />
+          <entry key="java" value="313" />
+          <entry key="txt" value="11" />
+          <entry key="vmoptions" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="7" />
+          <entry key="JAVA" value="313" />
+          <entry key="PLAIN_TEXT" value="13" />
+          <entry key="XML" value="92" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="css" value="59" />
+          <entry key="dummy" value="26" />
+          <entry key="fxml" value="107" />
+          <entry key="java" value="20716" />
+          <entry key="txt" value="1182" />
+          <entry key="vmoptions" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="59" />
+          <entry key="JAVA" value="20716" />
+          <entry key="PLAIN_TEXT" value="1209" />
+          <entry key="XML" value="107" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="JavaFxApplication" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Backend/NameManagement/Name.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Backend/NameManagement/NameManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="699">
+              <caret line="125" selection-start-line="125" selection-end-line="125" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Backend/File/FileCreator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
+              <folding>
+                <element signature="e#1853#1854#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/dummy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3014">
+              <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/PlayerGuiController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/PlayerGuiController2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1694">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGui.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="48" column="43" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/RecordGuiController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="700">
+              <caret line="230" selection-start-line="230" selection-end-line="230" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/SelectionMenuController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="166" selection-start-line="166" selection-end-line="166" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="JavaFXApplication" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>1</find>
+      <find>FXMLDocumentController</find>
+      <find>add</find>
+      <find>setDisable(true);</find>
+      <find>buck bunny</find>
+      <find>File file</find>
+      <find>recho</find>
+      <find>r</find>
+      <find>chmod</find>
+      <find>nameLis</find>
+      <find>save</find>
+      <find>NameManager.ge</find>
+      <find>font</find>
+      <find>file.dele</find>
+      <find>getNe</find>
+      <find>new Bash</find>
+      <find>file.de</find>
+      <find>record</find>
+      <find>PB</find>
+      <find>OK</find>
+      <find>init</find>
+      <find>initdata</find>
+      <find>initDa</find>
+      <find>nameman</find>
+      <find>contains</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>setDisable(false);</replace>
+    </replaceStrings>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Logs/log.txt" />
+        <option value="$PROJECT_DIR$/src/Backend/FileLogger.java" />
+        <option value="$PROJECT_DIR$/src/Backend/File/Audio.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/playerGui.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/Main2.java" />
+        <option value="$PROJECT_DIR$/src/Backend/NameManagement/DateFile.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/Save.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/SaveController.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/controlController.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/control.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/Test.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/TestController.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/RecordGui.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/RecordGuiController.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/playerGui2.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/Main.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/SceneManager.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/SelectionMenuController.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Main.java" />
+        <option value="$PROJECT_DIR$/src/Backend/File/FileLogger.java" />
+        <option value="$PROJECT_DIR$/src/Backend/File/FileParser.java" />
+        <option value="$PROJECT_DIR$/src/Backend/File/BashWorker.java" />
+        <option value="$PROJECT_DIR$/src/resources/FlatBee.css" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/TestMicController.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/NameSearch.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/NameSearch.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/Welcome.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/Welcome.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/RecordGui.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/TestMic.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/DataBaseManager.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/DataBaseManager.java" />
+        <option value="$PROJECT_DIR$/src/Tests/TextFileParser.java" />
+        <option value="$PROJECT_DIR$/src/Tests/TextFileParserTest.java" />
+        <option value="$PROJECT_DIR$/myfile.txt" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController2.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/PlayerGui2.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/SelectionMenu.fxml" />
+        <option value="$PROJECT_DIR$/src/Tests/TextFileParserTestString.java" />
+        <option value="$PROJECT_DIR$/src/Tests/TestNameClass.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/playerGuiController.java" />
+        <option value="$PROJECT_DIR$/src/Backend/File/TextFileParser.java" />
+        <option value="$PROJECT_DIR$/src/Backend/NameManagement/Name.java" />
+        <option value="$PROJECT_DIR$/src/Backend/NameManagement/NameManager.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/PlayerGui.fxml" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/RecordGuiController.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Controllers/SelectionMenuController.java" />
+        <option value="$PROJECT_DIR$/src/Backend/File/FileCreator.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/PlayerGuiController.java" />
+        <option value="$PROJECT_DIR$/src/Gui/SelectionMenu/PlayerGuiController2.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="960" />
+    <option name="height" value="1080" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="Logs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaFXApp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="se206_ass3_jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Backend" type="462c0819:PsiDirectoryNode" />
+              <item name="File" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Backend" type="462c0819:PsiDirectoryNode" />
+              <item name="NameManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Gui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Gui" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="OverrideImplement.combined" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538617344054" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="recentsLimit" value="5" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Gui/Controllers" />
+      <recent name="$PROJECT_DIR$/src/Gui/SelectionMenu" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/audioFiles" />
+      <recent name="$PROJECT_DIR$/src/Backend" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Tests" />
+      <recent name="Gui.Controllers" />
+      <recent name="Gui.SelectionMenu" />
+      <recent name="Gui.PlayerGui" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Gui/SelectionMenu" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Main (2)">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Gui.Main" />
+      <module name="se206_ass3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNameClass" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="se206_ass3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.TestNameClass" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNameClass.testRandomName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="se206_ass3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.TestNameClass" />
+      <option name="METHOD_NAME" value="testRandomName" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextFileParserTestString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="se206_ass3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.TextFileParserTestString" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextFileParserTest.TestSomething" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="se206_ass3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.TextFileParserTest" />
+      <option name="METHOD_NAME" value="TestSomething" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main (2)" />
+      <item itemvalue="JUnit.TextFileParserTest.TestSomething" />
+      <item itemvalue="JUnit.TextFileParserTestString" />
+      <item itemvalue="JUnit.TestNameClass.testRandomName" />
+      <item itemvalue="JUnit.TestNameClass" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main (2)" />
+        <item itemvalue="JUnit.TestNameClass.testRandomName" />
+        <item itemvalue="JUnit.TestNameClass" />
+        <item itemvalue="JUnit.TextFileParserTestString" />
+        <item itemvalue="JUnit.TextFileParserTest.TestSomething" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+      <created>1359379246138</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1359379246138</updated>
+      <workItem from="1359379250712" duration="1302000" />
+      <workItem from="1536746770903" duration="810000" />
+      <workItem from="1536747620386" duration="11000" />
+      <workItem from="1536747668637" duration="679000" />
+      <workItem from="1536807256114" duration="161000" />
+      <workItem from="1536835617964" duration="607000" />
+      <workItem from="1536836264393" duration="56000" />
+      <workItem from="1536836352580" duration="2131000" />
+      <workItem from="1536838712213" duration="3345000" />
+      <workItem from="1536875831141" duration="1777000" />
+      <workItem from="1536879058704" duration="724000" />
+      <workItem from="1536966460480" duration="1020000" />
+      <workItem from="1536967512596" duration="12439000" />
+      <workItem from="1536982014231" duration="2404000" />
+      <workItem from="1536986065828" duration="630000" />
+      <workItem from="1536986922706" duration="454000" />
+      <workItem from="1536990827772" duration="2801000" />
+      <workItem from="1536993842102" duration="2262000" />
+      <workItem from="1536996168550" duration="66000" />
+      <workItem from="1537061046565" duration="101000" />
+      <workItem from="1537076725284" duration="761000" />
+      <workItem from="1537079820267" duration="461000" />
+      <workItem from="1537080740882" duration="215000" />
+      <workItem from="1537092845584" duration="301000" />
+      <workItem from="1537145091596" duration="728000" />
+      <workItem from="1537146495018" duration="3000" />
+      <workItem from="1537148310921" duration="1271000" />
+      <workItem from="1537150912475" duration="594000" />
+      <workItem from="1537154683008" duration="40000" />
+      <workItem from="1537160976472" duration="10130000" />
+      <workItem from="1537175763944" duration="75000" />
+      <workItem from="1537224823571" duration="86000" />
+      <workItem from="1537480522346" duration="103000" />
+      <workItem from="1537442403006" duration="126000" />
+      <workItem from="1537495092768" duration="23000" />
+      <workItem from="1537495148569" duration="9458000" />
+      <workItem from="1537505805885" duration="12181000" />
+      <workItem from="1537547023272" duration="57000" />
+      <workItem from="1537573033720" duration="5794000" />
+      <workItem from="1537578894744" duration="81000" />
+      <workItem from="1537579127313" duration="58000" />
+      <workItem from="1537583684045" duration="593000" />
+      <workItem from="1537585269182" duration="529000" />
+      <workItem from="1537585831917" duration="3062000" />
+      <workItem from="1537594792075" duration="1905000" />
+      <workItem from="1537613240292" duration="3119000" />
+      <workItem from="1537669157991" duration="1027000" />
+      <workItem from="1537670223467" duration="2714000" />
+      <workItem from="1537738509238" duration="461000" />
+      <workItem from="1537754973873" duration="59000" />
+      <workItem from="1537760454541" duration="548000" />
+      <workItem from="1537767709250" duration="870000" />
+      <workItem from="1537770122264" duration="455000" />
+      <workItem from="1538187703785" duration="619000" />
+      <workItem from="1538357233216" duration="1524000" />
+      <workItem from="1538359502330" duration="506000" />
+      <workItem from="1538360197198" duration="6660000" />
+      <workItem from="1538373402810" duration="968000" />
+      <workItem from="1538438094873" duration="6470000" />
+      <workItem from="1538530750560" duration="752000" />
+      <workItem from="1538531718960" duration="1416000" />
+      <workItem from="1538538686330" duration="1384000" />
+      <workItem from="1538553030178" duration="1802000" />
+      <workItem from="1538611412286" duration="4358000" />
+      <workItem from="1538615931352" duration="1197000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add the fileManagerClass">
+      <created>1536840120520</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1536840120520</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add the fileManagerClass">
+      <created>1536840172349</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1536840172349</updated>
+    </task>
+    <task id="LOCAL-00003" summary="&#10;add FileManager">
+      <created>1536840255302</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1536840255302</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactor a few lines for less reliance on each other">
+      <created>1536840617610</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1536840617610</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refactor a few lines for less reliance on each other">
+      <created>1536841262072</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1536841262072</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add select files button and allow dates of  specified user to be retrieved">
+      <created>1536841703897</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1536841703897</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Update Gui, improve fileManager by utilising hash map">
+      <created>1536968847009</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1536968847009</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Finished the starting GUI">
+      <created>1536981524542</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1536981524542</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update controller class for playerGui">
+      <created>1536986966548</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1536986966548</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Try incorporating player">
+      <created>1537076792811</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1537076792811</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Try incorporating player">
+      <created>1537079983393</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1537079983393</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Try incorporating player">
+      <created>1537080035074</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1537080035074</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Try incorporating player">
+      <created>1537080819412</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1537080819412</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Refacotring filmanager into files names, and nameManager.&#10;Also ensure that scence flow fluidly">
+      <created>1537169087229</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1537169087229</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Implement Logger and fix report button">
+      <created>1537172551597</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1537172551597</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Remove Redundant List Types Enum">
+      <created>1537172719333</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1537172719333</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Show warning when bad file is clicked">
+      <created>1537173822023</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1537173822023</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Refactor classes and packages">
+      <created>1537174437540</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1537174437540</updated>
+    </task>
+    <task id="LOCAL-00019" summary="NameManager now officially a singleton, now supports adddition and removal of files">
+      <created>1537499901087</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1537499901087</updated>
+    </task>
+    <task id="LOCAL-00020" summary="themed">
+      <created>1537501812882</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1537501812882</updated>
+    </task>
+    <task id="LOCAL-00021" summary="new Gui for name playback">
+      <created>1537506241430</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1537506241430</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Near done">
+      <created>1537507724524</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1537507724524</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Large text done">
+      <created>1537515167427</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1537515167427</updated>
+    </task>
+    <task id="LOCAL-00024" summary="mic visualiser added">
+      <created>1537575966180</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1537575966180</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Add comments">
+      <created>1537587996563</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1537587996566</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fix null error in name">
+      <created>1537671027631</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1537671027632</updated>
+    </task>
+    <task id="LOCAL-00027" summary="nearly there">
+      <created>1537671607659</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1537671607659</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Match warningn colour to name colour">
+      <created>1537768236247</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1537768236247</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fix multiple key presses on lastName button">
+      <created>1537770465189</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1537770465189</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Added database import">
+      <created>1538371805429</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1538371805429</updated>
+    </task>
+    <task id="LOCAL-00031" summary="add icons">
+      <created>1538442421317</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1538442421318</updated>
+    </task>
+    <task id="LOCAL-00032" summary="name search added">
+      <created>1538444992380</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1538444992380</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Return random Best name added">
+      <created>1538532122396</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1538532122396</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Add delete button and create separate directory for user generated recordings">
+      <created>1538553906137</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1538553906137</updated>
+    </task>
+    <task id="LOCAL-00035" summary="commit before merge">
+      <created>1538613433634</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1538613433634</updated>
+    </task>
+    <task id="LOCAL-00036" summary="commit for merge">
+      <created>1538617004087</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1538617004088</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Finally merged">
+      <created>1538617064636</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1538617064636</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="TextFileParserTestString - 2018.10.02 at 14h 42m 21s.xml">
+      <configuration name="TextFileParserTestString" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestNameClass_testRandomName - 2018.10.03 at 14h 58m 32s.xml">
+      <configuration name="TestNameClass.testRandomName" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestNameClass - 2018.10.03 at 14h 59m 21s.xml">
+      <configuration name="TestNameClass" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestNameClass - 2018.10.03 at 14h 59m 46s.xml">
+      <configuration name="TestNameClass" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestNameClass_testRandomName - 2018.10.03 at 15h 00m 20s.xml">
+      <configuration name="TestNameClass.testRandomName" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestNameClass_testRandomName - 2018.10.03 at 15h 01m 00s.xml">
+      <configuration name="TestNameClass.testRandomName" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestNameClass_testRandomName - 2018.10.03 at 15h 01m 18s.xml">
+      <configuration name="TestNameClass.testRandomName" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestNameClass_testRandomName - 2018.10.03 at 15h 03m 53s.xml">
+      <configuration name="TestNameClass.testRandomName" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestNameClass_testRandomName - 2018.10.04 at 14h 00m 27s.xml">
+      <configuration name="TestNameClass.testRandomName" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestNameClass_testRandomName - 2018.10.04 at 14h 02m 07s.xml">
+      <configuration name="TestNameClass.testRandomName" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="119800000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.3206522" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32847425" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.45326087" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4456522" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3295964" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32934782" />
+      <window_info anchor="bottom" id="Problems" order="9" />
+      <window_info anchor="bottom" id="Changes" order="10" />
+      <window_info anchor="bottom" id="Profiler" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.32934782" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32717392" />
+      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="15" visible="true" weight="0.4054348" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="JetGradle" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.3298913" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.30597827" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32847425" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.45326087" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4456522" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3295964" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Problems" order="9" />
+      <window_info anchor="bottom" id="Changes" order="10" />
+      <window_info anchor="bottom" id="Profiler" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.32934782" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32717392" />
+      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="15" visible="true" weight="0.3630435" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="JetGradle" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.3298913" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <MESSAGE value="Refacotring filmanager into files names, and nameManager.&#10;Also ensure that scence flow fluidly" />
+    <MESSAGE value="Implement Logger and fix report button" />
+    <MESSAGE value="Remove Redundant List Types Enum" />
+    <MESSAGE value="Show warning when bad file is clicked" />
+    <MESSAGE value="Refactor classes and packages" />
+    <MESSAGE value="NameManager now officially a singleton, now supports adddition and removal of files" />
+    <MESSAGE value="themed" />
+    <MESSAGE value="new Gui for name playback" />
+    <MESSAGE value="Near done" />
+    <MESSAGE value="Large text done" />
+    <MESSAGE value="mic visualiser added" />
+    <MESSAGE value="Add comments" />
+    <MESSAGE value="Add unrepot button" />
+    <MESSAGE value="fix null error in name" />
+    <MESSAGE value="nearly there" />
+    <MESSAGE value="Match warningn colour to name colour" />
+    <MESSAGE value="Fix multiple key presses on lastName button" />
+    <MESSAGE value="Added database import" />
+    <MESSAGE value="add icons" />
+    <MESSAGE value="name search added" />
+    <MESSAGE value="Return random Best name added" />
+    <MESSAGE value="Add delete button and create separate directory for user generated recordings" />
+    <MESSAGE value="commit before merge" />
+    <MESSAGE value="commit for merge" />
+    <MESSAGE value="Finally merged" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finally merged" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Backend/File/FileCreator.java</url>
+          <line>44</line>
+          <properties />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Gui/Controllers/SelectionMenuController.java</url>
+          <line>169</line>
+          <properties />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Tests/TestNameClass.java</url>
+          <line>7</line>
+          <properties class="Tests.TestNameClass" method="testRandomName">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="command" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/RecordGui.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/playerGui.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/Main.java" />
+    <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/SelectionMenuController.java" />
+    <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/SceneManager.java" />
+    <entry file="file://$PROJECT_DIR$/Logs/log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-jdk/src.zip!/java/io/File.java" />
+    <entry file="jar:///usr/lib/jvm/java-8-jdk/src.zip!/java/util/List.java" />
+    <entry file="file://$PROJECT_DIR$/src/Gui/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-10-jdk/lib/src.zip!/java.base/java/lang/Thread.java" />
+    <entry file="jar:///usr/lib/jvm/java-8-jdk/javafx-src.zip!/javafx/event/Event.java" />
+    <entry file="jar:///usr/lib/jvm/java-8-jdk/javafx-src.zip!/javafx/scene/control/Labeled.java" />
+    <entry file="jar:///usr/lib/jvm/java-8-jdk/javafx-src.zip!/javafx/scene/Node.java" />
+    <entry file="jar:///usr/lib/jvm/java-8-jdk/javafx-src.zip!/javafx/fxml/FXMLLoader.java" />
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/RecordGui.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/TestMic.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/Welcome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/SceneManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/TestMicController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/DataBaseManager.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/DataBaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/Welcome.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tests/TextFileParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/NameSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myfile.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/NameSearch.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3960" />
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-jdk/javafx-src.zip!/javafx/beans/property/ObjectPropertyBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="130" selection-start-line="130" selection-end-line="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-jdk/javafx-src.zip!/javafx/scene/control/ListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="402" selection-start-line="402" selection-end-line="402" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/SelectionMenu.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1254">
+          <caret line="57" column="110" selection-start-line="57" selection-start-column="110" selection-end-line="57" selection-end-column="110" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/File/BashWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/FlatBee.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7326">
+          <caret line="333" selection-start-line="333" selection-end-line="333" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/File/FileLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/File/FileNameParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tests/TextFileParserTestString.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="12" column="60" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logs/badRecordings.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/RecordGuiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="176" column="16" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/playerGuiController.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGui2.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="192" selection-start-line="14" selection-start-column="192" selection-end-line="14" selection-end-column="192" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tests/TestNameClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/File/TextFileParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1325">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="e#2979#2980#0" expanded="true" />
+            <element signature="e#3014#3015#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/NameManagement/Name.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/NameManagement/NameManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGui.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="48" column="43" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/RecordGuiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="230" selection-start-line="230" selection-end-line="230" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/SelectionMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="166" selection-start-line="166" selection-end-line="166" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/File/FileCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="e#1853#1854#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/dummy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3014">
+          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/PlayerGuiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/SelectionMenu/PlayerGuiController2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1694">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>se206_ass3:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>se206_ass3</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
