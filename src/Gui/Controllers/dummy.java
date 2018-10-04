@@ -133,7 +133,7 @@ public class dummy implements Initializable {
     private void play(File audioFile) {
         stop();
         String location = audioFile.toURI().toString();
-        bashWorker = new BashWorker("ffplay -nodisp -autoexit " + location);
+        bashWorker = new BashWorker("ffplay -af \"volume=20dB\" -nodisp -autoexit " + location);
     }
 
     @FXML
@@ -152,25 +152,16 @@ public class dummy implements Initializable {
         	try {
                 States.setVisible(false);
                 File audioFile = fileParser.getFile();
-                Clip clip = AudioSystem.getClip();
-    			clip.open(AudioSystem.getAudioInputStream(audioFile));
-    			clip.start();
-               // play(audioFile);
+                play(audioFile);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
         	for (int i = 0; i < nameArray.length; i++) {
         		try {
-        			List<String> Dates = fileManager.getFileDatesForName(nameArray[i]);
-        			int index = new Random().nextInt(Dates.size());
-            		String oldestDate = Dates.get(index);
-            		File file = fileManager.getFile(nameArray[i], oldestDate);
-            		//String location = file.toURI().toString();
-        			Clip clip = AudioSystem.getClip();
-        			clip.open(AudioSystem.getAudioInputStream(file));
-        			clip.start();
-                  //  worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+        			File file = fileManager.getRandomGoodFile(nameArray[i]);
+        			String location = file.toURI().toString();
+        			worker = new BashWorker("ffplay -af \"volume=20dB\" -nodisp -autoexit " + location);
                     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                     AudioFormat format = audioInputStream.getFormat();
                     long frames = audioInputStream.getFrameLength();

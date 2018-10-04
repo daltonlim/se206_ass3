@@ -63,9 +63,9 @@ public class PlayerGuiController implements Initializable {
     private BashWorker worker;
 
     private List<String> chosenNames;
-    private String[] nameArray;
-    private Clip clip;
+    private String[] nameArray; 
     private FloatControl volume;
+
 
 
     //Return to previous window
@@ -85,7 +85,9 @@ public class PlayerGuiController implements Initializable {
     
     @FXML
     public void setVolume() throws LineUnavailableException {
-
+    	File file = retrieveFile();
+		String location = file.toURI().toString();
+		worker = new BashWorker("ffmpeg -y -i "+ location + " -af \"volume=20dB\" " + location);
     }
     
     public float getVolume() throws LineUnavailableException {
@@ -170,28 +172,17 @@ public class PlayerGuiController implements Initializable {
         if(isSingleWord()) {
         	try {
                 File file = retrieveFile();
-                Clip clip = AudioSystem.getClip();
-    			clip.open(AudioSystem.getAudioInputStream(file));
-    			volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-    			volume.setValue(getVolume());
-    			clip.start();
+    			String location = file.toURI().toString();
+    			worker = new BashWorker("ffplay -af \"volume=20dB\" -nodisp -autoexit " + location);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
         	for (int i = 0; i < nameArray.length; i++) {
-        		try {
-        			List<String> Dates = fileManager.getFileDatesForName(nameArray[i]);
-        			int index = new Random().nextInt(Dates.size());
-            		String oldestDate = Dates.get(index);
-            		File file = fileManager.getFile(nameArray[i], oldestDate);
-            		String location = file.toURI().toString();
-            		clip = AudioSystem.getClip();
-        			clip.open(AudioSystem.getAudioInputStream(file));
-        			volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        			volume.setValue(getVolume());
-        			clip.start();
-                    //worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+        		try {        		
+            		File file = fileManager.getRandomGoodFile(nameArray[i]);
+        			String location = file.toURI().toString();
+        			worker = new BashWorker("ffplay -af \"volume=20dB\" -nodisp -autoexit " + location);
                     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                     AudioFormat format = audioInputStream.getFormat();
                     long frames = audioInputStream.getFrameLength();
