@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class FileCreator {
     private String fileName;
     private String date; // storing date when it is generated
+	private BashWorker bashworker;
 
     public FileCreator(String fileName) {
         this.fileName = fileName;
@@ -32,6 +33,10 @@ public class FileCreator {
 
     }
 
+
+    public void kill() {
+    	bashworker.kill();
+    }
     /**
      * Gets current date
      */

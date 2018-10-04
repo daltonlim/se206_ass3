@@ -101,9 +101,8 @@ public class TextFileParser {
         return notPossibleNameString;
     }
 
-    public List<String> getPartialNames()
 
-    {
+    public List<String> getPartialNames() {
         return partialNames;
     }
 }

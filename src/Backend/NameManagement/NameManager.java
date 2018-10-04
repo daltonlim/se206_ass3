@@ -43,8 +43,9 @@ public class NameManager {
      */
     public void removeFile(File file) {
         FileNameParser fileParser = new FileNameParser(file);
-
-        nameList.get(fileParser.getUserName()).remove(fileParser);
+        if (fileParser.getDate().contains("ser")) {
+            nameList.get(fileParser.getUserName()).remove(fileParser);
+        }
     }
 
     /**
@@ -70,7 +71,7 @@ public class NameManager {
             for (File wav : wavFiles) {
                 addFile(wav);
             }
-        } else {
+        }else{
             file.mkdir();
         }
         availableNames = new ArrayList<>(nameList.keySet());

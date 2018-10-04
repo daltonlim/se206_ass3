@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SelectionMenu.SaveController">
+   <children>
+      <Label text="Do you wish to save the file?">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER">
+         <children>
+            <Button fx:id="yes" mnemonicParsing="false" onAction="#save" text="Yes" />
+            <Button fx:id="no" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nosave" text="No" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

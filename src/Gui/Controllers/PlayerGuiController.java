@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -21,6 +22,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import java.util.Random;
+import java.util.ResourceBundle;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
 
 public class PlayerGuiController implements Initializable {
     private NameManager fileManager;
@@ -46,10 +57,15 @@ public class PlayerGuiController implements Initializable {
     private Button recordButton;
     @FXML
     private Button microphoneButton;
+    @FXML
+    private Slider slider;
 
     private BashWorker worker;
 
     private List<String> chosenNames;
+    private String[] nameArray;
+    private Clip clip;
+    private FloatControl volume;
 
 
     //Return to previous window
@@ -64,6 +80,25 @@ public class PlayerGuiController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         fileLogger = FileLogger.getInstance();
         fileManager = NameManager.getInstance();
+        slider.setValue(100);
+    }
+    
+    @FXML
+    public void setVolume() throws LineUnavailableException {
+
+    }
+    
+    public float getVolume() throws LineUnavailableException {
+        float range = (volume.getMaximum() - volume.getMinimum())/100;
+        float gain = (float) ((range *slider.getValue()) + volume.getMinimum());
+        if (gain > volume.getMaximum()) {
+        	gain=volume.getMaximum();
+        } else if(gain < volume.getMinimum()) {
+        	gain=volume.getMinimum();
+        } else {
+        	
+        }
+        return gain;
     }
 
     /**
@@ -72,15 +107,21 @@ public class PlayerGuiController implements Initializable {
     @FXML
     public void updateDates() {
         nameLabel.setText(name);
-        //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
-        dateList.getItems().remove(0, dateList.getItems().size());
-        dateList.getItems().addAll(fileManager.getFileDatesForName(name));
+        if(isSingleWord()) {
+        	 //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
+            dateList.getItems().remove(0, dateList.getItems().size());
+            dateList.getItems().addAll(fileManager.getFileDatesForName(name));
 
 
-        //Select first element is list by default
-        dateList.getSelectionModel().select(0);
+            //Select first element is list by default
+            dateList.getSelectionModel().select(0);
 
-        isBadFile();
+            isBadFile();
+        } else {
+        	 dateList.getItems().remove(0, dateList.getItems().size());
+        	 dateList.getItems().add("no file");
+        }
+        
     }
 
     /**
@@ -113,18 +154,54 @@ public class PlayerGuiController implements Initializable {
 
     }
 
+    public boolean isSingleWord() {
+    	nameArray = name.split("[ -]");
+    	if(nameArray.length>1) {
+    		return false;
+    	}
+    	return true;
+    }
     /**
-     * Play the file selected
+     * Play the file selected or play the combination 
      */
     @FXML
     private void play() {
         stop();
-        try {
-            File file = retrieveFile();
-            String location = file.toURI().toString();
-            worker = new BashWorker("ffplay -nodisp -autoexit " + location);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(isSingleWord()) {
+        	try {
+                File file = retrieveFile();
+                Clip clip = AudioSystem.getClip();
+    			clip.open(AudioSystem.getAudioInputStream(file));
+    			volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+    			volume.setValue(getVolume());
+    			clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+        	for (int i = 0; i < nameArray.length; i++) {
+        		try {
+        			List<String> Dates = fileManager.getFileDatesForName(nameArray[i]);
+        			int index = new Random().nextInt(Dates.size());
+            		String oldestDate = Dates.get(index);
+            		File file = fileManager.getFile(nameArray[i], oldestDate);
+            		String location = file.toURI().toString();
+            		clip = AudioSystem.getClip();
+        			clip.open(AudioSystem.getAudioInputStream(file));
+        			volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        			volume.setValue(getVolume());
+        			clip.start();
+                    //worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+                    AudioFormat format = audioInputStream.getFormat();
+                    long frames = audioInputStream.getFrameLength();
+                    double durationInSeconds = (frames+0.0) / format.getFrameRate();
+                    int time = (int) (durationInSeconds*1000);
+                    Thread.sleep(time);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }	
+        	}
         }
     }
 
@@ -228,8 +305,6 @@ public class PlayerGuiController implements Initializable {
         }
     }
 
-
-
     /**
      * Remove warning label
      */
@@ -260,16 +335,19 @@ public class PlayerGuiController implements Initializable {
     private void recordAudio() throws IOException {
         stop();
         Stage primaryStage = (Stage) recordButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("dummy.fxml"));
         Parent root = loader.load();
 
-        RecordGuiController controller = loader.getController();
-
-        controller.initData(retrieveFile());
+        dummy controller = loader.getController();
+        if (isSingleWord()) {
+        	controller.initData(retrieveFile());
+        } else {
+        	controller.initDataX(name);
+        }
 
         SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
 
     }

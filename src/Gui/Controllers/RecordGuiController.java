@@ -223,4 +223,9 @@ public class RecordGuiController implements Initializable {
             bashWorker.kill();
         }
     }
+
+	public void initDataX(String name) {
+		fileCreator = new FileCreator("name");
+        nameLabel.setText(name);	
+	}
 }
