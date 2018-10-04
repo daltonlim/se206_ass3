@@ -19,7 +19,6 @@ import Backend.File.FileCreator;
 import Backend.File.FileNameParser;
 import Backend.NameManagement.NameManager;
 import Gui.SceneManager;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
@@ -34,12 +33,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class dummy implements Initializable {
+public class RecordGui implements Initializable {
     @FXML
     private Label States;
     @FXML
@@ -201,10 +197,10 @@ public class dummy implements Initializable {
         stop();
         fileCreator.removeFile();
         Stage primaryStage = (Stage) recordButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("dummy.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
 
-        dummy controller = loader.<dummy>getController();
+        RecordGui controller = loader.<RecordGui>getController();
         if (isSingleWord) {
         	controller.initData(fileParser.getFile());
         } else {
@@ -220,7 +216,7 @@ public class dummy implements Initializable {
     public void exit() throws IOException {
     	if (_RecordingIsFinished) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("dummy");
+    		alert.setTitle("RecordGui");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want save this recording?");
     		Optional<ButtonType> result = alert.showAndWait();
@@ -236,7 +232,7 @@ public class dummy implements Initializable {
     		}
     	} else {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("dummy");
+    		alert.setTitle("RecordGui");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want leave this page?");
     		
