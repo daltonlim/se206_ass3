@@ -141,14 +141,7 @@
 .toggle-button:selected{
 	-fx-background-color : -darkGray;
 }
-.icon-button {
-	-fx-background-color: transparent;
-	-fx-pref-height: 42;
-	-fx-pref-width: 42;
-	-fx-min-height: 42;
-	-fx-min-width: 42;
-	-fx-padding: 0;
-}
+
 .menu-button{
 	-fx-background-color : -gray;
 }

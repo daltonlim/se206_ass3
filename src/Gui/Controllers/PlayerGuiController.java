@@ -174,11 +174,7 @@ public class PlayerGuiController implements Initializable {
         } else {
             for (int i = 0; i < nameArray.length; i++) {
                 try {
-                    List<String> Dates = fileManager.getFileDatesForName(nameArray[i]);
-                    int index = new Random().nextInt(Dates.size());
-                    String oldestDate = Dates.get(index);
-                    File file = fileManager.getFile(nameArray[i], oldestDate);
-                    String location = file.toURI().toString();
+                    File file = fileManager.getRandomGoodFile(nameArray[i]);
                     clip = AudioSystem.getClip();
                     clip.open(AudioSystem.getAudioInputStream(file));
                     volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);

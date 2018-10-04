@@ -252,7 +252,7 @@ public class RecordGui implements Initializable {
     	fileCreator.kill();
     	RecordingIsFinished();
     	_Recording.cancel(true);
-    	 States.setText("You stop ");
+    	 States.setText("Recording Stopped");
     	 progressbar.progressProperty().unbind();
     	 progressbar.progressProperty().setValue(100);
     }
