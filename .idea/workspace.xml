@@ -6,25 +6,177 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Remove unnessecary scenes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/DataBaseManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/DataBaseManager.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/NameSearch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/NameSearch.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/PlayerGui2.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/PlayerGuiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/PlayerGuiController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/PlayerGuiController2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/RecordGui.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/RecordGui.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/RecordGuiController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/RecordGuiController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/dummy$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/dummy$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/dummy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/dummy.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gui/Controllers/dummy.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Controllers/RecordGui.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gui/Controllers/dummy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Controllers/RecordGui.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Remove unnessecary scenes and produce delete alert">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaFXApp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/se206_ass3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/badRecordings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_10.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_4.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_5.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_6.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_7.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_8.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_9.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_a.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_b.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_c.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_d.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_e.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_f.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_g.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_h.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_i.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_j.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_k.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_l.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_m.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_n.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_o.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_p.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_q.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_r.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_s.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_t.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_u.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_v.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_w.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_x.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_y.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data2/se206_User-23-9-2018_14-22-46_z.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jnlp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/Logs/badRecordings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_16-5-2018_23-34-53_Junyan.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_16-5-2018_23-37-41_Chen.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_12-3-36_Li.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_12-5-59_Li.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_12-7-35_Li.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-13-49_Jiaqiu.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-15-7_Zhao.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-23-8_Shen.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-24-2_Zhan.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-25-56_Zhu.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-25-5_Yeting.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-26-41_Xiaoran.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-27-14_Ma.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-28-39_Zhang.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-28-6_Ruozi.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-29-11_Hanyu.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-29-56_Ying.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-30-38_Kun.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-31-7_Wang.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-32-54_Yenting.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-33-23_Lin.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-34-30_Tina.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-43-55_Lam.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_14-43-7_Kachun.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_17-15-48_Ian.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_17-20-26_Patricia.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_18-57-1_george.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_17-5-2018_18-57-48_Louis.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_11-6-43_maggie.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_11-7-31_Ngo.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_11-8-55_Lee.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_11-8-6_Sueyeon.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_12-10-9_Shields.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_12-12-37_Saereem.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_12-13-0_Ahn.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_12-57-27_Chamara.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_12-58-21_Kalana.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_12-59-6_Ratnayake.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_12-8-46_Isabella.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_12-9-17_Izzy.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_13-0-46_Dylan.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_13-1-14_Hall.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_16-7-33_Jesin.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_16-8-39_Melvin.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_16-8-4_James.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_18-5-2018_16-9-14_Paul.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_2-5-2018_15-23-50_Mason.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_2-5-2018_15-31-49_Shi.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_2-5-2018_15-47-27_Jonathan.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_21-5-2018_14-10-29_Rajagopal.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_21-5-2018_14-8-47_Beena.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_21-5-2018_14-9-29_Antony.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_21-5-2018_14-9-57_Deepika.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_23-8-2018_20-13-44_sean.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_23-8-2018_20-38-49_William.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_23-8-2018_20-42-12_Lee.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_23-8-2018_21-11-36_Bruce.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_23-8-2018_21-13-35_MacDonald.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_15-52-6_Thorpe.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_15-54-26_Watson.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_15-56-37_Eleanor.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_16-18-3_Francis.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_16-2-23_Catherine.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_16-4-11_Thorpe.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_16-5-35_William.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_16-7-40_Jacinda.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_16-8-10_Ardern.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_20-3-38_hywel.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_27-4-2018_20-7-45_stoakes.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_30-4-2018_11-20-3_tang.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_30-4-2018_11-20-46_yichen.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_30-4-2018_11-21-35_chen.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_30-4-2018_11-22-50_wei.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_30-4-2018_11-23-36_eric.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_30-4-2018_9-42-4_Nicholas.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_30-4-2018_9-52-26_Eng.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_4-5-2018_15-56-40_Xuyun.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_4-5-2018_16-1-13_Zhang.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/se206_8-6-2018_1-58-21_word.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/audioFiles/zkon584_2-5-2018_15-26-44_jonathan.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/se206_ass3_jar/se206_ass3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Backend/File/BashWorker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Backend/File/FileCreator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Backend/File/FileLogger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Backend/File/FileNameParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Backend/File/TextFileParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Backend/NameManagement/Name.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Backend/NameManagement/NameManager$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Backend/NameManagement/NameManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/PlayerGui.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/PlayerGuiController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/RecordGui.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/SelectionMenu.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/SelectionMenuController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/TestMic.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/TestMicController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/TestMicController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/TestMicController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/Welcome.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Controllers/Welcome.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Gui/SceneManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Tests/TestNameClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/Tests/TextFileParserTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/resources/FlatBee.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/resources/icons/ThumbsDown-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/resources/icons/mic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/resources/icons/mic.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/resources/icons/trash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/se206_ass3/resources/jfoenix-main-demo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/se206_ass3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/se206_ass3.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/se206_ass3_refactor.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src_before brian merge.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workingB4singleton.zip" beforeDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -136,16 +288,16 @@
           <entry key="css" value="59" />
           <entry key="dummy" value="26" />
           <entry key="fxml" value="107" />
-          <entry key="java" value="20741" />
-          <entry key="txt" value="1213" />
+          <entry key="java" value="20879" />
+          <entry key="txt" value="1246" />
           <entry key="vmoptions" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="59" />
-          <entry key="JAVA" value="20741" />
-          <entry key="PLAIN_TEXT" value="1240" />
+          <entry key="JAVA" value="20879" />
+          <entry key="PLAIN_TEXT" value="1273" />
           <entry key="XML" value="107" />
         </counts>
       </usages-collector>
@@ -156,10 +308,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/RecordGui.fxml">
-          <provider editor-type-id="text-editor" />
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-44">
+              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -172,11 +328,11 @@
           <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="272" column="12" selection-start-line="272" selection-start-column="12" selection-end-line="272" selection-end-column="12" />
+            <state relative-caret-position="1694">
+              <caret line="77" column="35" selection-start-line="77" selection-start-column="35" selection-end-line="77" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -324,92 +480,6 @@
             </path>
             <path>
               <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="Logs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaFXApp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="se206_ass3_jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Backend" type="462c0819:PsiDirectoryNode" />
-              <item name="File" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Backend" type="462c0819:PsiDirectoryNode" />
-              <item name="NameManagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Gui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Gui" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="se206_ass3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="se206_ass3" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -434,7 +504,7 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538618910660" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538619445612" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
@@ -710,7 +780,7 @@
       <workItem from="1538538686330" duration="1384000" />
       <workItem from="1538553030178" duration="1802000" />
       <workItem from="1538611412286" duration="4358000" />
-      <workItem from="1538615931352" duration="2812000" />
+      <workItem from="1538615931352" duration="3681000" />
     </task>
     <task id="LOCAL-00001" summary="Add the fileManagerClass">
       <created>1536840120520</created>
@@ -985,7 +1055,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538618590928</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Remove unnessecary scenes and produce delete alert">
+      <created>1538618943938</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1538618943938</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1021,7 +1098,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121415000" />
+    <option name="totallyTimeSpent" value="122284000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1034,9 +1111,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.25380436" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.25380436" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -1058,7 +1134,7 @@
       <window_info anchor="bottom" id="Event Log" order="12" weight="0.32934782" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.32717392" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="15" weight="0.4054348" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="15" visible="true" weight="0.4054348" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1116,7 +1192,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <MESSAGE value="Remove Redundant List Types Enum" />
     <MESSAGE value="Show warning when bad file is clicked" />
     <MESSAGE value="Refactor classes and packages" />
     <MESSAGE value="NameManager now officially a singleton, now supports adddition and removal of files" />
@@ -1141,7 +1216,8 @@
     <MESSAGE value="Finally merged" />
     <MESSAGE value="Remove unnessecary files" />
     <MESSAGE value="Remove unnessecary scenes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unnessecary scenes" />
+    <MESSAGE value="Remove unnessecary scenes and produce delete alert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unnessecary scenes and produce delete alert" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1420,10 +1496,6 @@
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/RecordGui.fxml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/DataBaseManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1439,6 +1511,16 @@
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1694">
+          <caret line="77" column="35" selection-start-line="77" selection-start-column="35" selection-end-line="77" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGui.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="1056">
@@ -1447,15 +1529,13 @@
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/PlayerGuiController.java">
+    <entry file="file://$PROJECT_DIR$/src/Gui/Controllers/RecordGui.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="272" column="12" selection-start-line="272" selection-start-column="12" selection-end-line="272" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-44">
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">
