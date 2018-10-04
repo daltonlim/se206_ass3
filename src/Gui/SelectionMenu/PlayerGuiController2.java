@@ -2,7 +2,6 @@ package Gui.SelectionMenu;
 
 import Backend.File.BashWorker;
 import Backend.File.FileLogger;
-import Backend.File.FileParser;
 import Backend.NameManagement.NameManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
