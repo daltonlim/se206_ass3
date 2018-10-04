@@ -44,7 +44,7 @@ public class NameManager {
     public void removeFile(File file) {
         FileNameParser fileParser = new FileNameParser(file);
 
-            nameList.get(fileParser.getUserName()).remove(fileParser);
+        nameList.get(fileParser.getUserName()).remove(fileParser);
     }
 
     /**
@@ -120,6 +120,6 @@ public class NameManager {
 
     public File getRandomGoodFile(String name) {
         Name available = nameList.get(name);
-       return available.randomBestName();
+        return available.randomBestName();
     }
 }
