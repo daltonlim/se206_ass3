@@ -224,6 +224,7 @@ public class SelectionMenuController implements Initializable {
 
         TextFileParser textFileParser = new TextFileParser(searchField.getText());
         addNames(textFileParser);
+        checkAll();
     }
 
     private void addNames(TextFileParser textFileParser){
