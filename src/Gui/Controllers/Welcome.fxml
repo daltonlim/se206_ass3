@@ -28,7 +28,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="startButton" layoutX="84.0" layoutY="344.0" mnemonicParsing="false" onAction="#start" style="-fx-background-color: Parent;" text="Start &gt;" textFill="#0096ff">
+      <Button fx:id="startButton" layoutX="84.0" layoutY="344.0" mnemonicParsing="false" onAction="#start" style="-fx-background-color: Parent;" stylesheets="@../../resources/FlatBee.css" text="Start &gt;" textFill="#0096ff">
          <font>
             <Font size="17.0" />
          </font></Button>

@@ -173,7 +173,7 @@ public class PlayerGuiController implements Initializable {
         	try {
                 File file = retrieveFile();
     			String location = file.toURI().toString();
-    			worker = new BashWorker("ffplay -af \"volume=20dB\" -nodisp -autoexit " + location);
+    			worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -182,7 +182,7 @@ public class PlayerGuiController implements Initializable {
         		try {        		
             		File file = fileManager.getRandomGoodFile(nameArray[i]);
         			String location = file.toURI().toString();
-        			worker = new BashWorker("ffplay -af \"volume=20dB\" -nodisp -autoexit " + location);
+        			worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
                     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                     AudioFormat format = audioInputStream.getFormat();
                     long frames = audioInputStream.getFrameLength();
