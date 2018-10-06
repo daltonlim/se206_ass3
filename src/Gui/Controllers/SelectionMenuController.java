@@ -38,10 +38,10 @@ public class SelectionMenuController implements Initializable {
        String text = cb.getEditor().getText() ;
        text = FileNameParser.sentenceCase(text);
        if(!text.equals("")){
-          cb.show();
-           cb.setVisibleRowCount(10);
+           cb.show();
            cb.getItems().remove(0,cb.getItems().size());
            cb.getItems().addAll(fileManager.retrievePrefix(text));
+           cb.setVisibleRowCount(10);
        }
     }
 

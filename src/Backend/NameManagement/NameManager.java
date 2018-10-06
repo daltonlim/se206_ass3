@@ -18,9 +18,11 @@ public class NameManager {
     public static final File directory = new File("audioFiles");
     public static final File userDirectory = new File("userFiles");
     private HashMap<String, Name> nameList;
+    private List<String> singleNames;
 
     private NameManager() {
         nameList = new HashMap<>();
+        singleNames = new ArrayList<>();
         getFiles(directory);
         getFiles(userDirectory);
 
@@ -75,6 +77,7 @@ public class NameManager {
             file.mkdir();
         }
         availableNames = new ArrayList<>(nameList.keySet());
+        Collections.sort(singleNames);
     }
 
     /**
@@ -103,7 +106,11 @@ public class NameManager {
         }
 
         nameToAdd.addDate(fileParser);
-
+        if(!name.contains(" ") && !name.contains("-")){
+            if(!singleNames.contains(name)) {
+                singleNames.add(name);
+            }
+        }
         nameList.put(name, nameToAdd);
     }
 
@@ -137,7 +144,7 @@ public class NameManager {
         String prefix = nam.substring(0 ,nam.length() - nameArray[nameArray.length -1].length() - offset);
         String name = nameArray[nameArray.length-1];
         List<String> possibilities = new ArrayList<>();
-        for(String string:nameList.keySet()){
+        for(String string:singleNames){
             if(string.startsWith(name)){
                 possibilities.add(prefix + string);
             }
