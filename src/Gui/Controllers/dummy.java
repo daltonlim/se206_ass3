@@ -272,7 +272,7 @@ public class dummy implements Initializable {
      * initialize data when its combinational name
      */
 	public void initDataX(String name) {
-		fileCreator = new FileCreator("CreatedName");
+		fileCreator = new FileCreator("Createdname");
 		_name=name;
 		isSingleWord=false;
 		nameArray = name.split("[ -]");

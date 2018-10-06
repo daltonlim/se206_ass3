@@ -4,6 +4,7 @@ import Backend.File.BashWorker;
 import Backend.File.FileLogger;
 import Backend.NameManagement.NameManager;
 import Gui.SceneManager;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,6 +66,7 @@ public class PlayerGuiController implements Initializable {
     private List<String> chosenNames;
     private String[] nameArray; 
     private FloatControl volume;
+    private Task<?> playCreatedName;
 
 
 
@@ -85,9 +87,7 @@ public class PlayerGuiController implements Initializable {
     
     @FXML
     public void setVolume() throws LineUnavailableException {
-    	File file = retrieveFile();
-		String location = file.toURI().toString();
-		worker = new BashWorker("ffmpeg -y -i "+ location + " -af \"volume=20dB\" " + location);
+
     }
     
     public float getVolume() throws LineUnavailableException {
@@ -121,7 +121,7 @@ public class PlayerGuiController implements Initializable {
             isBadFile();
         } else {
         	 dateList.getItems().remove(0, dateList.getItems().size());
-        	 dateList.getItems().add("no file");
+        	 dateList.getItems().add("You can find the recording by searching Createdname");
         }
         
     }
@@ -166,9 +166,11 @@ public class PlayerGuiController implements Initializable {
     /**
      * Play the file selected or play the combination 
      */
-    @FXML
+    @SuppressWarnings("deprecation")
+	@FXML
     private void play() {
         stop();
+        
         if(isSingleWord()) {
         	try {
                 File file = retrieveFile();
@@ -178,28 +180,43 @@ public class PlayerGuiController implements Initializable {
                 e.printStackTrace();
             }
         } else {
-        	for (int i = 0; i < nameArray.length; i++) {
-        		try {        		
-            		File file = fileManager.getRandomGoodFile(nameArray[i]);
-        			String location = file.toURI().toString();
-        			worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
-                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-                    AudioFormat format = audioInputStream.getFormat();
-                    long frames = audioInputStream.getFrameLength();
-                    double durationInSeconds = (frames+0.0) / format.getFrameRate();
-                    int time = (int) (durationInSeconds*1000);
-                    Thread.sleep(time);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }	
-        	}
+             playCreatedName = createWorker();
+             new Thread(playCreatedName).start();
+        	
         }
     }
 
+	public Task<?> createWorker() {
+        return new Task<Object>() {
+            @Override
+            protected Object call() throws Exception {
+                for (int i = 0; i<nameArray.length; i++) {
+                	try {        		
+                		File file = fileManager.getRandomGoodFile(nameArray[i]);
+            			String location = file.toURI().toString();
+            			worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
+                        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+                        AudioFormat format = audioInputStream.getFormat();
+                        long frames = audioInputStream.getFrameLength();
+                        double durationInSeconds = (frames+0.0) / format.getFrameRate();
+                        int time = (int) (durationInSeconds*1000);
+                        Thread.sleep(time);
+                    } catch (Exception e) {
+                    	break;
+                    }
+                }
+                return true;
+            }
+        };
+    }
+    
     private void stop() {
         if (worker != null) {
             worker.kill();
         }
+   	    if (playCreatedName != null) {
+            playCreatedName.cancel(true);
+ 	    } 
     }
 
     /**
