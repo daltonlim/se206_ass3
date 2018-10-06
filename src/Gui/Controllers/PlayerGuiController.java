@@ -4,6 +4,7 @@ import Backend.File.BashWorker;
 import Backend.File.FileLogger;
 import Backend.NameManagement.NameManager;
 import Gui.SceneManager;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,7 +66,7 @@ public class PlayerGuiController implements Initializable {
     private List<String> chosenNames;
     private String[] nameArray;
     private FloatControl volume;
-
+    private Task<?> playCreatedName;
 
     //Return to previous window
     @FXML
@@ -73,7 +74,6 @@ public class PlayerGuiController implements Initializable {
         stop();
         SceneManager.getInstance().removeScene();
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -123,7 +123,7 @@ public class PlayerGuiController implements Initializable {
             //Select first element is list by default
             //isBadFile();
         }
-            dateList.getSelectionModel().select(0);
+        dateList.getSelectionModel().select(0);
         isBadFile();
     }
 
@@ -171,34 +171,42 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private void play() {
         stop();
-        if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex()==0) {
-           for (int i = 0; i < nameArray.length; i++) {
-                try {
-                    File file = fileManager.getRandomGoodFile(nameArray[i]);
-                    String location = file.toURI().toString();
-                    worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
-                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-                    AudioFormat format = audioInputStream.getFormat();
-                    long frames = audioInputStream.getFrameLength();
-                    double durationInSeconds = (frames + 0.0) / format.getFrameRate();
-                    int time = (int) (durationInSeconds * 1000);
-                    Thread.sleep(time);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+        if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex() == 0) {
+            playCreatedName = createWorker();
+            new Thread(playCreatedName).start();
 
-        }else{
-             try {
-                File file = retrieveFile();
-                String location = file.toURI().toString();
-                //Replace spaces succesfully
-               location = location.replace("%20"," ");
-                worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } else {
+            File file = retrieveFile();
+            String location = file.toURI().toString();
+            //Replace spaces succesfully
+            location = location.replace("%20", " ");
+            worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+
         }
+    }
+
+    public Task<?> createWorker() {
+        return new Task<Object>() {
+            @Override
+            protected Object call() throws Exception {
+                for (int i = 0; i < nameArray.length; i++) {
+                    try {
+                        File file = fileManager.getRandomGoodFile(nameArray[i]);
+                        String location = file.toURI().toString();
+                        worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
+                        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+                        AudioFormat format = audioInputStream.getFormat();
+                        long frames = audioInputStream.getFrameLength();
+                        double durationInSeconds = (frames + 0.0) / format.getFrameRate();
+                        int time = (int) (durationInSeconds * 1000);
+                        Thread.sleep(time);
+                    } catch (Exception e) {
+                        break;
+                    }
+                }
+                return true;
+            }
+        };
     }
 
     private void stop() {
@@ -285,11 +293,11 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private boolean isBadFile() {
-        if(!isSingleWord() && dateList.getSelectionModel().getSelectedIndex()==0){
+        if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex() == 0) {
             reportButton.setDisable(true);
             deleteButton.setDisable(true);
             return false;
-        }else{
+        } else {
             deleteButton.setDisable(false);
             reportButton.setDisable(false);
         }
