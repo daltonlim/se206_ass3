@@ -71,7 +71,7 @@ public class NameManager {
             for (File wav : wavFiles) {
                 addFile(wav);
             }
-        }else{
+        } else {
             file.mkdir();
         }
         availableNames = new ArrayList<>(nameList.keySet());
@@ -114,13 +114,32 @@ public class NameManager {
      * @return A list of dates related to that name
      */
     public List<String> getFileDatesForName(String name) {
-        List<String> toReturn = nameList.get(name).returnDates();
-        Collections.sort(toReturn);
+        List<String> toReturn = new ArrayList<>();
+        if (nameList.get(name) != null) {
+            toReturn= nameList.get(name).returnDates();
+            Collections.sort(toReturn);
+        }
         return toReturn;
     }
 
     public File getRandomGoodFile(String name) {
         Name available = nameList.get(name);
         return available.randomBestName();
+    }
+
+    public List<String> retrievePrefix(String nam){
+        String[] nameArray = nam.split("[ -]");
+        String prefix = nam.substring(0,nam.length() - nameArray[nameArray.length -1].length());
+        System.out.println(prefix);
+
+
+        String name = nameArray[nameArray.length-1];
+        List<String> possibilities = new ArrayList<>();
+        for(String string:nameList.keySet()){
+            if(string.startsWith(name)){
+                possibilities.add(prefix + string);
+            }
+        }
+        return possibilities;
     }
 }

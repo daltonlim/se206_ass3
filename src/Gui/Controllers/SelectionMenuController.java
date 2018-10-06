@@ -1,5 +1,6 @@
 package Gui.Controllers;
 
+import Backend.File.FileNameParser;
 import Backend.File.TextFileParser;
 import Backend.NameManagement.NameManager;
 import Gui.SceneManager;
@@ -30,7 +31,19 @@ public class SelectionMenuController implements Initializable {
     @FXML
     private Button selectNamesButton;
     @FXML
-    private TextField searchField;
+    private ComboBox cb;
+
+    @FXML
+    private void comboBox(){
+       String text = cb.getEditor().getText() ;
+       text = FileNameParser.sentenceCase(text);
+       if(!text.equals("")){
+          cb.show();
+           cb.setVisibleRowCount(10);
+           cb.getItems().remove(0,cb.getItems().size());
+           cb.getItems().addAll(fileManager.retrievePrefix(text));
+       }
+    }
 
     /**
      * Initialiser method
@@ -222,7 +235,7 @@ public class SelectionMenuController implements Initializable {
     @FXML
     private void searchNames() {
 
-        TextFileParser textFileParser = new TextFileParser(searchField.getText());
+        TextFileParser textFileParser = new TextFileParser(cb.getEditor().getText());
         addNames(textFileParser);
         checkAll();
     }

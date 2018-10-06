@@ -9,13 +9,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import java.util.Random;
+import java.util.ResourceBundle;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -45,7 +54,7 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private ListView dateList;
     @FXML
-    Button recordButton;
+    private Button recordButton;
     @FXML
     private Button microphoneButton;
     @FXML
@@ -55,7 +64,6 @@ public class PlayerGuiController implements Initializable {
 
     private List<String> chosenNames;
     private String[] nameArray;
-    private Clip clip;
     private FloatControl volume;
 
 
@@ -76,7 +84,9 @@ public class PlayerGuiController implements Initializable {
 
     @FXML
     public void setVolume() throws LineUnavailableException {
-
+        File file = retrieveFile();
+        String location = file.toURI().toString();
+        worker = new BashWorker("ffmpeg -y -i " + location + " -af \"volume=10dB\" " + location);
     }
 
     public float getVolume() throws LineUnavailableException {
@@ -98,22 +108,21 @@ public class PlayerGuiController implements Initializable {
     @FXML
     public void updateDates() {
         nameLabel.setText(name);
-        if (isSingleWord()) {
-            //Cause removeALl command is buggy https://stackoverflow
-            // .com/questions/12132896/listview-removeall-doesnt-work
-            dateList.getItems().remove(0, dateList.getItems().size());
-            dateList.getItems().addAll(fileManager.getFileDatesForName(name));
-
-
-            //Select first element is list by default
-            dateList.getSelectionModel().select(0);
-
-            isBadFile();
-        } else {
-            dateList.getItems().remove(0, dateList.getItems().size());
-            dateList.getItems().add("no file");
+        dateList.getItems().remove(0, dateList.getItems().size());
+        if (!isSingleWord()) {
+            dateList.getItems().add("Automatically generated file");
         }
 
+        if (fileManager.getFileDatesForName(name).size() != 0) {
+            //Cause removeALl command is buggy https://stackoverflow
+            // .com/questions/12132896/listview-removeall-doesnt-work
+
+            dateList.getItems().addAll(fileManager.getFileDatesForName(name));
+            dateList.getSelectionModel().select(0);
+            //Select first element is list by default
+            isBadFile();
+        }
+            dateList.getSelectionModel().select(0);
     }
 
     /**
@@ -160,27 +169,12 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private void play() {
         stop();
-        if (isSingleWord()) {
-            try {
-                File file = retrieveFile();
-                Clip clip = AudioSystem.getClip();
-                clip.open(AudioSystem.getAudioInputStream(file));
-                volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                volume.setValue(getVolume());
-                clip.start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            for (int i = 0; i < nameArray.length; i++) {
+        if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex()==0) {
+           for (int i = 0; i < nameArray.length; i++) {
                 try {
                     File file = fileManager.getRandomGoodFile(nameArray[i]);
-                    clip = AudioSystem.getClip();
-                    clip.open(AudioSystem.getAudioInputStream(file));
-                    volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                    volume.setValue(getVolume());
-                    clip.start();
-                    //worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+                    String location = file.toURI().toString();
+                    worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
                     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                     AudioFormat format = audioInputStream.getFormat();
                     long frames = audioInputStream.getFrameLength();
@@ -190,6 +184,17 @@ public class PlayerGuiController implements Initializable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+
+        }else{
+             try {
+                File file = retrieveFile();
+                String location = file.toURI().toString();
+                //Replace spaces succesfully
+               location = location.replace("%20"," ");
+                worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -260,18 +265,9 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private void deleteFile() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Confirmation ");
-        alert.setContentText("Are you sure you wish to delete?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            // ... user chose OK
-
-            retrieveFile().delete();
-            fileManager.removeFile(retrieveFile());
-            updateDates();
-        }
+        retrieveFile().delete();
+        fileManager.removeFile(retrieveFile());
+        updateDates();
     }
 
     /**
@@ -287,9 +283,16 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private boolean isBadFile() {
+        if(!isSingleWord() && dateList.getSelectionModel().getSelectedIndex()==0){
+            reportButton.setDisable(true);
+            deleteButton.setDisable(true);
+            return false;
+        }else{
+            deleteButton.setDisable(false);
+            reportButton.setDisable(false);
+        }
         if (retrieveFile().getName().contains("ser")) {
             deleteButton.setDisable(false);
-
         } else {
             deleteButton.setDisable(true);
         }

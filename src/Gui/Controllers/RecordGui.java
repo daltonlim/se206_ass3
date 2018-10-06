@@ -19,6 +19,7 @@ import Backend.File.FileCreator;
 import Backend.File.FileNameParser;
 import Backend.NameManagement.NameManager;
 import Gui.SceneManager;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
@@ -33,6 +34,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class RecordGui implements Initializable {
@@ -129,7 +133,7 @@ public class RecordGui implements Initializable {
     private void play(File audioFile) {
         stop();
         String location = audioFile.toURI().toString();
-        bashWorker = new BashWorker("ffplay -nodisp -autoexit " + location);
+        bashWorker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
     }
 
     @FXML
@@ -148,25 +152,16 @@ public class RecordGui implements Initializable {
         	try {
                 States.setVisible(false);
                 File audioFile = fileParser.getFile();
-                Clip clip = AudioSystem.getClip();
-    			clip.open(AudioSystem.getAudioInputStream(audioFile));
-    			clip.start();
-               // play(audioFile);
+                play(audioFile);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
         	for (int i = 0; i < nameArray.length; i++) {
         		try {
-        			List<String> Dates = fileManager.getFileDatesForName(nameArray[i]);
-        			int index = new Random().nextInt(Dates.size());
-            		String oldestDate = Dates.get(index);
-            		File file = fileManager.getFile(nameArray[i], oldestDate);
-            		//String location = file.toURI().toString();
-        			Clip clip = AudioSystem.getClip();
-        			clip.open(AudioSystem.getAudioInputStream(file));
-        			clip.start();
-                  //  worker = new BashWorker("ffplay -nodisp -autoexit " + location);
+        			File file = fileManager.getRandomGoodFile(nameArray[i]);
+        			String location = file.toURI().toString();
+        			worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
                     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                     AudioFormat format = audioInputStream.getFormat();
                     long frames = audioInputStream.getFrameLength();
@@ -200,7 +195,7 @@ public class RecordGui implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
 
-        RecordGui controller = loader.<RecordGui>getController();
+        RecordGui controller = loader.getController();
         if (isSingleWord) {
         	controller.initData(fileParser.getFile());
         } else {
@@ -216,7 +211,7 @@ public class RecordGui implements Initializable {
     public void exit() throws IOException {
     	if (_RecordingIsFinished) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("RecordGui");
+    		alert.setTitle("dummy");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want save this recording?");
     		Optional<ButtonType> result = alert.showAndWait();
@@ -232,7 +227,7 @@ public class RecordGui implements Initializable {
     		}
     	} else {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("RecordGui");
+    		alert.setTitle("dummy");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want leave this page?");
     		
@@ -252,7 +247,7 @@ public class RecordGui implements Initializable {
     	fileCreator.kill();
     	RecordingIsFinished();
     	_Recording.cancel(true);
-    	 States.setText("Recording Stopped");
+    	 States.setText("You stop ");
     	 progressbar.progressProperty().unbind();
     	 progressbar.progressProperty().setValue(100);
     }
@@ -264,7 +259,7 @@ public class RecordGui implements Initializable {
     }
     
 	public void initDataX(String name) {
-		fileCreator = new FileCreator("name");
+		fileCreator = new FileCreator(name);
 		_name=name;
 		isSingleWord=false;
 		nameArray = name.split("[ -]");

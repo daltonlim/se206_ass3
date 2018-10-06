@@ -34,20 +34,21 @@
 	-fx-fill-height : true;
 	-fx-font-family: 'Segoe UI';
 	/* remove the ugly focus shade */
+	-fx-font-size : 15.0;
 	-fx-focus-color : transparent;
 	-fx-faint-focus-color: transparent;
 }
 
 #flatbee-tiny{
-	-fx-font-size : 8.0;	
+	-fx-font-size : 8.0;
 }
 
 #flatbee-small{
-	-fx-font-size : 10.0;	
+	-fx-font-size : 10.0;
 }
 
 #flatbee-medium{
-	-fx-font-size : 12.0;	
+	-fx-font-size : 12.0;
 }
 
 #flatbee-large{
@@ -110,6 +111,7 @@
  */
 .button {
 	-fx-background-color : -gray,-gray,-gray,-gray;
+
 }
 .button:default{
 	-fx-background-color : -color;
@@ -452,3 +454,7 @@
 	-fx-control-inner-background : -bl
 	-fx-background-insets: 0,1 ;
 }*/
+
+.list-cell {
+	-fx-cell-size: 40;
+}
