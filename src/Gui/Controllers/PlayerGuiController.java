@@ -118,11 +118,13 @@ public class PlayerGuiController implements Initializable {
             // .com/questions/12132896/listview-removeall-doesnt-work
 
             dateList.getItems().addAll(fileManager.getFileDatesForName(name));
-            dateList.getSelectionModel().select(0);
+
+            //dateList.getSelectionModel().select(0);
             //Select first element is list by default
-            isBadFile();
+            //isBadFile();
         }
             dateList.getSelectionModel().select(0);
+        isBadFile();
     }
 
     /**

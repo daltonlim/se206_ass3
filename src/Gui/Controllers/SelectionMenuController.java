@@ -241,6 +241,12 @@ public class SelectionMenuController implements Initializable {
     }
 
     private void addNames(TextFileParser textFileParser){
+       if (single) {
+            availibleNamesList.getItems().addAll(selectedNames.getItems());
+            if(selectedNames.getItems().size()==1)
+            selectedNames.getItems().remove(0);
+            Collections.sort(availibleNamesList.getItems());
+        }
         selectedNames.getItems().addAll(textFileParser.getNamesToAdd());
         availibleNamesList.getItems().removeAll(textFileParser.getNamesToAdd());
         Collections.sort(selectedNames.getItems());
@@ -249,5 +255,6 @@ public class SelectionMenuController implements Initializable {
         if (!textFileParser.getNotPossibleNames().isEmpty()) {
             alertBox(textFileParser);
         }
+
     }
 }

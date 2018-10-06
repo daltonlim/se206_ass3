@@ -129,10 +129,12 @@ public class NameManager {
 
     public List<String> retrievePrefix(String nam){
         String[] nameArray = nam.split("[ -]");
-        String prefix = nam.substring(0,nam.length() - nameArray[nameArray.length -1].length());
-        System.out.println(prefix);
-
-
+        int offset = 0;
+       char lastChar = nam.charAt(nam.length() -1);
+        if(lastChar =='-'||lastChar == ' '){
+            offset = 1;
+        }
+        String prefix = nam.substring(0 ,nam.length() - nameArray[nameArray.length -1].length() - offset);
         String name = nameArray[nameArray.length-1];
         List<String> possibilities = new ArrayList<>();
         for(String string:nameList.keySet()){
