@@ -3,23 +3,16 @@ package Gui.Controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.ResourceBundle;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
 import Backend.File.BashWorker;
-
 import Backend.File.FileCreator;
 import Backend.File.FileNameParser;
 import Backend.NameManagement.NameManager;
 import Gui.SceneManager;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
@@ -34,20 +27,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class RecordGui implements Initializable {
     @FXML
     private Label States;
     @FXML
-    private Label nameLabel;
-    @FXML
     private Button PlayOldButton;
-    @FXML
-    private Button RestartButton;
     @FXML
     private Button recordButton;
     @FXML
@@ -57,7 +44,8 @@ public class RecordGui implements Initializable {
     @FXML
     private ProgressBar progressbar;
     @FXML
-    private Button stopButton;
+    private VBox vbox;
+
     
     private BashWorker worker;
     private NameManager fileManager;
@@ -78,19 +66,20 @@ public class RecordGui implements Initializable {
     }
 
 	private void disableButtons(boolean b) {
-		stopButton.setDisable(b);
         PlayYoursButton.setDisable(b);
-        RestartButton.setDisable(b);
     }
-
+	
+    /**
+     * A task shows how is recording
+     */
     public Task<?> createWorker() {
         return new Task<Object>() {
             @Override
             protected Object call() throws Exception {
-                for (int i = 0; i < 5; i++) {
-                    Thread.sleep(1000);
-                    updateMessage("Recording Completed : " + ((i * 20) + 20) + "%");
-                    updateProgress(i + 1, 5);
+                for (int i = 0; i < 100; i++) {
+                    Thread.sleep(100);
+                    updateMessage("Recording Completed : " + (i+ 1) + "%");
+                    updateProgress(i + 1, 100);
                 }
                 RecordingIsFinished();
                 return true;
@@ -98,15 +87,15 @@ public class RecordGui implements Initializable {
         };
     }
 
+    /**
+     * record audio when record button is pressed
+     */
     @FXML
     public void record() {
         try {
-            recordButton.setDisable(true);
             States.setVisible(true);
-            PlayOldButton.setDisable(true);
-            stopButton.setDisable(false);
             progressbar.setProgress(0.0);
-
+            PlayOldButton.setDisable(true);
             _Recording = createWorker();
 
             progressbar.progressProperty().unbind();
@@ -125,17 +114,26 @@ public class RecordGui implements Initializable {
         }
     }
 
+    /**
+     * reset button when recording finished
+     */
 	private void RecordingIsFinished() {
         disableButtons(false);
         _RecordingIsFinished =true;
     }
 
+    /**
+     * play your own version
+     */
     private void play(File audioFile) {
         stop();
         String location = audioFile.toURI().toString();
         bashWorker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
     }
 
+    /**
+     * play your own version
+     */
     @FXML
     public void playNew() throws InterruptedException {
         try {
@@ -146,6 +144,9 @@ public class RecordGui implements Initializable {
         }
     }
 
+    /**
+     * play old version 
+     */
     @FXML
     public void playOld() throws InterruptedException {
         if (isSingleWord) {
@@ -175,19 +176,20 @@ public class RecordGui implements Initializable {
         }
     }
 
+    /**
+     * initialize data when name is single
+     */
     public void initData(File file) {
         fileParser = new FileNameParser(file);
         String name = fileParser.getUserName();
         fileCreator = new FileCreator(name);
         isSingleWord=true;
-        nameLabel.setText(name);
-    }
-
-    @FXML
-    public void restart() throws IOException {
-    	reload();
+        PlayOldButton.setText(name);
     }
     
+    /**
+     * refresh page
+     */
     public void reload() throws IOException {
         stop();
         fileCreator.removeFile();
@@ -195,7 +197,7 @@ public class RecordGui implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
 
-        RecordGui controller = loader.getController();
+        RecordGui controller = loader.<RecordGui>getController();
         if (isSingleWord) {
         	controller.initData(fileParser.getFile());
         } else {
@@ -206,12 +208,14 @@ public class RecordGui implements Initializable {
         primaryStage.show();
     }
     
-
+    /**
+     * back to previous scene and save/delete your recording
+     */
     @FXML
     public void exit() throws IOException {
     	if (_RecordingIsFinished) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("dummy");
+    		alert.setTitle("RecordGui");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want save this recording?");
     		Optional<ButtonType> result = alert.showAndWait();
@@ -227,7 +231,7 @@ public class RecordGui implements Initializable {
     		}
     	} else {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("dummy");
+    		alert.setTitle("RecordGui");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want leave this page?");
     		
@@ -240,29 +244,38 @@ public class RecordGui implements Initializable {
     		}
     	}
     }
-
+    
+    /**
+     * recording is finished when you realese the record button
+     */
     @FXML
-    public void stopRecording() {
-    	stopButton.setDisable(true);
+    public void stp() {
+    	PlayOldButton.setDisable(false);
     	fileCreator.kill();
     	RecordingIsFinished();
     	_Recording.cancel(true);
-    	 States.setText("You stop ");
-    	 progressbar.progressProperty().unbind();
-    	 progressbar.progressProperty().setValue(100);
+    	States.setText("Stop the recording");
+    	progressbar.progressProperty().unbind();
+    	progressbar.progressProperty().setValue(100);
     }
     
+    /**
+     * kill process
+     */
     private void stop(){
         if(bashWorker!=null){
             bashWorker.kill();
         }
     }
     
+    /**
+     * initialize data when its combinational name
+     */
 	public void initDataX(String name) {
-		fileCreator = new FileCreator(name);
+		fileCreator = new FileCreator("Createdname");
 		_name=name;
 		isSingleWord=false;
 		nameArray = name.split("[ -]");
-        nameLabel.setText(name);	
+		PlayOldButton.setText(">>"+name+"<<");	
 	}
 }
