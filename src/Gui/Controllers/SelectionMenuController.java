@@ -36,9 +36,9 @@ public class SelectionMenuController implements Initializable {
 
     @FXML
     private void comboBox(){
-       String text = cb.getEditor().getText() ;
+       String text = new String(cb.getEditor().getText());
        text = FileNameParser.sentenceCase(text);
-       if(!text.equals("")){
+       if(text.length()>0){
            cb.show();
            cb.getItems().remove(0,cb.getItems().size());
            cb.getItems().addAll(fileManager.retrievePrefix(text));
@@ -260,7 +260,7 @@ public class SelectionMenuController implements Initializable {
 
     }
     @FXML
-    private void exportNames(){
+    public void exportNames(){
         FileLogger.getInstance().writeToFile("Logs/exportNames" + java.time.LocalDateTime.now().toString() + ".txt",
                 selectedNames.getItems());
     }

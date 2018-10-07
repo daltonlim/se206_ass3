@@ -46,7 +46,7 @@ public class RecordGui implements Initializable {
     @FXML
     private VBox vbox;
 
-    
+
     private BashWorker worker;
     private NameManager fileManager;
     private Task<?> _Recording;
@@ -57,7 +57,8 @@ public class RecordGui implements Initializable {
     private Boolean isSingleWord;
     private String[] nameArray;
     private String _name;
- 
+    private Task<?> playCreatedName;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         disableButtons(true);
@@ -68,7 +69,7 @@ public class RecordGui implements Initializable {
 	private void disableButtons(boolean b) {
         PlayYoursButton.setDisable(b);
     }
-	
+
     /**
      * A task shows how is recording
      */
@@ -92,6 +93,7 @@ public class RecordGui implements Initializable {
      */
     @FXML
     public void record() {
+    	stop();
         try {
             States.setVisible(true);
             progressbar.setProgress(0.0);
@@ -126,7 +128,7 @@ public class RecordGui implements Initializable {
      * play your own version
      */
     private void play(File audioFile) {
-        stop();
+    	stop();
         String location = audioFile.toURI().toString();
         location = location.replace("%20", " ");
         bashWorker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
@@ -136,16 +138,21 @@ public class RecordGui implements Initializable {
      * play your own version
      */
     @FXML
-    public void playNew()  {
+    public void playNew() throws InterruptedException {
+        try {
             File audioFile = new File(fileCreator.fileString());
             play(audioFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * play old version 
+     * play old version
      */
     @FXML
     public void playOld() throws InterruptedException {
+    	stop();
         if (isSingleWord) {
         	try {
                 States.setVisible(false);
@@ -155,22 +162,33 @@ public class RecordGui implements Initializable {
                 e.printStackTrace();
             }
         } else {
-        	for (int i = 0; i < nameArray.length; i++) {
-        		try {
-        			File file = fileManager.getRandomGoodFile(nameArray[i]);
-        			String location = file.toURI().toString();
-        			worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
-                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-                    AudioFormat format = audioInputStream.getFormat();
-                    long frames = audioInputStream.getFrameLength();
-                    double durationInSeconds = (frames+0.0) / format.getFrameRate();
-                    int time = (int) (durationInSeconds*1000);
-                    Thread.sleep(time);
-                } catch (Exception e) {
-                	e.printStackTrace();
-                }	
-        	}
+        	 playCreatedName = play();
+             new Thread(playCreatedName).start();
         }
+    }
+
+    public Task<?> play() {
+        return new Task<Object>() {
+            @Override
+            protected Object call() throws Exception {
+                for (int i = 0; i < nameArray.length; i++) {
+                    try {
+                        File file = fileManager.getRandomGoodFile(nameArray[i]);
+                        String location = file.toURI().toString();
+                        worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
+                        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+                        AudioFormat format = audioInputStream.getFormat();
+                        long frames = audioInputStream.getFrameLength();
+                        double durationInSeconds = (frames + 0.0) / format.getFrameRate();
+                        int time = (int) (durationInSeconds * 1000);
+                        Thread.sleep(time);
+                    } catch (Exception e) {
+                        break;
+                    }
+                }
+                return true;
+            }
+        };
     }
 
     /**
@@ -183,7 +201,7 @@ public class RecordGui implements Initializable {
         isSingleWord=true;
         PlayOldButton.setText(name);
     }
-    
+
     /**
      * refresh page
      */
@@ -204,12 +222,13 @@ public class RecordGui implements Initializable {
         primaryStage.setScene(new Scene(root,600,600));
         primaryStage.show();
     }
-    
+
     /**
      * back to previous scene and save/delete your recording
      */
     @FXML
     public void exit() throws IOException {
+    	stop();
     	if (_RecordingIsFinished) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
     		alert.setTitle("RecordGui");
@@ -231,7 +250,7 @@ public class RecordGui implements Initializable {
     		alert.setTitle("RecordGui");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want leave this page?");
-    		
+
     		Optional<ButtonType> result = alert.showAndWait();
     		if (result.get() == ButtonType.OK) {
     			stop();
@@ -241,7 +260,7 @@ public class RecordGui implements Initializable {
     		}
     	}
     }
-    
+
     /**
      * recording is finished when you realese the record button
      */
@@ -255,7 +274,7 @@ public class RecordGui implements Initializable {
     	progressbar.progressProperty().unbind();
     	progressbar.progressProperty().setValue(100);
     }
-    
+
     /**
      * kill process
      */
@@ -263,8 +282,11 @@ public class RecordGui implements Initializable {
         if(bashWorker!=null){
             bashWorker.kill();
         }
+   	    if (playCreatedName != null) {
+         playCreatedName.cancel(true);
+	    }
     }
-    
+
     /**
      * initialize data when its combinational name
      */
@@ -273,6 +295,6 @@ public class RecordGui implements Initializable {
 		_name=name;
 		isSingleWord=false;
 		nameArray = name.split("[ -]");
-		PlayOldButton.setText(">>"+name+"<<");	
+		PlayOldButton.setText(">>"+name+"<<");
 	}
 }
