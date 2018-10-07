@@ -6,15 +6,15 @@ Multiple reocrdings of a single name can be quickly and easily viewed, and a sma
 
 Please run java -jar se206_ass3.jar on the command line to start the app.
 
-To add a name onto the selected list, please click on it in the available names list.
-
-All recoding have a date prefixed with user and are saved to the same audio files folder for easy access.
+To add a name onto the selected list, please click on it in the available names list and to remove click on the other list.
 
 If no ‘audioFiles’ folder is present, then it will automatically be generated on the first run.
 
 Please place all database files here.
+User made recordings may be found in the userFiles folder
 
 If any recording are reported as bad quality, they may be found in the ‘logs’ folder under badRecordings.txt
+Any exported lists may also be found here
 
 There are three main windows with one Microphone Test.
 
