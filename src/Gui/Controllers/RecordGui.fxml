@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: 08aec2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.RecordGui">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.RecordGui">
    <children>
-      <VBox fx:id="vbox" layoutX="7.0" prefHeight="600.0" prefWidth="592.0">
+      <VBox fx:id="vbox" layoutX="7.0" prefHeight="600.0" prefWidth="592.0" stylesheets="@../../resources/FlatBee.css">
          <children>
             <Label alignment="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="138.0" prefWidth="592.0" text="You are currently recording for">
                <font>

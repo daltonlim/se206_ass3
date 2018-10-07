@@ -8,9 +8,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.Welcome">
    <children>
-      <ImageView fitHeight="702.0" fitWidth="644.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="625.0" fitWidth="644.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Pictures/Screenshot%20from%202018-10-04%2016-43-06.png" />
+            <Image url="@../../resources/icons/Screenshot%20from%202018-10-04%2016-43-06.png" />
          </image>
       </ImageView>
       <Label layoutX="39.0" layoutY="220.0" text="NameSayer">
