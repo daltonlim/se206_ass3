@@ -57,7 +57,6 @@ public class RecordGui implements Initializable {
     private Boolean isSingleWord;
     private String[] nameArray;
     private String _name;
-    private Task<?> playCreatedName;
  
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,7 +92,6 @@ public class RecordGui implements Initializable {
      */
     @FXML
     public void record() {
-    	stop();
         try {
             States.setVisible(true);
             progressbar.setProgress(0.0);
@@ -128,7 +126,7 @@ public class RecordGui implements Initializable {
      * play your own version
      */
     private void play(File audioFile) {
-    	stop();
+        stop();
         String location = audioFile.toURI().toString();
         bashWorker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
     }
@@ -151,7 +149,6 @@ public class RecordGui implements Initializable {
      */
     @FXML
     public void playOld() throws InterruptedException {
-    	stop();
         if (isSingleWord) {
         	try {
                 States.setVisible(false);
@@ -161,33 +158,22 @@ public class RecordGui implements Initializable {
                 e.printStackTrace();
             }
         } else {
-        	 playCreatedName = play();
-             new Thread(playCreatedName).start();
+        	for (int i = 0; i < nameArray.length; i++) {
+        		try {
+        			File file = fileManager.getRandomGoodFile(nameArray[i]);
+        			String location = file.toURI().toString();
+        			worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
+                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+                    AudioFormat format = audioInputStream.getFormat();
+                    long frames = audioInputStream.getFrameLength();
+                    double durationInSeconds = (frames+0.0) / format.getFrameRate();
+                    int time = (int) (durationInSeconds*1000);
+                    Thread.sleep(time);
+                } catch (Exception e) {
+                	e.printStackTrace();
+                }	
+        	}
         }
-    }
-    
-    public Task<?> play() {
-        return new Task<Object>() {
-            @Override
-            protected Object call() throws Exception {
-                for (int i = 0; i < nameArray.length; i++) {
-                    try {
-                        File file = fileManager.getRandomGoodFile(nameArray[i]);
-                        String location = file.toURI().toString();
-                        worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
-                        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-                        AudioFormat format = audioInputStream.getFormat();
-                        long frames = audioInputStream.getFrameLength();
-                        double durationInSeconds = (frames + 0.0) / format.getFrameRate();
-                        int time = (int) (durationInSeconds * 1000);
-                        Thread.sleep(time);
-                    } catch (Exception e) {
-                        break;
-                    }
-                }
-                return true;
-            }
-        };
     }
 
     /**
@@ -211,7 +197,7 @@ public class RecordGui implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
 
-        RecordGui controller = loader.<RecordGui>getController();
+        RecordGui controller = loader.getController();
         if (isSingleWord) {
         	controller.initData(fileParser.getFile());
         } else {
@@ -227,10 +213,9 @@ public class RecordGui implements Initializable {
      */
     @FXML
     public void exit() throws IOException {
-    	stop();
     	if (_RecordingIsFinished) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("RecordGui");
+    		alert.setTitle("dummy");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want save this recording?");
     		Optional<ButtonType> result = alert.showAndWait();
@@ -246,7 +231,7 @@ public class RecordGui implements Initializable {
     		}
     	} else {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("RecordGui");
+    		alert.setTitle("dummy");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want leave this page?");
     		
@@ -281,16 +266,13 @@ public class RecordGui implements Initializable {
         if(bashWorker!=null){
             bashWorker.kill();
         }
-   	    if (playCreatedName != null) {
-         playCreatedName.cancel(true);
-	    } 
     }
     
     /**
      * initialize data when its combinational name
      */
 	public void initDataX(String name) {
-		fileCreator = new FileCreator("Createdname");
+		fileCreator = new FileCreator(name);
 		_name=name;
 		isSingleWord=false;
 		nameArray = name.split("[ -]");

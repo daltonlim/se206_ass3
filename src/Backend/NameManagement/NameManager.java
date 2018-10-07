@@ -145,6 +145,7 @@ public class NameManager {
         String name = nameArray[nameArray.length-1];
         List<String> possibilities = new ArrayList<>();
         for(String string:singleNames){
+
             if(string.startsWith(name)){
                 possibilities.add(prefix + string);
             }

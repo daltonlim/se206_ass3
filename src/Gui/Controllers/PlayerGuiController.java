@@ -85,7 +85,6 @@ public class PlayerGuiController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         fileLogger = FileLogger.getInstance();
         fileManager = NameManager.getInstance();
-    
     }
 
     /**
@@ -221,9 +220,6 @@ public class PlayerGuiController implements Initializable {
         };
     }
 
-    /**
-     * kill process and task
-     */
     private void stop() {
         if (worker != null) {
             worker.kill();
