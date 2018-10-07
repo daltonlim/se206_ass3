@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: 08aec2;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.RecordGui">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.RecordGui">
    <children>
       <VBox fx:id="vbox" layoutX="7.0" prefHeight="600.0" prefWidth="592.0" stylesheets="@../../resources/FlatBee.css">
          <children>
