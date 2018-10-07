@@ -7,11 +7,12 @@ import java.util.Scanner;
 
 /**
  * Class which takes care of reporting and retrieving bad recordings. A singleton is used
- * to ensure that on ly once instance is present as that is all that is required.
+ * to ensure that only one instance is present as that is all that is required.
  */
 public class FileLogger {
 
     private List<String> loggedList;
+    private List<String> dirList;
     private static final FileLogger instance = new FileLogger();
     private String logFile;
 
@@ -20,6 +21,7 @@ public class FileLogger {
         checkDir();
         checkLogFile();
         loggedList = new ArrayList<>();
+        dirList = new ArrayList<>();
 
         readFileToList();
     }
@@ -95,15 +97,19 @@ public class FileLogger {
         }
     }
 
+    public void writeToFile(){
+        writeToFile(logFile,loggedList);
+    }
+
     /**
      * Writes log to file
      */
-    public void writeToFile() {
+    public void writeToFile(String logFile, List<String> strings) {
         try {
             FileWriter fw = new FileWriter(logFile, false);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw);
-            for (String file : loggedList) {
+            for (String file : strings) {
                 out.println(file);
             }
             out.close();

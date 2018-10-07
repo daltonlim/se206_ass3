@@ -7,6 +7,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -30,7 +32,7 @@
         </Group>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Label contentDisplay="RIGHT" text="Add a name:" />
+            <Label contentDisplay="RIGHT" text="Search:" />
             <ComboBox fx:id="cb" editable="true" onKeyReleased="#comboBox" prefWidth="300.0" />
             <Button mnemonicParsing="false" onAction="#searchNames" text="Add" />
          </children>
@@ -39,13 +41,39 @@
          <children>
             <VBox alignment="CENTER" spacing="5.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available Names" />
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button fx:id="databaseSelect1" mnemonicParsing="false" onAction="#addDatabase" prefHeight="20.0" prefWidth="30.0" text="+" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Available Names" />
+                        <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="30.0" text="-" visible="false" />
+                     </children>
+                  </HBox>
                   <ListView fx:id="availibleNamesList" onMouseClicked="#addName" />
                </children>
             </VBox>
             <VBox alignment="CENTER" spacing="5.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Names to Play" />
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#fileChooser" prefHeight="13.0" prefWidth="40.0">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/icons/import.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Names to Play" />
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" onDragDetected="#exportNames" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/icons/export.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                     </children>
+                  </HBox>
                   <ListView fx:id="selectedNames" onMouseClicked="#removeName" />
                </children>
             </VBox>
@@ -53,9 +81,7 @@
       </HBox>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Button fx:id="databaseSelect" mnemonicParsing="false" onAction="#fileChooser" prefWidth="140.0" text="Import Names" />
             <Button fx:id="selectNamesButton" mnemonicParsing="false" onAction="#getPlayerGuiScene" prefWidth="140.0" text="Select Names" />
-            <Button fx:id="databaseSelect1" layoutX="113.0" layoutY="10.0" mnemonicParsing="false" onAction="#addDatabase" prefWidth="140.0" text="Add Database" />
          </children>
       </HBox>
     </children>

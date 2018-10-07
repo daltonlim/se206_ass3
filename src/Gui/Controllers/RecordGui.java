@@ -128,20 +128,17 @@ public class RecordGui implements Initializable {
     private void play(File audioFile) {
         stop();
         String location = audioFile.toURI().toString();
-        bashWorker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
+        location = location.replace("%20", " ");
+        bashWorker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
     }
 
     /**
      * play your own version
      */
     @FXML
-    public void playNew() throws InterruptedException {
-        try {
+    public void playNew()  {
             File audioFile = new File(fileCreator.fileString());
             play(audioFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -272,7 +269,7 @@ public class RecordGui implements Initializable {
      * initialize data when its combinational name
      */
 	public void initDataX(String name) {
-		fileCreator = new FileCreator("Createdname");
+		fileCreator = new FileCreator(name);
 		_name=name;
 		isSingleWord=false;
 		nameArray = name.split("[ -]");
