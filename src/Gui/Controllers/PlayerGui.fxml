@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -43,7 +44,16 @@
                   <ListView fx:id="dateList" onMouseClicked="#isBadFile" prefHeight="220.0" />
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Slider fx:id="slider" onMousePressed="#setVolume" />
+                        <HBox prefHeight="25.0" prefWidth="82.0">
+                           <children>
+                              <ToggleButton fx:id="toggleButton" mnemonicParsing="false" onAction="#setVolume" prefHeight="25.0" prefWidth="65.0" text="on">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="toggleGroup" />
+                                 </toggleGroup>
+                              </ToggleButton>
+                              <ToggleButton fx:id="offButtom" layoutX="2.0" mnemonicParsing="false" onAction="#off" prefHeight="25.0" prefWidth="61.0" selected="true" text="off" toggleGroup="$toggleGroup" />
+                           </children>
+                        </HBox>
                         <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" prefHeight="60.0" prefWidth="100.0" text="▶️ Play" />
                         <Button fx:id="recordButton" mnemonicParsing="false" onAction="#recordAudio" prefHeight="60.0" prefWidth="100.0" text="⏺️ Record" />
                         <Button fx:id="reportButton" mnemonicParsing="false" onAction="#report" prefHeight="60.0" prefWidth="100.0" text=" Report">

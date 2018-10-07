@@ -43,6 +43,7 @@ public class SelectionMenuController implements Initializable {
            cb.getItems().remove(0,cb.getItems().size());
            cb.getItems().addAll(fileManager.retrievePrefix(text));
            cb.setVisibleRowCount(10);
+
        }
     }
 

@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -59,14 +61,18 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private Button microphoneButton;
     @FXML
-    private Slider slider;
-
+    private ToggleButton toggleButton;
+    @FXML
+    private ToggleButton offButton;
+    @FXML
+    private ToggleGroup toggleGroup;
+    
     private BashWorker worker;
 
     private List<String> chosenNames;
     private String[] nameArray;
-    private FloatControl volume;
-    private Thread playerThread;
+    private boolean setVolume =false;
+
     private Task<?> playCreatedName;
 
     //Return to previous window
@@ -80,27 +86,6 @@ public class PlayerGuiController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         fileLogger = FileLogger.getInstance();
         fileManager = NameManager.getInstance();
-        slider.setValue(100);
-    }
-
-    @FXML
-    public void setVolume() throws LineUnavailableException {
-        File file = retrieveFile();
-        String location = file.toURI().toString();
-        worker = new BashWorker("ffmpeg -y -i " + location + " -af \"volume=10dB\" " + location);
-    }
-
-    public float getVolume() throws LineUnavailableException {
-        float range = (volume.getMaximum() - volume.getMinimum()) / 100;
-        float gain = (float) ((range * slider.getValue()) + volume.getMinimum());
-        if (gain > volume.getMaximum()) {
-            gain = volume.getMaximum();
-        } else if (gain < volume.getMinimum()) {
-            gain = volume.getMinimum();
-        } else {
-
-        }
-        return gain;
     }
 
     /**
@@ -157,6 +142,22 @@ public class PlayerGuiController implements Initializable {
         updateDates();
 
     }
+    
+    /**
+     * set volume as 10dB
+     */
+    @FXML
+    public void setVolume() {
+    	setVolume=true;
+    }
+    
+    /**
+     * set volume as normal
+     */
+    @FXML
+    public void off() {
+    	setVolume=false;
+    }
 
     public boolean isSingleWord() {
         nameArray = name.split("[ -]");
@@ -180,11 +181,17 @@ public class PlayerGuiController implements Initializable {
             String location = file.toURI().toString();
             //Replace spaces succesfully
             location = location.replace("%20", " ");
-            worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
-
+            if(setVolume) {
+            	worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+            } else {
+                worker = new BashWorker("ffplay -nodisp -autoexit '" + location + "'");
+            }
         }
     }
-
+    
+    /**
+     * A task to play created name
+     */
     public Task<?> createWorker() {
         return new Task<Object>() {
             @Override
@@ -193,7 +200,11 @@ public class PlayerGuiController implements Initializable {
                     try {
                         File file = fileManager.getRandomGoodFile(nameArray[i]);
                         String location = file.toURI().toString();
-                        worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
+                        if(setVolume) {
+                        	worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+                        } else {
+                            worker = new BashWorker("ffplay -nodisp -autoexit '" + location + "'");
+                        }
                         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                         AudioFormat format = audioInputStream.getFormat();
                         long frames = audioInputStream.getFrameLength();
@@ -213,6 +224,7 @@ public class PlayerGuiController implements Initializable {
         if (worker != null) {
             worker.kill();
         }
+
        if (playCreatedName != null) {
             playCreatedName.cancel(true);
  	    }
