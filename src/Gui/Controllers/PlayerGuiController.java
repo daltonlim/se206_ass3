@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -59,48 +61,31 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private Button microphoneButton;
     @FXML
-    private Slider slider;
-
+    private ToggleButton toggleButton;
+    @FXML
+    private ToggleButton offButton;
+    @FXML
+    private ToggleGroup toggleGroup;
+    
     private BashWorker worker;
 
     private List<String> chosenNames;
-    private String[] nameArray; 
-    private FloatControl volume;
+    private String[] nameArray;
+    private boolean setVolume =false;
     private Task<?> playCreatedName;
-
-
 
     //Return to previous window
     @FXML
-    private void goBack()  {
+    private void goBack() {
         stop();
         SceneManager.getInstance().removeScene();
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fileLogger = FileLogger.getInstance();
         fileManager = NameManager.getInstance();
-        slider.setValue(100);
-    }
     
-    @FXML
-    public void setVolume() throws LineUnavailableException {
-
-    }
-    
-    public float getVolume() throws LineUnavailableException {
-        float range = (volume.getMaximum() - volume.getMinimum())/100;
-        float gain = (float) ((range *slider.getValue()) + volume.getMinimum());
-        if (gain > volume.getMaximum()) {
-        	gain=volume.getMaximum();
-        } else if(gain < volume.getMinimum()) {
-        	gain=volume.getMinimum();
-        } else {
-        	
-        }
-        return gain;
     }
 
     /**
@@ -109,21 +94,23 @@ public class PlayerGuiController implements Initializable {
     @FXML
     public void updateDates() {
         nameLabel.setText(name);
-        if(isSingleWord()) {
-        	 //Cause removeALl command is buggy https://stackoverflow.com/questions/12132896/listview-removeall-doesnt-work
-            dateList.getItems().remove(0, dateList.getItems().size());
+        dateList.getItems().remove(0, dateList.getItems().size());
+        if (!isSingleWord()) {
+            dateList.getItems().add("Automatically generated file");
+        }
+
+        if (fileManager.getFileDatesForName(name).size() != 0) {
+            //Cause removeALl command is buggy https://stackoverflow
+            // .com/questions/12132896/listview-removeall-doesnt-work
+
             dateList.getItems().addAll(fileManager.getFileDatesForName(name));
 
-
+            //dateList.getSelectionModel().select(0);
             //Select first element is list by default
-            dateList.getSelectionModel().select(0);
-
-            isBadFile();
-        } else {
-        	 dateList.getItems().remove(0, dateList.getItems().size());
-        	 dateList.getItems().add("You can find the recording by searching Createdname");
+            //isBadFile();
         }
-        
+        dateList.getSelectionModel().select(0);
+        isBadFile();
     }
 
     /**
@@ -132,8 +119,8 @@ public class PlayerGuiController implements Initializable {
     @FXML
     public void getNext() {
 
-        if(index != chosenNames.size() - 1){
-            index ++;
+        if (index != chosenNames.size() - 1) {
+            index++;
             name = chosenNames.get(index);
             nameLabel.setText(name);
         }
@@ -146,7 +133,7 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     public void getLast() {
-        if (index !=0 ) {
+        if (index != 0) {
             index--;
             name = chosenNames.get(index);
             nameLabel.setText(name);
@@ -155,61 +142,88 @@ public class PlayerGuiController implements Initializable {
         updateDates();
 
     }
+    
+    /**
+     * set volume as 10dB
+     */
+    @FXML
+    public void setVolume() {
+    	setVolume=true;
+    }
+    
+    /**
+     * set volume as normal
+     */
+    @FXML
+    public void off() {
+    	setVolume=false;
+    }
 
     public boolean isSingleWord() {
-    	nameArray = name.split("[ -]");
-    	if(nameArray.length>1) {
-    		return false;
-    	}
-    	return true;
-    }
-    /**
-     * Play the file selected or play the combination 
-     */
-    @SuppressWarnings("deprecation")
-	@FXML
-    private void play() {
-        stop();
-        
-        if(isSingleWord()) {
-        	try {
-                File file = retrieveFile();
-    			String location = file.toURI().toString();
-    			worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-             playCreatedName = createWorker();
-             new Thread(playCreatedName).start();
-        	
+        nameArray = name.split("[ -]");
+        if (nameArray.length > 1) {
+            return false;
         }
+        return true;
     }
 
-	public Task<?> createWorker() {
+    /**
+     * Play the file selected or play the combination
+     */
+    @FXML
+    private void play() {
+        stop();
+        if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex() == 0) {
+            playCreatedName = createWorker();
+            new Thread(playCreatedName).start();
+
+        } else {
+            File file = retrieveFile();
+            String location = file.toURI().toString();
+            //Replace spaces succesfully
+            location = location.replace("%20", " ");
+            if(setVolume) {
+            	worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+            } else {
+                worker = new BashWorker("ffplay -nodisp -autoexit '" + location + "'");
+            }
+        }
+    }
+    
+    /**
+     * A task to play created name
+     */
+    public Task<?> createWorker() {
         return new Task<Object>() {
             @Override
             protected Object call() throws Exception {
-                for (int i = 0; i<nameArray.length; i++) {
-                	try {        		
-                		File file = fileManager.getRandomGoodFile(nameArray[i]);
-            			String location = file.toURI().toString();
-            			worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
+                for (int i = 0; i < nameArray.length; i++) {
+                    try {
+                        File file = fileManager.getRandomGoodFile(nameArray[i]);
+                        String location = file.toURI().toString();
+                        if(setVolume) {
+                        	worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+                        } else {
+                            worker = new BashWorker("ffplay -nodisp -autoexit '" + location + "'");
+                        }
                         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                         AudioFormat format = audioInputStream.getFormat();
                         long frames = audioInputStream.getFrameLength();
-                        double durationInSeconds = (frames+0.0) / format.getFrameRate();
-                        int time = (int) (durationInSeconds*1000);
+                        double durationInSeconds = (frames + 0.0) / format.getFrameRate();
+                        int time = (int) (durationInSeconds * 1000);
                         Thread.sleep(time);
                     } catch (Exception e) {
-                    	break;
+                        break;
                     }
                 }
                 return true;
             }
         };
     }
-    
+
+    /**
+     * kill process and task
+     */
     private void stop() {
         if (worker != null) {
             worker.kill();
@@ -278,11 +292,12 @@ public class PlayerGuiController implements Initializable {
      * Deletes the file if it contains a user recording
      */
     @FXML
-    private void deleteFile(){
-            retrieveFile().delete();
-            fileManager.removeFile(retrieveFile());
-            updateDates();
+    private void deleteFile() {
+        retrieveFile().delete();
+        fileManager.removeFile(retrieveFile());
+        updateDates();
     }
+
     /**
      * Set warning label
      */
@@ -296,10 +311,17 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private boolean isBadFile() {
-        if(retrieveFile().getName().contains("ser")){
+        if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex() == 0) {
+            reportButton.setDisable(true);
+            deleteButton.setDisable(true);
+            return false;
+        } else {
             deleteButton.setDisable(false);
-
-        }else {
+            reportButton.setDisable(false);
+        }
+        if (retrieveFile().getName().contains("ser")) {
+            deleteButton.setDisable(false);
+        } else {
             deleteButton.setDisable(true);
         }
 
@@ -343,19 +365,19 @@ public class PlayerGuiController implements Initializable {
     private void recordAudio() throws IOException {
         stop();
         Stage primaryStage = (Stage) recordButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("dummy.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
 
-        dummy controller = loader.getController();
+        RecordGui controller = loader.getController();
         if (isSingleWord()) {
-        	controller.initData(retrieveFile());
+            controller.initData(retrieveFile());
         } else {
-        	controller.initDataX(name);
+            controller.initDataX(name);
         }
 
         SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
-        primaryStage.setScene(new Scene(root,600,600));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
 
     }

@@ -39,10 +39,20 @@ public class FileNameParser {
         String[] nameExt = parts[3].split("\\.");
 
         //Get isolated userName without extension in sentence case
-        return Character.toUpperCase(nameExt[0].charAt(0))
-                + nameExt[0].substring(1).toLowerCase();
+        return sentenceCase(nameExt[0]);
     }
 
+    public static String sentenceCase(String name) {
+        char[] chars = name.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (i == 0 || chars[i - 1] == ' ' || chars[i - 1] == '-') {
+                chars[i] = Character.toUpperCase(chars[i]);
+            } else {
+                chars[i] = Character.toLowerCase(chars[i]);
+            }
+        }
+        return new String(chars);
+    }
     /**
      * Returns the file.
      */

@@ -49,7 +49,7 @@ public class TextFileParser {
     }
 
     private void parseName(String name) {
-        name = sentenceCase(name);
+        name = FileNameParser.sentenceCase(name);
         String[] nameArray = name.split("[ -]");
         boolean present = true;
         List<String> partialList = new ArrayList<>();
@@ -76,17 +76,6 @@ public class TextFileParser {
         }
     }
 
-    private String sentenceCase(String name) {
-        char[] chars = name.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            if (i == 0 || chars[i - 1] == ' ' || chars[i - 1] == '-') {
-                chars[i] = Character.toUpperCase(chars[i]);
-            } else {
-                chars[i] = Character.toLowerCase(chars[i]);
-            }
-        }
-        return new String(chars);
-    }
 
 
     public List<String> getNamesToAdd() {
