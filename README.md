@@ -21,3 +21,4 @@ There are three main windows with one Microphone Test.
 Users can choose the names they want to practise, then select one of version to play.
 
 It provides a Record window for users who want to record their own version and compare with an original version.
+![](Wiki/MicTest.png)
