@@ -128,20 +128,17 @@ public class RecordGui implements Initializable {
     private void play(File audioFile) {
         stop();
         String location = audioFile.toURI().toString();
-        bashWorker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
+        location = location.replace("%20", " ");
+        bashWorker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
     }
 
     /**
      * play your own version
      */
     @FXML
-    public void playNew() throws InterruptedException {
-        try {
+    public void playNew()  {
             File audioFile = new File(fileCreator.fileString());
             play(audioFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -197,7 +194,7 @@ public class RecordGui implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordGui.fxml"));
         Parent root = loader.load();
 
-        RecordGui controller = loader.getController();
+        RecordGui controller = loader.<RecordGui>getController();
         if (isSingleWord) {
         	controller.initData(fileParser.getFile());
         } else {
@@ -215,7 +212,7 @@ public class RecordGui implements Initializable {
     public void exit() throws IOException {
     	if (_RecordingIsFinished) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("dummy");
+    		alert.setTitle("RecordGui");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want save this recording?");
     		Optional<ButtonType> result = alert.showAndWait();
@@ -231,7 +228,7 @@ public class RecordGui implements Initializable {
     		}
     	} else {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("dummy");
+    		alert.setTitle("RecordGui");
     		alert.setHeaderText(null);
     		alert.setContentText("Do you want leave this page?");
     		

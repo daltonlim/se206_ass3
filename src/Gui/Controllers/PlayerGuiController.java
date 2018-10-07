@@ -72,6 +72,7 @@ public class PlayerGuiController implements Initializable {
     private List<String> chosenNames;
     private String[] nameArray;
     private boolean setVolume =false;
+
     private Task<?> playCreatedName;
 
     //Return to previous window
@@ -175,7 +176,6 @@ public class PlayerGuiController implements Initializable {
         if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex() == 0) {
             playCreatedName = createWorker();
             new Thread(playCreatedName).start();
-
         } else {
             File file = retrieveFile();
             String location = file.toURI().toString();
@@ -224,9 +224,10 @@ public class PlayerGuiController implements Initializable {
         if (worker != null) {
             worker.kill();
         }
-   	    if (playCreatedName != null) {
+
+       if (playCreatedName != null) {
             playCreatedName.cancel(true);
- 	    } 
+ 	    }
     }
 
     /**

@@ -1,5 +1,6 @@
 package Gui.Controllers;
 
+import Backend.File.FileLogger;
 import Backend.File.FileNameParser;
 import Backend.File.TextFileParser;
 import Backend.NameManagement.NameManager;
@@ -257,5 +258,10 @@ public class SelectionMenuController implements Initializable {
             alertBox(textFileParser);
         }
 
+    }
+    @FXML
+    private void exportNames(){
+        FileLogger.getInstance().writeToFile("Logs/exportNames" + java.time.LocalDateTime.now().toString() + ".txt",
+                selectedNames.getItems());
     }
 }
