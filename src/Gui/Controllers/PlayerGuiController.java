@@ -3,6 +3,9 @@ package Gui.Controllers;
 import Backend.File.BashWorker;
 import Backend.File.FileLogger;
 import Backend.NameManagement.NameManager;
+import Backend.achievements.Achievement;
+import Backend.achievements.AchievementManager;
+import Backend.achievements.AchievementTypes;
 import Gui.SceneManager;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -172,6 +175,7 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private void play() {
+        AchievementManager.getInstance().incrementAchievement(AchievementTypes.PLAY);
         stop();
         if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex() == 0) {
             playCreatedName = createWorker();

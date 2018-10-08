@@ -87,4 +87,12 @@ public class SceneManager {
     public void setMainStage(Stage stage) {
         this.mainStage = stage;
     }
+
+    /**
+     * Sets a alertbox for the current screen
+     * @param text
+     */
+    public void alert(String text){
+
+    }
 }

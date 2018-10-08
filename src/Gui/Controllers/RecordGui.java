@@ -12,6 +12,8 @@ import Backend.File.BashWorker;
 import Backend.File.FileCreator;
 import Backend.File.FileNameParser;
 import Backend.NameManagement.NameManager;
+import Backend.achievements.AchievementManager;
+import Backend.achievements.AchievementTypes;
 import Gui.SceneManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -128,6 +130,8 @@ public class RecordGui implements Initializable {
      * play your own version
      */
     private void play(File audioFile) {
+
+        AchievementManager.getInstance().incrementAchievement(AchievementTypes.PLAY);
     	stop();
         String location = audioFile.toURI().toString();
         location = location.replace("%20", " ");
