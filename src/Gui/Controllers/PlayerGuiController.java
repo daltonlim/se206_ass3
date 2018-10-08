@@ -3,9 +3,8 @@ package Gui.Controllers;
 import Backend.File.BashWorker;
 import Backend.File.FileLogger;
 import Backend.NameManagement.NameManager;
-import Backend.achievements.Achievement;
 import Backend.achievements.AchievementManager;
-import Backend.achievements.AchievementTypes;
+import Backend.achievements.AchievementType;
 import Gui.SceneManager;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
@@ -29,15 +27,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import java.util.Random;
-import java.util.ResourceBundle;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineUnavailableException;
 
 public class PlayerGuiController implements Initializable {
     private NameManager fileManager;
@@ -175,7 +167,7 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private void play() {
-        AchievementManager.getInstance().incrementAchievement(AchievementTypes.PLAY);
+        AchievementManager.getInstance().incrementAchievement(AchievementType.PLAY);
         stop();
         if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex() == 0) {
             playCreatedName = createWorker();
@@ -355,7 +347,7 @@ public class PlayerGuiController implements Initializable {
         Parent root = loader.load();
 
         SceneManager.getInstance().addScene(recordButton.getScene(), loader.getController());
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
     }
 
@@ -378,7 +370,7 @@ public class PlayerGuiController implements Initializable {
 
         SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
 
     }

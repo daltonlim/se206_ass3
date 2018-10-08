@@ -1,7 +1,7 @@
 package Gui.Controllers;
 
 import Backend.achievements.AchievementManager;
-import Backend.achievements.AchievementTypes;
+import Backend.achievements.AchievementType;
 import Gui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,7 +23,7 @@ public class Achievement implements Initializable {
     private CheckBox cb3;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int stars = AchievementManager.getInstance().getStar(AchievementTypes.PLAY);
+        int stars = AchievementManager.getInstance().getStar(AchievementType.PLAY);
         if(stars >= 3){
             cb3.setSelected(true);
         }

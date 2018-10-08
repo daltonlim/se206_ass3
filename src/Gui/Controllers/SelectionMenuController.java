@@ -216,7 +216,7 @@ public class SelectionMenuController implements Initializable {
         SceneManager.getInstance().addScene(scene, controller);
         Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
 
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
 
 
@@ -234,7 +234,7 @@ public class SelectionMenuController implements Initializable {
         SceneManager.getInstance().addScene(scene, controller);
         Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
 
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
 
 

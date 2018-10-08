@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AchievementManager {
     private static AchievementManager instance;
-    private HashMap<AchievementTypes, Achievement> achievementHashMap;
+    private HashMap<AchievementType, Achievement> achievementHashMap;
 
     public static AchievementManager getInstance() {
         if (instance == null) {
@@ -22,8 +22,8 @@ public class AchievementManager {
     }
 
     private void initalise(){
-        AchievementTypes[] possibleValues = AchievementTypes.values();
-        for (AchievementTypes possibleValue : possibleValues) {
+        AchievementType[] possibleValues = AchievementType.values();
+        for (AchievementType possibleValue : possibleValues) {
             achievementHashMap.put(possibleValue   ,new Achievement(possibleValue));
         }
         //TODO setup reading to file and reading form file.
@@ -31,19 +31,19 @@ public class AchievementManager {
 
     public List<String> retrieveAchievements(){
         List<String> stringList = new ArrayList<>();
-        for (AchievementTypes achievementTypes : achievementHashMap.keySet()) {
+        for (AchievementType achievementTypes : achievementHashMap.keySet()) {
             stringList.add(achievementTypes.toString());
         }
         Collections.sort(stringList);
         return stringList;
     }
 
-    public void incrementAchievement(AchievementTypes achievement){
+    public void incrementAchievement(AchievementType achievement){
         Achievement achievement1 = achievementHashMap.get(achievement);
         achievement1.increment();
     }
 
-    public int getStar(AchievementTypes ach){
+    public int getStar(AchievementType ach){
         Achievement achievement = achievementHashMap.get(ach);
         return achievement.getStar();
     }

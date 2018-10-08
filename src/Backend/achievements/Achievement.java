@@ -7,7 +7,7 @@ public class Achievement {
     private int twoStar = 5;
     private int threeStar = 25;
 
-    Achievement(AchievementTypes achievementTypes) {
+    Achievement(AchievementType achievementTypes) {
         this.name = achievementTypes.toString();
     }
 

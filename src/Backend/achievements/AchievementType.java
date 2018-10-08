@@ -2,7 +2,7 @@ package Backend.achievements;
 
 import Backend.File.FileNameParser;
 
-public enum AchievementTypes {
+public enum AchievementType {
     PLAY, RECORD, TIME;
 
     @Override

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.Achievement">
+<BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.Achievement">
    <top>
       <Label text="Plays" BorderPane.alignment="CENTER" />
    </top>
