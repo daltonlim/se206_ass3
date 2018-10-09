@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="CENTER" spacing="30.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.WelcomeOther">
+   <children>
+      <Label text="Welcome to NameSayer" />
+      <Button fx:id="startButton" mnemonicParsing="false" onAction="#start" prefHeight="60.0" prefWidth="300.0" text="Playback and Recording" />
+      <Button mnemonicParsing="false" onAction="#startMerge" prefHeight="60.0" prefWidth="300.0" text="Merge Names" />
+      <Button mnemonicParsing="false" onAction="#startAcheivements" prefHeight="60.0" prefWidth="300.0" text="Achievements" />
+      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="300.0" text="Help" />
+   </children>
+</VBox>

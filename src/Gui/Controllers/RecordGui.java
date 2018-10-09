@@ -132,7 +132,7 @@ public class RecordGui implements Initializable {
      */
     private void play(File audioFile) {
 
-        AchievementManager.getInstance().incrementAchievement(AchievementType.PLAY);
+        AchievementManager.getInstance().incrementAchievement("Play");
         stop();
         String location = audioFile.toURI().toString();
         location = location.replace("%20", " ");
@@ -224,7 +224,7 @@ public class RecordGui implements Initializable {
             controller.initDataX(_name);
         }
 
-        primaryStage.setScene(new Scene(root, 1200, 800));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
 

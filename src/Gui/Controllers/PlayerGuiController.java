@@ -167,7 +167,7 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private void play() {
-        AchievementManager.getInstance().incrementAchievement(AchievementType.PLAY);
+        AchievementManager.getInstance().incrementAchievement("Play");
         stop();
         if (!isSingleWord() && dateList.getSelectionModel().getSelectedIndex() == 0) {
             playCreatedName = createWorker();
@@ -347,7 +347,7 @@ public class PlayerGuiController implements Initializable {
         Parent root = loader.load();
 
         SceneManager.getInstance().addScene(recordButton.getScene(), loader.getController());
-        primaryStage.setScene(new Scene(root, 1200, 800));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
 
@@ -370,7 +370,7 @@ public class PlayerGuiController implements Initializable {
 
         SceneManager.getInstance().addScene(recordButton.getScene(), controller);
 
-        primaryStage.setScene(new Scene(root, 1200, 800));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
 
     }

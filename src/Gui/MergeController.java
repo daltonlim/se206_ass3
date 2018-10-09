@@ -7,13 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 
 /**
  * Main program to start the application
  */
-public class Main extends Application {
+public class MergeController extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -21,7 +20,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL location = this.getClass().getResource("Controllers/WelcomeOther.fxml");
+        URL location = this.getClass().getResource("Controllers/Merge.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = fxmlLoader.load();
 

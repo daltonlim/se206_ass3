@@ -1,34 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.SelectionMenuController">
+<VBox alignment="CENTER" spacing="10.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.MergeController">
     <children>
-        <Group>
-         <children>
-            <HBox spacing="10.0">
-               <children>
-                  <ToggleButton fx:id="singleButton" mnemonicParsing="false" onAction="#setSingle" selected="true" text="Single">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="fileSelection" />
-                     </toggleGroup>
-                  </ToggleButton>
-                  <ToggleButton fx:id="OrderedButton" mnemonicParsing="false" onAction="#setOrdered" text="Ordered List" toggleGroup="$fileSelection" />
-                  <ToggleButton fx:id="RandomisedButton" mnemonicParsing="false" onAction="#setRandomised" text="Randomised List" toggleGroup="$fileSelection" />
-               </children>
-            </HBox>
-         </children>
-        </Group>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
             <Label contentDisplay="RIGHT" text="Search:" />

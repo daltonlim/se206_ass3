@@ -6,9 +6,23 @@ public class Achievement {
     private int oneStar = 1;
     private int twoStar = 5;
     private int threeStar = 25;
+    private String oneStarName;
+    private String twoStarName;
+    private String threeStarName;
 
     Achievement(AchievementType achievementTypes) {
         this.name = achievementTypes.toString();
+    }
+
+    Achievement(String name , int oneStar, int twoStar, int threeStar, String oneStarName,
+                       String twoStarName, String threeStarName) {
+        this.name = name;
+        this.oneStar = oneStar;
+        this.twoStar = twoStar;
+        this.threeStar = threeStar;
+        this.oneStarName = oneStarName;
+        this.twoStarName = twoStarName;
+        this.threeStarName = threeStarName;
     }
 
     void increment() {
