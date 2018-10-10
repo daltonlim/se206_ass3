@@ -8,10 +8,13 @@ import java.util.ResourceBundle;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+
 import Backend.File.BashWorker;
 import Backend.File.FileCreator;
 import Backend.File.FileNameParser;
 import Backend.NameManagement.NameManager;
+import Backend.achievements.AchievementManager;
+import Backend.achievements.AchievementType;
 import Gui.SceneManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -53,7 +56,7 @@ public class RecordGui implements Initializable {
     private FileCreator fileCreator;
     private FileNameParser fileParser;
     private BashWorker bashWorker;
-    private Boolean _RecordingIsFinished =false;
+    private Boolean _RecordingIsFinished = false;
     private Boolean isSingleWord;
     private String[] nameArray;
     private String _name;
@@ -66,7 +69,7 @@ public class RecordGui implements Initializable {
         States.setVisible(false);
     }
 
-	private void disableButtons(boolean b) {
+    private void disableButtons(boolean b) {
         PlayYoursButton.setDisable(b);
     }
 
@@ -79,7 +82,7 @@ public class RecordGui implements Initializable {
             protected Object call() throws Exception {
                 for (int i = 0; i < 100; i++) {
                     Thread.sleep(100);
-                    updateMessage("Recording Completed : " + (i+ 1) + "%");
+                    updateMessage("Recording Completed : " + (i + 1) + "%");
                     updateProgress(i + 1, 100);
                 }
                 RecordingIsFinished();
@@ -93,7 +96,7 @@ public class RecordGui implements Initializable {
      */
     @FXML
     public void record() {
-    	stop();
+        stop();
         try {
             States.setVisible(true);
             progressbar.setProgress(0.0);
@@ -119,16 +122,18 @@ public class RecordGui implements Initializable {
     /**
      * reset button when recording finished
      */
-	private void RecordingIsFinished() {
+    private void RecordingIsFinished() {
         disableButtons(false);
-        _RecordingIsFinished =true;
+        _RecordingIsFinished = true;
     }
 
     /**
      * play your own version
      */
     private void play(File audioFile) {
-    	stop();
+
+        AchievementManager.getInstance().incrementAchievement(AchievementType.PLAY);
+        stop();
         String location = audioFile.toURI().toString();
         location = location.replace("%20", " ");
         bashWorker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
@@ -152,9 +157,9 @@ public class RecordGui implements Initializable {
      */
     @FXML
     public void playOld() throws InterruptedException {
-    	stop();
+        stop();
         if (isSingleWord) {
-        	try {
+            try {
                 States.setVisible(false);
                 File audioFile = fileParser.getFile();
                 play(audioFile);
@@ -162,8 +167,8 @@ public class RecordGui implements Initializable {
                 e.printStackTrace();
             }
         } else {
-        	 playCreatedName = play();
-             new Thread(playCreatedName).start();
+            playCreatedName = play();
+            new Thread(playCreatedName).start();
         }
     }
 
@@ -198,7 +203,7 @@ public class RecordGui implements Initializable {
         fileParser = new FileNameParser(file);
         String name = fileParser.getUserName();
         fileCreator = new FileCreator(name);
-        isSingleWord=true;
+        isSingleWord = true;
         PlayOldButton.setText(name);
     }
 
@@ -214,12 +219,12 @@ public class RecordGui implements Initializable {
 
         RecordGui controller = loader.<RecordGui>getController();
         if (isSingleWord) {
-        	controller.initData(fileParser.getFile());
+            controller.initData(fileParser.getFile());
         } else {
-        	controller.initDataX(_name);
+            controller.initDataX(_name);
         }
 
-        primaryStage.setScene(new Scene(root,600,600));
+        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
     }
 
@@ -228,37 +233,37 @@ public class RecordGui implements Initializable {
      */
     @FXML
     public void exit() throws IOException {
-    	stop();
-    	if (_RecordingIsFinished) {
-    		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("RecordGui");
-    		alert.setHeaderText(null);
-    		alert.setContentText("Do you want save this recording?");
-    		Optional<ButtonType> result = alert.showAndWait();
-    		if (result.get() == ButtonType.OK) {
-    			NameManager.getInstance().addFile(fileCreator.getFile());
-    			stop();
-    	        SceneManager.getInstance().removeScene();
-    		} else {
-    			fileCreator.removeFile();
-    	        NameManager.getInstance().removeFile(fileCreator.getFile());
-    	        stop();
-    	        SceneManager.getInstance().removeScene();
-    		}
-    	} else {
-    		Alert alert = new Alert(AlertType.CONFIRMATION);
-    		alert.setTitle("RecordGui");
-    		alert.setHeaderText(null);
-    		alert.setContentText("Do you want leave this page?");
+        stop();
+        if (_RecordingIsFinished) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("RecordGui");
+            alert.setHeaderText(null);
+            alert.setContentText("Do you want save this recording?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                NameManager.getInstance().addFile(fileCreator.getFile());
+                stop();
+                SceneManager.getInstance().removeScene();
+            } else {
+                fileCreator.removeFile();
+                NameManager.getInstance().removeFile(fileCreator.getFile());
+                stop();
+                SceneManager.getInstance().removeScene();
+            }
+        } else {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("RecordGui");
+            alert.setHeaderText(null);
+            alert.setContentText("Do you want leave this page?");
 
-    		Optional<ButtonType> result = alert.showAndWait();
-    		if (result.get() == ButtonType.OK) {
-    			stop();
-    	        SceneManager.getInstance().removeScene();
-    		} else {
-    			reload();
-    		}
-    	}
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                stop();
+                SceneManager.getInstance().removeScene();
+            } else {
+                reload();
+            }
+        }
     }
 
     /**
@@ -266,35 +271,35 @@ public class RecordGui implements Initializable {
      */
     @FXML
     public void stp() {
-    	PlayOldButton.setDisable(false);
-    	fileCreator.kill();
-    	RecordingIsFinished();
-    	_Recording.cancel(true);
-    	States.setText("Stop the recording");
-    	progressbar.progressProperty().unbind();
-    	progressbar.progressProperty().setValue(100);
+        PlayOldButton.setDisable(false);
+        fileCreator.kill();
+        RecordingIsFinished();
+        _Recording.cancel(true);
+        States.setText("Stop the recording");
+        progressbar.progressProperty().unbind();
+        progressbar.progressProperty().setValue(100);
     }
 
     /**
      * kill process
      */
-    private void stop(){
-        if(bashWorker!=null){
+    private void stop() {
+        if (bashWorker != null) {
             bashWorker.kill();
         }
-   	    if (playCreatedName != null) {
-         playCreatedName.cancel(true);
-	    }
+        if (playCreatedName != null) {
+            playCreatedName.cancel(true);
+        }
     }
 
     /**
      * initialize data when its combinational name
      */
-	public void initDataX(String name) {
-		fileCreator = new FileCreator(name);
-		_name=name;
-		isSingleWord=false;
-		nameArray = name.split("[ -]");
-		PlayOldButton.setText(">>"+name+"<<");
-	}
+    public void initDataX(String name) {
+        fileCreator = new FileCreator(name);
+        _name = name;
+        isSingleWord = false;
+        nameArray = name.split("[ -]");
+        PlayOldButton.setText(">>" + name + "<<");
+    }
 }

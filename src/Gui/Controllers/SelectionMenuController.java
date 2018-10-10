@@ -199,7 +199,7 @@ public class SelectionMenuController implements Initializable {
         stringList.addAll(hashSet);
     }
 
-    /**
+     /**
      * Starts the player gui scene
      */
     @FXML
@@ -216,7 +216,25 @@ public class SelectionMenuController implements Initializable {
         SceneManager.getInstance().addScene(scene, controller);
         Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
 
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root, 1200, 800));
+        primaryStage.show();
+
+
+    }/**
+     * Starts the Achievement scene
+     */
+    @FXML
+    public void getAchievements() throws Exception {
+        Scene scene = selectNamesButton.getScene();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Achievement.fxml"));
+
+        Parent root = loader.load();
+
+        Achievement controller = loader.getController();
+        SceneManager.getInstance().addScene(scene, controller);
+        Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
+
+        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
 
 

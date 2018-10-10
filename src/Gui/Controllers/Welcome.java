@@ -29,7 +29,7 @@ public class Welcome {
         SceneManager.getInstance().addScene(scene, controller);
         Stage primaryStage = (Stage) startButton.getScene().getWindow();
 
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
     }
 }
