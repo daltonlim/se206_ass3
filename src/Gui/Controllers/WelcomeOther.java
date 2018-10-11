@@ -32,22 +32,7 @@ public class WelcomeOther {
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
-    @FXML
-    public void startMerge() throws IOException {
-        Scene scene = startButton.getScene();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Merge.fxml"));
 
-        Parent root = loader.load();
-
-        MergeController controller = loader.getController();
-
-
-        SceneManager.getInstance().addScene(scene, controller);
-        Stage primaryStage = (Stage) startButton.getScene().getWindow();
-
-        primaryStage.setScene(new Scene(root, 600, 600));
-        primaryStage.show();
-    }
     @FXML
     public void startAcheivements() throws IOException {
         Scene scene = startButton.getScene();

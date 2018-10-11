@@ -85,7 +85,7 @@
          <children>
             <HBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button fx:id="rechoose" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="200.0" text="Rechoose Names" />
+                  <Button fx:id="rechoose" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="150.0" text="Back" />
                   <Button fx:id="recordButton" mnemonicParsing="false" onAction="#recordAudio" prefHeight="30.0" prefWidth="150.0" stylesheets="@../../resources/darkButton.css" text="⏺Record" />
                </children>
             </HBox>

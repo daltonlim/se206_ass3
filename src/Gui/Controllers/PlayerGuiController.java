@@ -285,6 +285,7 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     private void deleteFile() {
+        stop();
         retrieveFile().delete();
         fileManager.removeFile(retrieveFile());
         updateDates();

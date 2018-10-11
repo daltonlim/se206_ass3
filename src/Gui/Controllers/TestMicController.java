@@ -20,8 +20,6 @@ import javax.sound.sampled.TargetDataLine;
 public class TestMicController implements Initializable {
 
 
-    @FXML
-    private Label States;
 
     @FXML
     private ProgressBar PB;
@@ -47,7 +45,6 @@ public class TestMicController implements Initializable {
             PB.progressProperty().bind(recording.progressProperty());
             recording.messageProperty().addListener(new ChangeListener<String>() {
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    States.setText(newValue);
                 }
             });
             thread = new Thread(recording);
@@ -62,11 +59,6 @@ public class TestMicController implements Initializable {
     public void ExitAction() throws IOException {
         thread.stop();
         SceneManager.getInstance().removeScene();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        buttonAction();
     }
 
     public Task<?> createWorker() {
@@ -132,4 +124,9 @@ public class TestMicController implements Initializable {
         };
     }
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        buttonAction();
+    }
 }

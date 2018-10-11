@@ -20,7 +20,7 @@ public class MergeController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL location = this.getClass().getResource("Controllers/Merge.fxml");
+        URL location = this.getClass().getResource("Controllers/SelectionMenu.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = fxmlLoader.load();
 

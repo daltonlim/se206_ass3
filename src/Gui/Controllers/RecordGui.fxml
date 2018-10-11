@@ -43,6 +43,6 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <ProgressBar fx:id="progressbar" layoutX="7.0" layoutY="459.0" prefHeight="20.0" prefWidth="588.0" progress="0.0" stylesheets="@../../resources/ringprogress.css" />
+      <ProgressBar fx:id="progressbar" layoutX="7.0" layoutY="459.0" prefHeight="20.0" prefWidth="588.0" progress="0.0" />
    </children>
 </AnchorPane>

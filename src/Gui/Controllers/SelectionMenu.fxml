@@ -80,8 +80,8 @@
       </HBox>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#exit" text="Back" />
-            <Button fx:id="selectNamesButton" mnemonicParsing="false" onAction="#getPlayerGuiScene" prefWidth="140.0" stylesheets="@../../resources/darkButton.css" text="Select Names" />
+            <Button mnemonicParsing="false" onAction="#exit" prefWidth="150.0" text="Back" />
+            <Button fx:id="selectNamesButton" mnemonicParsing="false" onAction="#getPlayerGuiScene" prefWidth="150.0" stylesheets="@../../resources/darkButton.css" text="Select Names" />
          </children>
       </HBox>
     </children>
