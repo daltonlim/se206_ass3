@@ -10,9 +10,6 @@ public class Achievement {
     private String twoStarName;
     private String threeStarName;
 
-    Achievement(AchievementType achievementTypes) {
-        this.name = achievementTypes.toString();
-    }
 
     Achievement(String name , int oneStar, int twoStar, int threeStar, String oneStarName,
                        String twoStarName, String threeStarName) {
@@ -27,6 +24,18 @@ public class Achievement {
 
     void increment() {
         count++;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    long getCount() {
+        return count;
+    }
+
+     void setCount(long count) {
+        this.count =(int) count;
     }
 
     int getStar() {

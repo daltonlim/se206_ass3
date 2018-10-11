@@ -1,6 +1,7 @@
 package Gui;
 
 import Backend.File.FileLogger;
+import Backend.achievements.AchievementManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        AchievementManager.getInstance();
         URL location = this.getClass().getResource("Controllers/WelcomeOther.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = fxmlLoader.load();
@@ -36,6 +38,7 @@ public class Main extends Application {
     @Override
     public void stop() throws Exception {
         FileLogger.getInstance().writeToFile();
+        AchievementManager.getInstance().saveState();
         super.stop();
     }
 }

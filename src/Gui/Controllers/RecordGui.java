@@ -14,7 +14,6 @@ import Backend.File.FileCreator;
 import Backend.File.FileNameParser;
 import Backend.NameManagement.NameManager;
 import Backend.achievements.AchievementManager;
-import Backend.achievements.AchievementType;
 import Gui.SceneManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

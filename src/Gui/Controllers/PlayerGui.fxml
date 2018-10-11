@@ -11,17 +11,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.PlayerGuiController">
    <children>
       <VBox alignment="CENTER">
          <children>
-              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You are currently practicing" />
+            <Label text="You are currently practising:" />
             <HBox alignment="CENTER" spacing="30.0">
                <children>
                   <Button fx:id="lastName" mnemonicParsing="false" onAction="#getLast" text="&lt;" />
-                  <Label fx:id="nameLabel" alignment="CENTER" text="Name" textFill="#f50202">
+                  <Label fx:id="nameLabel" alignment="CENTER" style="-fx-font-size: 40;" stylesheets="@../../resources/redNameLabel.css" text="Name" textFill="#f50202">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -30,7 +29,7 @@
                </children>
             </HBox>
 
-            <Label fx:id="badWarningLabel" text=" " textFill="#f50202">
+            <Label fx:id="badWarningLabel" stylesheets="@../../resources/redNameLabel.css" text=" " textFill="#f50202">
                <padding>
                   <Insets bottom="10.0" />
                </padding></Label>

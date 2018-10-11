@@ -107,12 +107,15 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     private void removeName() {
-        String name = selectedNames.getSelectionModel().getSelectedItems().get(0).toString();
-        availibleNamesList.getItems().add(name);
-        selectedNames.getItems().remove(name);
-        //Resort
-        Collections.sort(availibleNamesList.getItems());
-        checkAll();
+        if(selectedNames.getSelectionModel().getSelectedItems().get(0) != null) {
+            String name = selectedNames.getSelectionModel().getSelectedItems().get(0).toString();
+
+            availibleNamesList.getItems().add(name);
+            selectedNames.getItems().remove(name);
+            //Resort
+            Collections.sort(availibleNamesList.getItems());
+            checkAll();
+        }
     }
 
     /**

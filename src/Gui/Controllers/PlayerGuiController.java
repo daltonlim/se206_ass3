@@ -4,7 +4,6 @@ import Backend.File.BashWorker;
 import Backend.File.FileLogger;
 import Backend.NameManagement.NameManager;
 import Backend.achievements.AchievementManager;
-import Backend.achievements.AchievementType;
 import Gui.SceneManager;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;

@@ -1,7 +1,6 @@
 package Gui.Controllers;
 
 import Backend.achievements.AchievementManager;
-import Backend.achievements.AchievementType;
 import Gui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
