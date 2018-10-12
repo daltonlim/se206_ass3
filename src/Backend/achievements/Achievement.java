@@ -1,5 +1,7 @@
 package Backend.achievements;
 
+import Gui.SceneManager;
+
 public class Achievement {
     private String name;
     private int count;
@@ -11,8 +13,8 @@ public class Achievement {
     private String threeStarName;
 
 
-    Achievement(String name , int oneStar, int twoStar, int threeStar, String oneStarName,
-                       String twoStarName, String threeStarName) {
+    Achievement(String name, int oneStar, int twoStar, int threeStar, String oneStarName,
+                String twoStarName, String threeStarName) {
         this.name = name;
         this.oneStar = oneStar;
         this.twoStar = twoStar;
@@ -24,18 +26,19 @@ public class Achievement {
 
     void increment() {
         count++;
+        checkAchievement();
     }
 
     public String getName() {
         return name;
     }
 
-    long getCount() {
+   public long getCount() {
         return count;
     }
 
-     void setCount(long count) {
-        this.count =(int) count;
+    void setCount(long count) {
+        this.count = (int) count;
     }
 
     int getStar() {
@@ -49,4 +52,24 @@ public class Achievement {
             return 0;
         }
     }
+
+    public String getStarName() {
+        if (count == oneStar) {
+            return oneStarName;
+        } else if (count == twoStar) {
+            return twoStarName;
+        } else if (count == threeStar) {
+            return threeStarName;
+        }
+        return "";
+    }
+
+    private void checkAchievement() {
+        SceneManager sceneManager = SceneManager.getInstance();
+        if (count == oneStar || count == twoStar || count == threeStar) {
+            sceneManager.showDialog(name);
+        }
+    }
+
+
 }

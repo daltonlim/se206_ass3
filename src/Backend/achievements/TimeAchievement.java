@@ -13,7 +13,7 @@ public class TimeAchievement extends Achievement {
 
     }
 
-    long getCount() {
+   public long getCount() {
 
        long seconds = (System.currentTimeMillis() - start )/ 1000;
        long minutes = seconds /60 + this.minutes;

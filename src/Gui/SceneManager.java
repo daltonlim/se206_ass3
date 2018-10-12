@@ -1,10 +1,17 @@
 package Gui;
 
+import Gui.Controllers.AchievementPopup;
 import Gui.Controllers.PlayerGuiController;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Stack;
 
 /**
@@ -82,6 +89,7 @@ public class SceneManager {
 
     /**
      * A method to set a reference to the main stage so scenes are easily drawn.
+     *
      * @param stage
      */
     public void setMainStage(Stage stage) {
@@ -89,10 +97,37 @@ public class SceneManager {
     }
 
     /**
-     * Sets a alertbox for the current screen
-     * @param text
+     * https://blog.csdn.net/teamlet/article/details/52914301
      */
-    public void alert(String text){
+    public void showDialog(String achievement ) {
+        URL location = this.getClass().getResource("Controllers/AchievementPopup.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(location);
+        try {
+            Parent root = fxmlLoader.load();
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("Achievement Unlocked");
+            primaryStage.setX(mainStage.getX() );
+            primaryStage.setY(mainStage.getY() - 150);
+            Scene scene = new Scene(root, 600, 120);
+            AchievementPopup controller = fxmlLoader.getController();
+                controller.initData(achievement);
+            primaryStage.setScene(scene);
+            primaryStage.show();
 
+            Thread thread = new Thread(() -> {
+                try {
+                    Thread.sleep(5000);
+                    if (primaryStage.isShowing()) {
+                        Platform.runLater(() -> primaryStage.close());
+                    }
+                } catch (Exception exp) {
+                    exp.printStackTrace();
+                }
+            });
+            thread.setDaemon(true);
+            thread.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

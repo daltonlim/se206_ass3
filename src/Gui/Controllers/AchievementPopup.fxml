@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER" prefHeight="100.0" prefWidth="570.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.AchievementPopup">
+<HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.AchievementPopup">
    <children>
       <ImageView fitHeight="65.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -15,9 +16,13 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="100.0" prefWidth="496.0" spacing="20.0">
          <children>
-            <Label style="-fx-font-size: 24;" text="Achievement Unlocked " />
-            <Label text="Congratualations on achieving x someAction" />
+            <Label fx:id="name" style="-fx-font-size: 24;" text="Murderer Unlocked " />
+            <Label fx:id="text" text="Congratualations on achieving 5 reports" />
          </children>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@../../resources/FlatBee.css" />
+      <URL value="@../../resources/FlatBee.css" />
+   </stylesheets>
 </HBox>

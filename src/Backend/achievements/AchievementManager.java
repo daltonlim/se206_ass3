@@ -30,7 +30,7 @@ public class AchievementManager {
     }
 
     private void readIn() {
-        //TODO read in fiels to the manager
+/*        //TODO read in fiels to the manager
         File log = new File(logFile);
         if (log.exists()) {
             try {
@@ -45,7 +45,7 @@ public class AchievementManager {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     private void add(String name, int oneStar, int twoStar, int threeStar, String oneStarName,
@@ -69,6 +69,9 @@ public class AchievementManager {
     public int getStar(String ach) {
         Achievement achievement = achievementHashMap.get(ach);
         return achievement.getStar();
+    }
+    public Achievement retrieveAchievement(String achievement){
+        return achievementHashMap.get(achievement);
     }
 
     public void saveState() {
