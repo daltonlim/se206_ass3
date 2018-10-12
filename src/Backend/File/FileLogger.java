@@ -24,8 +24,24 @@ public class FileLogger {
         checkLogFile();
         loggedList = new ArrayList<>();
         dirList = new ArrayList<>();
-
+        redirect();
         readFileToList();
+    }
+
+    private void redirect() {
+        PrintStream console = System.err;
+
+        File file = new File("Logs/err.txt");
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        PrintStream ps = new PrintStream(fos);
+        System.setErr(ps);
+
+        System.setErr(console);
     }
 
     /**
@@ -99,8 +115,8 @@ public class FileLogger {
         }
     }
 
-    public void writeToFile(){
-        writeToFile(logFile,loggedList);
+    public void writeToFile() {
+        writeToFile(logFile, loggedList);
     }
 
     /**

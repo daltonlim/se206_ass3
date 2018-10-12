@@ -44,9 +44,6 @@ public class AchievementBox implements Initializable {
     }
 
     public void initData(String name) {
-        if (name.equals("Minute")){
-            System.out.println(name);
-        }
         Achievement achievement = AchievementManager.getInstance().retrieveAchievement(name);
         t0.setText(achievement.getStarName());
         l02.setText(achievement.getOneStar() + " " + name.toLowerCase() + "s");

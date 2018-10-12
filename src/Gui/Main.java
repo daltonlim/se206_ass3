@@ -22,6 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        FileLogger.getInstance();
         AchievementManager.getInstance();
         URL location = this.getClass().getResource("Controllers/WelcomeOther.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);

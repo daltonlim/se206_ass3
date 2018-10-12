@@ -65,7 +65,7 @@ public class RecordGui implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         disableButtons(true);
         fileManager = NameManager.getInstance();
-        States.setVisible(false);
+        States.setText("Hold to record");
     }
 
     private void disableButtons(boolean b) {
