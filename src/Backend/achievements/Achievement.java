@@ -33,20 +33,20 @@ public class Achievement {
         return name;
     }
 
-   public long getCount() {
+    public int getCount() {
         return count;
     }
 
-    void setCount(long count) {
-        this.count = (int) count;
+    void setCount(int count) {
+        this.count = count;
     }
 
-    int getStar() {
-        if (count > threeStar) {
+    public int getStar() {
+        if (count >= threeStar) {
             return 3;
-        } else if (count > twoStar) {
+        } else if (count >= twoStar) {
             return 2;
-        } else if (count > oneStar) {
+        } else if (count >= oneStar) {
             return 1;
         } else {
             return 0;
@@ -54,14 +54,15 @@ public class Achievement {
     }
 
     public String getStarName() {
-        if (count == oneStar) {
-            return oneStarName;
-        } else if (count == twoStar) {
-            return twoStarName;
-        } else if (count == threeStar) {
+        if (count >= threeStar) {
             return threeStarName;
+        } else if (count >= twoStar) {
+            return twoStarName;
+        } else if (count >= oneStar) {
+            return oneStarName;
+        } else {
+            return name;
         }
-        return "";
     }
 
     private void checkAchievement() {
@@ -71,5 +72,18 @@ public class Achievement {
         }
     }
 
+    public int getOneStar() {
+        return oneStar;
+    }
 
+    public int getTwoStar() {
+        return twoStar;
+    }
+
+    public int getThreeStar() {
+        return threeStar;
+    }
+
+    void killThread() {
+    }
 }

@@ -1,5 +1,7 @@
 package Backend.File;
 
+import Backend.achievements.AchievementManager;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +82,7 @@ public class FileLogger {
      */
     public void report(File file) {
         String toLog = file.getName();
-
+        AchievementManager.getInstance().incrementAchievement("Report");
         if (!loggedList.contains(toLog)) {
             loggedList.add(toLog);
         }

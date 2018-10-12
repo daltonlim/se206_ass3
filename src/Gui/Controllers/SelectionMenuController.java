@@ -15,7 +15,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Text;
 import java.io.File;
 import java.net.URL;
 import java.util.*;
@@ -223,17 +222,18 @@ public class SelectionMenuController implements Initializable {
         primaryStage.show();
 
 
-    }/**
-     * Starts the Achievement scene
+    }
+    /**
+     * Starts the Achievements scene
      */
     @FXML
     public void getAchievements() throws Exception {
         Scene scene = selectNamesButton.getScene();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Achievement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Achievements.fxml"));
 
         Parent root = loader.load();
 
-        Achievement controller = loader.getController();
+        Achievements controller = loader.getController();
         SceneManager.getInstance().addScene(scene, controller);
         Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
 

@@ -1,6 +1,5 @@
 package Gui.Controllers;
 
-import java.io.File;
 import java.io.IOException;
 
 import Gui.SceneManager;
@@ -36,11 +35,11 @@ public class WelcomeOther {
     @FXML
     public void startAcheivements() throws IOException {
         Scene scene = startButton.getScene();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Achievement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Achievements.fxml"));
 
         Parent root = loader.load();
 
-        Achievement controller = loader.getController();
+        Achievements controller = loader.getController();
 
 
         SceneManager.getInstance().addScene(scene, controller);
@@ -48,5 +47,10 @@ public class WelcomeOther {
 
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
+    }
+    @FXML
+    private void quit(){
+      Stage stage =   (Stage) startButton.getScene().getWindow();
+      stage.close();
     }
 }

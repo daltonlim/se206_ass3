@@ -241,6 +241,7 @@ public class RecordGui implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 NameManager.getInstance().addFile(fileCreator.getFile());
+                AchievementManager.getInstance().incrementAchievement("Record");
                 stop();
                 SceneManager.getInstance().removeScene();
             } else {

@@ -18,6 +18,6 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="300.0" text="Quit" />
+      <Button mnemonicParsing="false" onAction="#quit" prefHeight="60.0" prefWidth="300.0" text="Quit" />
    </children>
 </VBox>

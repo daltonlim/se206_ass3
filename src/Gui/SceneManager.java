@@ -99,35 +99,39 @@ public class SceneManager {
     /**
      * https://blog.csdn.net/teamlet/article/details/52914301
      */
-    public void showDialog(String achievement ) {
+    public void showDialog(String achievement) {
+
         URL location = this.getClass().getResource("Controllers/AchievementPopup.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
-        try {
-            Parent root = fxmlLoader.load();
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Achievement Unlocked");
-            primaryStage.setX(mainStage.getX() );
-            primaryStage.setY(mainStage.getY() - 150);
-            Scene scene = new Scene(root, 600, 120);
-            AchievementPopup controller = fxmlLoader.getController();
+        Platform.runLater(() -> {
+            try {
+                Parent root = fxmlLoader.load();
+                Stage primaryStage = new Stage();
+                primaryStage.setTitle("Achievements Unlocked");
+                primaryStage.setX(mainStage.getX());
+                primaryStage.setY(mainStage.getY() - 150);
+                Scene scene = new Scene(root, 600, 120);
+                AchievementPopup controller = fxmlLoader.getController();
                 controller.initData(achievement);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+                primaryStage.setScene(scene);
+                primaryStage.show();
 
-            Thread thread = new Thread(() -> {
-                try {
-                    Thread.sleep(5000);
-                    if (primaryStage.isShowing()) {
-                        Platform.runLater(() -> primaryStage.close());
+                Thread thread = new Thread(() -> {
+                    try {
+                        Thread.sleep(5000);
+                        if (primaryStage.isShowing()) {
+                            Platform.runLater(() -> primaryStage.close());
+                        }
+                    } catch (Exception exp) {
+                        exp.printStackTrace();
                     }
-                } catch (Exception exp) {
-                    exp.printStackTrace();
-                }
-            });
-            thread.setDaemon(true);
-            thread.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                });
+                thread.setDaemon(true);
+                thread.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 }

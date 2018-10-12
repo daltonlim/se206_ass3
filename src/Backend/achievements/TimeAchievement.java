@@ -2,25 +2,25 @@ package Backend.achievements;
 
 public class TimeAchievement extends Achievement {
 
-    private final long start;
-    private long minutes;
+    private Thread thread;
 
     TimeAchievement(int oneStar, int twoStar, int threeStar, String oneStarName, String twoStarName,
                     String threeStarName) {
-        super("Time", oneStar, twoStar, threeStar, oneStarName, twoStarName, threeStarName);
-        start = System.currentTimeMillis();
-        minutes = 0;
-
+        super("Minute", oneStar, twoStar, threeStar, oneStarName, twoStarName, threeStarName);
+        thread = new Thread(() -> {
+            try {
+                while (true) {
+                    Thread.sleep(60000);
+                    increment();
+                }
+            } catch (Exception exp) {
+                exp.printStackTrace();
+            }
+        });
+        thread.start();
     }
 
-   public long getCount() {
-
-       long seconds = (System.currentTimeMillis() - start )/ 1000;
-       long minutes = seconds /60 + this.minutes;
-        return minutes;
-    }
-
-    void setCount(long time) {
-        minutes = time;
+    void killThread() {
+        thread.stop();
     }
 }

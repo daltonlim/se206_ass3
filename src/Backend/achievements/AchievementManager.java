@@ -24,20 +24,21 @@ public class AchievementManager {
 
     private void initalise() {
         add("Play", 1, 10, 25, "Player One", "Two Streak", "God Player");
-        add("Record", 1, 10, 25, "Player One", "Two Streak", "God Player");
-        achievementHashMap.put("Time",new TimeAchievement(1, 10, 25, "Player One", "Two Streak", "God Player"));
+        add("Record", 1, 10, 25, "Spy Talk", "Low Flow", "Loud Crowd");
+        add("Delete", 1, 10, 25, "Fresh Blood", "File Murderer", "File Exterminator");
+        add("Report", 1, 10, 25, "Snitch", "Enforcer", "Edward Snowden");
+        achievementHashMap.put("Minute",new TimeAchievement(1, 10, 25, "Small timer", "Two Streak", "God Player"));
         readIn();
     }
 
     private void readIn() {
-/*        //TODO read in fiels to the manager
         File log = new File(logFile);
         if (log.exists()) {
             try {
                 Scanner s = new Scanner(log);
                 while (s.hasNext()) {
                     String[] strings = s.next().split(":");
-                        Long integer = Long.valueOf(strings[1]);
+                        int integer = Integer.valueOf(strings[1]);
                         achievementHashMap.get(strings[0]).setCount(integer);
 
                 }
@@ -45,7 +46,7 @@ public class AchievementManager {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
     }
 
     private void add(String name, int oneStar, int twoStar, int threeStar, String oneStarName,
@@ -80,6 +81,7 @@ public class AchievementManager {
             stringList.add(achievement.getName() + ":" + achievement.getCount());
         }
         FileLogger.getInstance().writeToFile(logFile, stringList);
+        achievementHashMap.get("Minute").killThread();
     }
 }
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane fx:id="borderPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.AchievementBox">
+   <center>
+      <VBox spacing="4.0">
+         <children>
+            <Label fx:id="l00" text="25 times">
+               <graphic>
+                  <CheckBox fx:id="cb2" disable="true" mnemonicParsing="false" />
+               </graphic>
+            </Label>
+            <Label fx:id="l01" text="5 times">
+               <graphic>
+                  <CheckBox fx:id="cb1" disable="true" mnemonicParsing="false" />
+               </graphic>
+            </Label>
+            <Label fx:id="l02" layoutX="10.0" layoutY="10.0" text="1 times">
+               <graphic>
+                  <CheckBox fx:id="cb0" disable="true" mnemonicParsing="false" />
+               </graphic>
+            </Label>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </VBox>
+   </center>
+   <top>
+      <Label fx:id="t0" style="-fx-font-size: 24;" text="Play" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </Label>
+   </top>
+</BorderPane>
