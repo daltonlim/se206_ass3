@@ -24,8 +24,8 @@ public class AchievementManager {
 
     private void initalise() {
         add("Play", 1, 10, 25, "Player One", "Two Streak", "God Player");
-        add("Record", 1, 10, 25, "Spy Talk", "Low Flow", "Loud Crowd");
-        add("Delete", 1, 10, 25, "Fresh Blood", "File Murderer", "File Exterminator");
+        add("Recording", 1, 10, 25, "Spy Talk", "Low Flow", "Loud Crowd");
+        add("Deletion", 1, 10, 25, "Fresh Blood", "File Murderer", "File Exterminator");
         add("Report", 1, 10, 25, "Snitch", "Enforcer", "Edward Snowden");
         achievementHashMap.put("Minute",new TimeAchievement(1, 10, 25, "Small timer", "Two Streak", "God Player"));
         readIn();

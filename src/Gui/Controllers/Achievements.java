@@ -25,9 +25,9 @@ public class Achievements implements Initializable {
 
     private void addBox() {
         gridPane.add(getBorderPane("Play"), 0, 0);
-        gridPane.add(getBorderPane("Record"), 1, 0);
+        gridPane.add(getBorderPane("Recording"), 1, 0);
         gridPane.add(getBorderPane("Minute"), 0, 1);
-        gridPane.add(getBorderPane("Delete"), 1, 1);
+        gridPane.add(getBorderPane("Deletion"), 1, 1);
         gridPane.add(getBorderPane("Report"), 0, 2);
         gridPane.add(getBorderPane("Play"), 1, 2);
     }

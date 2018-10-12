@@ -287,7 +287,7 @@ public class PlayerGuiController implements Initializable {
     private void deleteFile() {
         stop();
         retrieveFile().delete();
-        AchievementManager.getInstance().incrementAchievement("Delete");
+        AchievementManager.getInstance().incrementAchievement("Deletion");
         fileManager.removeFile(retrieveFile());
         updateDates();
     }
