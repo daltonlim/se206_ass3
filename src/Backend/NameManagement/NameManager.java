@@ -80,6 +80,10 @@ public class NameManager {
         Collections.sort(singleNames);
     }
 
+    public List<String> getSingleNames() {
+        return singleNames;
+    }
+
     /**
      * Returns the file associated with a name and date
      *
@@ -134,7 +138,7 @@ public class NameManager {
         return available.randomBestName();
     }
 
-    public List<String> retrievePrefix(String nam){
+     public List<String> retrievePrefix(String nam){
         String[] nameArray = nam.split("[ -]");
         int offset = 0;
        char lastChar = nam.charAt(nam.length() -1);
@@ -148,6 +152,16 @@ public class NameManager {
 
             if(string.startsWith(name)){
                 possibilities.add(prefix + string);
+            }
+        }
+        return possibilities;
+    }
+    public List<String> retrieveSinglePrefix(String nam){
+        List<String> possibilities = new ArrayList<>();
+        for(String string:singleNames){
+
+            if(string.startsWith(nam)){
+                possibilities.add( string);
             }
         }
         return possibilities;

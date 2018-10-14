@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -11,22 +10,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.PlayerGuiController">
    <children>
       <VBox alignment="CENTER">
          <children>
-              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You are currently practicing" />
+            <Label text="You are currently practising:" />
             <HBox alignment="CENTER" spacing="30.0">
                <children>
                   <Button fx:id="lastName" mnemonicParsing="false" onAction="#getLast" text="&lt;" />
-                  <Label fx:id="nameLabel" alignment="CENTER" text="Name" textFill="#f50202">
+                  <Label fx:id="nameLabel" alignment="CENTER" style="-fx-font-size: 40;" stylesheets="@../../resources/redNameLabel.css" text="Name" textFill="#f50202">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -35,7 +35,7 @@
                </children>
             </HBox>
 
-            <Label fx:id="badWarningLabel" text=" " textFill="#f50202">
+            <Label fx:id="badWarningLabel" stylesheets="@../../resources/redNameLabel.css" text=" " textFill="#f50202">
                <padding>
                   <Insets bottom="10.0" />
                </padding></Label>
@@ -46,17 +46,17 @@
                      <children>
                         <HBox prefHeight="25.0" prefWidth="82.0">
                            <children>
-                              <ToggleButton fx:id="toggleButton" mnemonicParsing="false" onAction="#setVolume" prefHeight="25.0" prefWidth="65.0" text="on">
+                              <ToggleButton fx:id="toggleButton" mnemonicParsing="false" onAction="#setVolume" prefHeight="25.0" prefWidth="75.0" text="on">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="toggleGroup" />
                                  </toggleGroup>
                               </ToggleButton>
-                              <ToggleButton fx:id="offButtom" layoutX="2.0" mnemonicParsing="false" onAction="#off" prefHeight="25.0" prefWidth="61.0" selected="true" text="off" toggleGroup="$toggleGroup" />
+                              <ToggleButton fx:id="offButtom" layoutX="2.0" mnemonicParsing="false" onAction="#off" prefHeight="25.0" prefWidth="75.0" selected="true" text="off" toggleGroup="$toggleGroup" />
                            </children>
                         </HBox>
-                        <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" prefHeight="60.0" prefWidth="100.0" text="▶️ Play" />
-                        <Button fx:id="recordButton" mnemonicParsing="false" onAction="#recordAudio" prefHeight="60.0" prefWidth="100.0" text="⏺️ Record" />
-                        <Button fx:id="reportButton" mnemonicParsing="false" onAction="#report" prefHeight="60.0" prefWidth="100.0" text=" Report">
+                        <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" prefHeight="53.0" prefWidth="150.0" stylesheets="@../../resources/darkButton.css" text="▶ Play" />
+                        <Button fx:id="recordButton" mnemonicParsing="false" onAction="#recordAudio" prefHeight="57.0" prefWidth="150.0" stylesheets="@../../resources/darkButton.css" text="⚫Record" />
+                        <Button fx:id="reportButton" mnemonicParsing="false" onAction="#report" prefHeight="60.0" prefWidth="150.0" text=" Report">
                            <graphic>
                               <ImageView fitHeight="34.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -64,7 +64,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button fx:id="deleteButton" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" onAction="#deleteFile" prefHeight="60.0" prefWidth="100.0" text=" Delete">
+                        <Button fx:id="deleteButton" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" onAction="#deleteFile" prefHeight="60.0" prefWidth="150.0" text=" Delete">
                            <graphic>
                               <ImageView fitHeight="34.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -83,15 +83,7 @@
          <children>
             <HBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button fx:id="microphoneButton" mnemonicParsing="false" onAction="#MicrophoneTest" text="Microphone Test">
-                     <graphic>
-                        <ImageView fitHeight="59.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resources/icons/mic.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button fx:id="rechoose" mnemonicParsing="false" onAction="#goBack" text="Rechoose Names" />
+                  <Button fx:id="rechoose" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="150.0" text="Back" />
                </children>
             </HBox>
          </children>

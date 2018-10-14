@@ -15,7 +15,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Text;
 import java.io.File;
 import java.net.URL;
 import java.util.*;
@@ -107,12 +106,15 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     private void removeName() {
-        String name = selectedNames.getSelectionModel().getSelectedItems().get(0).toString();
-        availibleNamesList.getItems().add(name);
-        selectedNames.getItems().remove(name);
-        //Resort
-        Collections.sort(availibleNamesList.getItems());
-        checkAll();
+        if(selectedNames.getSelectionModel().getSelectedItems().get(0) != null) {
+            String name = selectedNames.getSelectionModel().getSelectedItems().get(0).toString();
+
+            availibleNamesList.getItems().add(name);
+            selectedNames.getItems().remove(name);
+            //Resort
+            Collections.sort(availibleNamesList.getItems());
+            checkAll();
+        }
     }
 
     /**
@@ -178,8 +180,10 @@ public class SelectionMenuController implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Invalid Names");
-        alert.setHeaderText("Invalid names detected. Would you like to add partial names?");
-        alert.setContentText(textFileParser.getNotPossibleNameString());
+        alert.setHeaderText(null);
+        alert.setContentText("Invalid names detected. Would you like to add partial names? "+textFileParser.getNotPossibleNameString());
+        alert.getDialogPane().getStylesheets().add(
+				   getClass().getResource("/resources/FlatBee.css").toExternalForm());
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
@@ -216,25 +220,26 @@ public class SelectionMenuController implements Initializable {
         SceneManager.getInstance().addScene(scene, controller);
         Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
 
-        primaryStage.setScene(new Scene(root, 1200, 800));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
 
 
-    }/**
-     * Starts the Achievement scene
+    }
+    /**
+     * Starts the Achievements scene
      */
     @FXML
     public void getAchievements() throws Exception {
         Scene scene = selectNamesButton.getScene();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Achievement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Achievements.fxml"));
 
         Parent root = loader.load();
 
-        Achievement controller = loader.getController();
+        Achievements controller = loader.getController();
         SceneManager.getInstance().addScene(scene, controller);
         Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
 
-        primaryStage.setScene(new Scene(root, 1200, 800));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
 
 
@@ -282,4 +287,9 @@ public class SelectionMenuController implements Initializable {
         FileLogger.getInstance().writeToFile("Logs/exportNames" + java.time.LocalDateTime.now().toString() + ".txt",
                 selectedNames.getItems());
     }
+    @FXML
+    private void exit(){
+        SceneManager.getInstance().removeScene();
+    }
+
 }
