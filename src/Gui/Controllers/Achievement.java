@@ -23,7 +23,7 @@ public class Achievement implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		int stars = AchievementManager.getInstance().getStar(AchievementType.PLAY);
+		int stars = AchievementManager.getInstance().getStar("Play");
 		if (stars >= 3) {
 			cb3.setSelected(true);
 		}
