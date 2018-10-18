@@ -2,6 +2,7 @@ package Gui;
 
 import Backend.File.FileLogger;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,6 +21,7 @@ public class MergeController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+          Thread.setDefaultUncaughtExceptionHandler(Main::showErrror);
         URL location = this.getClass().getResource("Controllers/SelectionMenu.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = fxmlLoader.load();
@@ -31,8 +33,9 @@ public class MergeController extends Application {
 
         SceneManager.getInstance().setMainStage(primaryStage);
     }
-
-    @Override
+ private static void showError(Thread t, Throwable e) {
+ }
+ @Override
     public void stop() throws Exception {
         FileLogger.getInstance().writeToFile();
         super.stop();

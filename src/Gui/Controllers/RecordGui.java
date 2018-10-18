@@ -41,6 +41,8 @@ public class RecordGui implements Initializable {
 	@FXML
 	private Button recordButton;
 	@FXML
+	private Label nameLabel;
+	@FXML
 	private Button ExitButton;
 	@FXML
 	private Button PlayYoursButton;
@@ -306,6 +308,7 @@ public class RecordGui implements Initializable {
 	 * initialize data when its combinational name
 	 */
 	public void initDataX(String name) {
+	    nameLabel.setText(name);
 		fileCreator = new FileCreator(name);
 		_name = name;
 		isSingleWord = false;
@@ -393,7 +396,7 @@ public class RecordGui implements Initializable {
 							}
 
 							lastPeak = peak;
-							updateProgress(rms * 10000, 100);
+							updateProgress(rms * 1000, 100);
 						}
 					}
 				} catch (Exception e) {

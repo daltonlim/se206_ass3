@@ -33,6 +33,12 @@ public class SelectionMenuController implements Initializable {
     private Button selectNamesButton;
     @FXML
     private ComboBox cb;
+    @FXML
+    private ToggleButton singleButton;
+    @FXML
+    private ToggleButton orderedButton;
+    @FXML
+    private ToggleButton randomisedButton;
 
     @FXML
     private void comboBox() {
@@ -53,6 +59,7 @@ public class SelectionMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         single = true;
+        singleButton.setDisable(true);
         fileManager = NameManager.getInstance();
         selectNamesButton.setDisable(true);
         setupList();
@@ -123,6 +130,11 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setSingle() {
+        singleButton.setDisable(true);
+        orderedButton.setDisable(false);
+        randomisedButton.setDisable(false);
+
+
         single = true;
         int runs = selectedNames.getItems().size();
         for (int i = 1; i < runs; i++) {
@@ -141,6 +153,9 @@ public class SelectionMenuController implements Initializable {
     @FXML
     public void setRandomised() {
         single = false;
+        singleButton.setDisable(false);
+        orderedButton.setDisable(false);
+        randomisedButton.setDisable(true);
         checkAll();
         ordered = false;
     }
@@ -151,6 +166,9 @@ public class SelectionMenuController implements Initializable {
     @FXML
     public void setOrdered() {
         single = false;
+        singleButton.setDisable(false);
+        orderedButton.setDisable(true);
+        randomisedButton.setDisable(false);
         checkAll();
         ordered = true;
     }
@@ -291,7 +309,7 @@ public class SelectionMenuController implements Initializable {
         fileChooser.setInitialDirectory(new File("Logs"));
         fileChooser.setInitialFileName("exportNames" + java.time.LocalDateTime.now().toString() + ".txt");
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-       fileChooser.setSelectedExtensionFilter(extFilter);
+        fileChooser.setSelectedExtensionFilter(extFilter);
         FileLogger.getInstance().writeToFile(fileChooser.showSaveDialog(selectNamesButton.getScene().getWindow()),
                 selectedNames.getItems());
     }
