@@ -22,7 +22,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Thread.setDefaultUncaughtExceptionHandler(Main::showErrror);
         FileLogger.getInstance();
         AchievementManager.getInstance();
         URL location = this.getClass().getResource("Controllers/WelcomeOther.fxml");
@@ -42,8 +41,5 @@ public class Main extends Application {
         FileLogger.getInstance().writeToFile();
         AchievementManager.getInstance().saveState();
         super.stop();
-    }
-
-    public static void showErrror(Thread thread, Throwable throwable) {
     }
 }

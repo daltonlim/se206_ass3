@@ -3,6 +3,7 @@ package Gui.Controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javax.sound.sampled.AudioFormat;
@@ -41,8 +42,6 @@ public class RecordGui implements Initializable {
 	@FXML
 	private Button recordButton;
 	@FXML
-	private Label nameLabel;
-	@FXML
 	private Button ExitButton;
 	@FXML
 	private Button PlayYoursButton;
@@ -54,6 +53,8 @@ public class RecordGui implements Initializable {
 	private Button microphoneButton;
 	@FXML
 	private ProgressBar PB;
+	@FXML
+	private Button loopButton;
 
 	private BashWorker worker;
 	private NameManager fileManager;
@@ -204,6 +205,32 @@ public class RecordGui implements Initializable {
 		};
 	}
 
+	@FXML
+	public void playLoop() {
+		stop();
+		if (isSingleWord) {
+			try {
+				List<String> loop = fileManager.getFileDatesForName(PlayOldButton.getText());
+				for (int i = 0; i < loop.size(); i++) {
+					String date = loop.get(i);
+					File file = fileManager.getFile(PlayOldButton.getText(), date);
+					String location = file.toURI().toString();					
+					worker = new BashWorker("ffplay -nodisp -autoexit '" + location + "'");
+					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+					AudioFormat format = audioInputStream.getFormat();
+					long frames = audioInputStream.getFrameLength();
+					double durationInSeconds = (frames + 0.0) / format.getFrameRate();
+					int time = (int) (durationInSeconds * 1000);
+					Thread.sleep(time);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+
+		}
+	}
+
 	/**
 	 * initialize data when name is single
 	 */
@@ -247,8 +274,8 @@ public class RecordGui implements Initializable {
 			alert.setTitle("RecordGui");
 			alert.setHeaderText(null);
 			alert.setContentText("Do you want save this recording?");
-			alert.getDialogPane().getStylesheets().add(
-					   getClass().getResource("/resources/FlatBee.css").toExternalForm());
+			alert.getDialogPane().getStylesheets()
+					.add(getClass().getResource("/resources/FlatBee.css").toExternalForm());
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
 				NameManager.getInstance().addFile(fileCreator.getFile());
@@ -266,8 +293,8 @@ public class RecordGui implements Initializable {
 			alert.setTitle("RecordGui");
 			alert.setHeaderText(null);
 			alert.setContentText("Do you want leave this page?");
-			alert.getDialogPane().getStylesheets().add(
-					   getClass().getResource("/resources/FlatBee.css").toExternalForm());
+			alert.getDialogPane().getStylesheets()
+					.add(getClass().getResource("/resources/FlatBee.css").toExternalForm());
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
 				stop();
@@ -308,7 +335,6 @@ public class RecordGui implements Initializable {
 	 * initialize data when its combinational name
 	 */
 	public void initDataX(String name) {
-	    nameLabel.setText(name);
 		fileCreator = new FileCreator(name);
 		_name = name;
 		isSingleWord = false;
@@ -396,7 +422,7 @@ public class RecordGui implements Initializable {
 							}
 
 							lastPeak = peak;
-							updateProgress(rms * 1000, 100);
+							updateProgress(rms * 10000, 100);
 						}
 					}
 				} catch (Exception e) {
