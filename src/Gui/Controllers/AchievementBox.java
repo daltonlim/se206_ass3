@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -76,6 +77,7 @@ public class AchievementBox implements Initializable {
         System.out.println(file.toURI().toString());*/
         /*Image image = new Image("../../resources/icons/"+name.toLowerCase() + ".png");
        image.getHeight();*/
+
         Achievement achievement = AchievementManager.getInstance().retrieveAchievement(name);
         t0.setText(achievement.getStarName());
         l02.setText(achievement.getOneStar() + " " + name.toLowerCase() + "s");

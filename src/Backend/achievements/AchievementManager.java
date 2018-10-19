@@ -77,7 +77,6 @@ public class AchievementManager {
     }
 
     public void saveState() {
-
         achievementHashMap.get("Minute").killThread();
         List<String> stringList = new ArrayList<>();
         for (Achievement achievement : achievementHashMap.values()) {

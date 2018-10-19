@@ -23,6 +23,7 @@ How to use NameSayer:
 *********************
 (1). There are three options in welcome window: practise, achievements and quit 
 
+
 (2). Users can choose names to playlist from NameList or using search bar to add name 
 
 (3). Search bar also provides the function to combine multiple names
