@@ -35,7 +35,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class RecordGui implements Initializable {
-
 	@FXML
 	private Label States;
 	@FXML
@@ -433,5 +432,4 @@ public class RecordGui implements Initializable {
 			}
 		};
 	}
-
 }

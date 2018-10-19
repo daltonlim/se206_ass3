@@ -58,12 +58,12 @@ public class PlayerGuiController implements Initializable {
     private ToggleButton offButton;
     @FXML
     private ToggleGroup toggleGroup;
-    
+
     private BashWorker worker;
 
     private List<String> chosenNames;
     private String[] nameArray;
-    private boolean setVolume =false;
+    private boolean setVolume = false;
 
     private Task<?> playCreatedName;
 
@@ -134,7 +134,7 @@ public class PlayerGuiController implements Initializable {
         updateDates();
 
     }
-    
+
     /**
      * set volume as 10dB
      */
@@ -142,9 +142,9 @@ public class PlayerGuiController implements Initializable {
     public void setVolume() {
         onButton.setDisable(true);
         offButton.setDisable(false);
-    	setVolume=true;
+        setVolume = true;
     }
-    
+
     /**
      * set volume as normal
      */
@@ -152,7 +152,7 @@ public class PlayerGuiController implements Initializable {
     public void off() {
         offButton.setDisable(true);
         onButton.setDisable(false);
-    	setVolume=false;
+        setVolume = false;
     }
 
     public boolean isSingleWord() {
@@ -178,14 +178,15 @@ public class PlayerGuiController implements Initializable {
             String location = file.toURI().toString();
             //Replace spaces succesfully
             location = location.replace("%20", " ");
-            if(setVolume) {
-            	worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+            if (setVolume) {
+                worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
             } else {
-                worker = new BashWorker("ffplay -nodisp -autoexit '" + location + "'");
+                worker = new BashWorker("ffplay -nodisp -autoexit -af " +
+                        "silenceremove=1:0:-35dB:1:5:-35dB:0:peak '" + location + "'");
             }
         }
     }
-    
+
     /**
      * A task to play created name
      */
@@ -197,10 +198,11 @@ public class PlayerGuiController implements Initializable {
                     try {
                         File file = fileManager.getRandomGoodFile(nameArray[i]);
                         String location = file.toURI().toString();
-                        if(setVolume) {
-                        	worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+                        if (setVolume) {
+                            worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
                         } else {
-                            worker = new BashWorker("ffplay -nodisp -autoexit '" + location + "'");
+                            worker = new BashWorker("ffplay -nodisp -autoexit -af" +
+"silenceremove=1:0:-35dB:1:5:-35dB:0:peak '" + location + "'");
                         }
                         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
                         AudioFormat format = audioInputStream.getFormat();
@@ -222,9 +224,9 @@ public class PlayerGuiController implements Initializable {
             worker.kill();
         }
 
-       if (playCreatedName != null) {
+        if (playCreatedName != null) {
             playCreatedName.cancel(true);
- 	    }
+        }
     }
 
     /**

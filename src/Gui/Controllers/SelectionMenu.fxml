@@ -8,24 +8,22 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.SelectionMenuController">
+<VBox alignment="CENTER" spacing="10.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.SelectionMenuController">
     <children>
         <Group>
          <children>
             <HBox spacing="10.0">
                <children>
-                  <ToggleButton fx:id="singleButton" mnemonicParsing="false" onAction="#setSingle" selected="true" text="Single">
+                  <ToggleButton fx:id="singleButton" disable="true" mnemonicParsing="false" onAction="#setSingle" selected="true" text="Single">
                      <toggleGroup>
                         <ToggleGroup fx:id="fileSelection" />
                      </toggleGroup>
                   </ToggleButton>
-                  <ToggleButton fx:id="OrderedButton" mnemonicParsing="false" onAction="#setOrdered" text="Ordered List" toggleGroup="$fileSelection" />
-                  <ToggleButton fx:id="RandomisedButton" mnemonicParsing="false" onAction="#setRandomised" text="Randomised List" toggleGroup="$fileSelection" />
+                  <ToggleButton fx:id="orderedButton" mnemonicParsing="false" onAction="#setOrdered" text="Ordered List" toggleGroup="$fileSelection" />
+                  <ToggleButton fx:id="randomisedButton" mnemonicParsing="false" onAction="#setRandomised" text="Randomised List" toggleGroup="$fileSelection" />
                </children>
             </HBox>
          </children>
