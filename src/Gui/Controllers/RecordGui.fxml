@@ -59,5 +59,6 @@
             <ProgressBar fx:id="PB" layoutX="31.0" layoutY="536.0" prefHeight="29.0" prefWidth="200.0" progress="0.0" />
          </children>
       </HBox>
+      <Button fx:id="loopButton" layoutX="254.0" layoutY="569.0" mnemonicParsing="false" onAction="#playLoop" text="Button" />
    </children>
 </AnchorPane>

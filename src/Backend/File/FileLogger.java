@@ -119,7 +119,10 @@ public class FileLogger {
         writeToFile(logFile, loggedList);
     }
 
-    public void writeToFile(File logFile, List<String> strings) {
+    /**
+     * Writes log to file
+     */
+    public void writeToFile(String logFile, List<String> strings) {
         try {
             FileWriter fw = new FileWriter(logFile, false);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -132,13 +135,6 @@ public class FileLogger {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Writes log to file
-     */
-    public void writeToFile(String logFile, List<String> strings) {
-        writeToFile(new File(logFile), strings);
     }
 
     /**

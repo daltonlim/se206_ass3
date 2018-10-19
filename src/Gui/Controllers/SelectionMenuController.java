@@ -14,7 +14,6 @@ import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.File;
 import java.net.URL;
@@ -40,17 +39,18 @@ public class SelectionMenuController implements Initializable {
     @FXML
     private ToggleButton randomisedButton;
 
-    @FXML
-    private void comboBox() {
-        String text = new String(cb.getEditor().getText());
-        text = FileNameParser.sentenceCase(text);
-        if (text.length() > 0) {
-            cb.show();
-            cb.getItems().remove(0, cb.getItems().size());
-            cb.getItems().addAll(fileManager.retrievePrefix(text));
-            cb.setVisibleRowCount(10);
 
-        }
+    @FXML
+    private void comboBox(){
+       String text = new String(cb.getEditor().getText());
+       text = FileNameParser.sentenceCase(text);
+       if(text.length()>0){
+           cb.show();
+           cb.getItems().remove(0,cb.getItems().size());
+           cb.getItems().addAll(fileManager.retrievePrefix(text));
+           cb.setVisibleRowCount(10);
+
+       }
     }
 
     /**
@@ -70,7 +70,6 @@ public class SelectionMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         single = true;
-        singleButton.setDisable(true);
         fileManager = NameManager.getInstance();
         selectNamesButton.setDisable(true);
         setupList();
@@ -125,7 +124,7 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     private void removeName() {
-        if (selectedNames.getSelectionModel().getSelectedItems().get(0) != null) {
+        if(selectedNames.getSelectionModel().getSelectedItems().get(0) != null) {
             String name = selectedNames.getSelectionModel().getSelectedItems().get(0).toString();
 
             availibleNamesList.getItems().add(name);
@@ -204,9 +203,9 @@ public class SelectionMenuController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Invalid Names");
         alert.setHeaderText(null);
-        alert.setContentText("Invalid names detected. Would you like to add partial names? " + textFileParser.getNotPossibleNameString());
+        alert.setContentText("Invalid names detected. Would you like to add partial names? "+textFileParser.getNotPossibleNameString());
         alert.getDialogPane().getStylesheets().add(
-                getClass().getResource("/resources/FlatBee.css").toExternalForm());
+				   getClass().getResource("/resources/FlatBee.css").toExternalForm());
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
@@ -226,7 +225,7 @@ public class SelectionMenuController implements Initializable {
         stringList.addAll(hashSet);
     }
 
-    /**
+     /**
      * Starts the player gui scene
      */
     @FXML
@@ -248,7 +247,6 @@ public class SelectionMenuController implements Initializable {
 
 
     }
-
     /**
      * Starts the Achievements scene
      */
@@ -289,11 +287,11 @@ public class SelectionMenuController implements Initializable {
         checkAll();
     }
 
-    private void addNames(TextFileParser textFileParser) {
-        if (single) {
+    private void addNames(TextFileParser textFileParser){
+       if (single) {
             availibleNamesList.getItems().addAll(selectedNames.getItems());
-            if (selectedNames.getItems().size() == 1)
-                selectedNames.getItems().remove(0);
+            if(selectedNames.getItems().size()==1)
+            selectedNames.getItems().remove(0);
             Collections.sort(availibleNamesList.getItems());
         }
         selectedNames.getItems().addAll(textFileParser.getNamesToAdd());
@@ -306,20 +304,13 @@ public class SelectionMenuController implements Initializable {
         }
 
     }
-
     @FXML
-    public void exportNames() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("Logs"));
-        fileChooser.setInitialFileName("exportNames" + java.time.LocalDateTime.now().toString() + ".txt");
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-        fileChooser.setSelectedExtensionFilter(extFilter);
-        FileLogger.getInstance().writeToFile(fileChooser.showSaveDialog(selectNamesButton.getScene().getWindow()),
+    public void exportNames(){
+        FileLogger.getInstance().writeToFile("Logs/exportNames" + java.time.LocalDateTime.now().toString() + ".txt",
                 selectedNames.getItems());
     }
-
     @FXML
-    private void exit() {
+    private void exit(){
         SceneManager.getInstance().removeScene();
     }
 

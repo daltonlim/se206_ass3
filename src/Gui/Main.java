@@ -44,7 +44,4 @@ public class Main extends Application {
         AchievementManager.getInstance().saveState();
         super.stop();
     }
-
-    public static void showErrror(Thread thread, Throwable throwable) {
-    }
 }
