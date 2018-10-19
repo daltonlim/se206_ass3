@@ -22,10 +22,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Thread.setDefaultUncaughtExceptionHandler(Main::showErrror);
+        //Thread.setDefaultUncaughtExceptionHandler(Main::showErrror);
         FileLogger.getInstance();
-        AchievementManager.getInstance();
-        URL location = this.getClass().getResource("Controllers/WelcomeOther.fxml");
+        AchievementManager.getInstance().incrementAchievement("Open");
+        URL location = this.getClass().getResource("Controllers/WelcomeOthe" +
+                "r.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root = fxmlLoader.load();
 

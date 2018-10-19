@@ -54,6 +54,17 @@ public class SelectionMenuController implements Initializable {
     }
 
     /**
+     * FUnction to ensure the toggle button group cannot be disabled.
+     * @param button
+     */
+    private void setEnabledButton(ToggleButton button) {
+        singleButton.setDisable(false);
+        orderedButton.setDisable(false);
+        randomisedButton.setDisable(false);
+        button.setDisable(true);
+    }
+
+    /**
      * Initialiser method
      */
     @Override
@@ -130,10 +141,7 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setSingle() {
-        singleButton.setDisable(true);
-        orderedButton.setDisable(false);
-        randomisedButton.setDisable(false);
-
+       setEnabledButton(singleButton);
 
         single = true;
         int runs = selectedNames.getItems().size();
@@ -153,10 +161,8 @@ public class SelectionMenuController implements Initializable {
     @FXML
     public void setRandomised() {
         single = false;
-        singleButton.setDisable(false);
-        orderedButton.setDisable(false);
-        randomisedButton.setDisable(true);
-        checkAll();
+        setEnabledButton(randomisedButton);
+       checkAll();
         ordered = false;
     }
 
@@ -165,10 +171,8 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setOrdered() {
+        setEnabledButton(orderedButton);
         single = false;
-        singleButton.setDisable(false);
-        orderedButton.setDisable(true);
-        randomisedButton.setDisable(false);
         checkAll();
         ordered = true;
     }

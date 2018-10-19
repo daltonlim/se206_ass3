@@ -53,7 +53,7 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private Button recordButton;
     @FXML
-    private ToggleButton toggleButton;
+    private ToggleButton onButton;
     @FXML
     private ToggleButton offButton;
     @FXML
@@ -140,6 +140,8 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     public void setVolume() {
+        onButton.setDisable(true);
+        offButton.setDisable(false);
     	setVolume=true;
     }
     
@@ -148,6 +150,8 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     public void off() {
+        offButton.setDisable(true);
+        onButton.setDisable(false);
     	setVolume=false;
     }
 

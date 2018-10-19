@@ -8,8 +8,6 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -70,26 +68,15 @@
                <children>
                   <HBox alignment="CENTER" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#fileChooser" prefHeight="13.0" prefWidth="40.0">
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../resources/icons/import.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                        <Button mnemonicParsing="false" onAction="#fileChooser" prefHeight="13.0" prefWidth="40.0" text="+">
                            <tooltip>
-                              <Tooltip text="Empty Tooltip" />
+                              <Tooltip text="Import names from text file" />
                            </tooltip></Button>
                         <Label text="Chosen Names" />
-                        <Button mnemonicParsing="false" onAction="#exportNames">
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../resources/icons/export.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
+                        <Button mnemonicParsing="false" onAction="#exportNames" text="-">
+                           <tooltip>
+                              <Tooltip text="Export names to list" />
+                           </tooltip></Button>
                      </children>
                   </HBox>
                   <ListView fx:id="selectedNames" onMouseClicked="#removeName" />
@@ -99,8 +86,14 @@
       </HBox>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#exit" prefWidth="150.0" text="Back" />
-            <Button fx:id="selectNamesButton" mnemonicParsing="false" onAction="#getPlayerGuiScene" prefWidth="150.0" stylesheets="@../../resources/darkButton.css" text="Select Names" />
+            <Button mnemonicParsing="false" onAction="#exit" prefWidth="150.0" text="Back">
+               <tooltip>
+                  <Tooltip text="Go back to the main menu" />
+               </tooltip></Button>
+            <Button fx:id="selectNamesButton" mnemonicParsing="false" onAction="#getPlayerGuiScene" prefWidth="150.0" stylesheets="@../../resources/darkButton.css" text="Select Names">
+               <tooltip>
+                  <Tooltip text="Select names to play" />
+               </tooltip></Button>
          </children>
       </HBox>
     </children>

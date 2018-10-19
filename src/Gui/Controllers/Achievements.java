@@ -29,7 +29,7 @@ public class Achievements implements Initializable {
         gridPane.add(getBorderPane("Minute"), 0, 1);
         gridPane.add(getBorderPane("Deletion"), 1, 1);
         gridPane.add(getBorderPane("Report"), 0, 2);
-        gridPane.add(getBorderPane("Play"), 1, 2);
+        gridPane.add(getBorderPane("Open"), 1, 2);
     }
 
     @FXML

@@ -308,7 +308,6 @@ public class RecordGui implements Initializable {
 	 * initialize data when its combinational name
 	 */
 	public void initDataX(String name) {
-	    nameLabel.setText(name);
 		fileCreator = new FileCreator(name);
 		_name = name;
 		isSingleWord = false;
