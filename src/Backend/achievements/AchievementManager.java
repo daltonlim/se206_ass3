@@ -23,6 +23,7 @@ public class AchievementManager {
     }
 
     private void initalise() {
+        add("Open",1,5,10,"Starter" ,"Runner","Consistent");
         add("Play", 1, 20, 50, "Player One", "Two Streak", "God Player");
         add("Recording", 1, 10, 25, "Spy Talk", "Low Flow", "Loud Crowd");
         add("Deletion", 1, 10, 25, "Fresh Blood", "File Murderer", "File Exterminator");
@@ -76,6 +77,7 @@ public class AchievementManager {
     }
 
     public void saveState() {
+        achievementHashMap.get("Minute").killThread();
         List<String> stringList = new ArrayList<>();
         for (Achievement achievement : achievementHashMap.values()) {
             stringList.add(achievement.getName() + ":" + achievement.getCount());

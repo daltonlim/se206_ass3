@@ -6,18 +6,32 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="30.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.WelcomeOther">
+<VBox alignment="CENTER" spacing="30.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.WelcomeOther">
    <children>
       <Label style="-fx-font-size: 40;" text="Welcome to NameSayer" />
-      <Button fx:id="startButton" mnemonicParsing="false" onAction="#start" prefHeight="60.0" prefWidth="300.0" text="Practise Names" />
-      <Button mnemonicParsing="false" onAction="#startAcheivements" prefHeight="60.0" prefWidth="300.0" text="Achievements">
+      <Button fx:id="startButton" mnemonicParsing="false" onAction="#start" prefHeight="60.0" prefWidth="300.0" text="     Practise Names">
          <graphic>
-            <ImageView fitHeight="114.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="44.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/icons/icons8-trophy-96.png" />
+                  <Image url="@../../resources/icons/chat.png" />
                </image>
             </ImageView>
          </graphic></Button>
-      <Button mnemonicParsing="false" onAction="#quit" prefHeight="60.0" prefWidth="300.0" text="Quit" />
+      <Button mnemonicParsing="false" onAction="#startAcheivements" prefHeight="60.0" prefWidth="300.0" text="    Achievements">
+         <graphic>
+            <ImageView fitHeight="61.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/icons/award.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button mnemonicParsing="false" onAction="#quit" prefHeight="60.0" prefWidth="300.0" text="           Quit" textAlignment="CENTER">
+         <graphic>
+            <ImageView fitHeight="51.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/icons/exit.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </VBox>

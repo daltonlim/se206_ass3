@@ -32,6 +32,13 @@ public class SelectionMenuController implements Initializable {
     private Button selectNamesButton;
     @FXML
     private ComboBox cb;
+    @FXML
+    private ToggleButton singleButton;
+    @FXML
+    private ToggleButton orderedButton;
+    @FXML
+    private ToggleButton randomisedButton;
+
 
     @FXML
     private void comboBox(){
@@ -44,6 +51,17 @@ public class SelectionMenuController implements Initializable {
            cb.setVisibleRowCount(10);
 
        }
+    }
+
+    /**
+     * FUnction to ensure the toggle button group cannot be disabled.
+     * @param button
+     */
+    private void setEnabledButton(ToggleButton button) {
+        singleButton.setDisable(false);
+        orderedButton.setDisable(false);
+        randomisedButton.setDisable(false);
+        button.setDisable(true);
     }
 
     /**
@@ -122,6 +140,8 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setSingle() {
+       setEnabledButton(singleButton);
+
         single = true;
         int runs = selectedNames.getItems().size();
         for (int i = 1; i < runs; i++) {
@@ -140,7 +160,8 @@ public class SelectionMenuController implements Initializable {
     @FXML
     public void setRandomised() {
         single = false;
-        checkAll();
+        setEnabledButton(randomisedButton);
+       checkAll();
         ordered = false;
     }
 
@@ -149,6 +170,7 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setOrdered() {
+        setEnabledButton(orderedButton);
         single = false;
         checkAll();
         ordered = true;
@@ -180,8 +202,10 @@ public class SelectionMenuController implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Invalid Names");
-        alert.setHeaderText("Invalid names detected. Would you like to add partial names?");
-        alert.setContentText(textFileParser.getNotPossibleNameString());
+        alert.setHeaderText(null);
+        alert.setContentText("Invalid names detected. Would you like to add partial names? "+textFileParser.getNotPossibleNameString());
+        alert.getDialogPane().getStylesheets().add(
+				   getClass().getResource("/resources/FlatBee.css").toExternalForm());
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {

@@ -53,9 +53,7 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private Button recordButton;
     @FXML
-    private Button microphoneButton;
-    @FXML
-    private ToggleButton toggleButton;
+    private ToggleButton onButton;
     @FXML
     private ToggleButton offButton;
     @FXML
@@ -142,6 +140,8 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     public void setVolume() {
+        onButton.setDisable(true);
+        offButton.setDisable(false);
     	setVolume=true;
     }
     
@@ -150,6 +150,8 @@ public class PlayerGuiController implements Initializable {
      */
     @FXML
     public void off() {
+        offButton.setDisable(true);
+        onButton.setDisable(false);
     	setVolume=false;
     }
 
@@ -335,21 +337,6 @@ public class PlayerGuiController implements Initializable {
     private void noReport() {
         badWarningLabel.setText("");
         reportButton.setText("Report");
-    }
-
-    /**
-     * Method to load the microphone test scene.
-     */
-    @FXML
-    private void MicrophoneTest() throws IOException {
-        stop();
-        Stage primaryStage = (Stage) microphoneButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TestMic.fxml"));
-        Parent root = loader.load();
-
-        SceneManager.getInstance().addScene(recordButton.getScene(), loader.getController());
-        primaryStage.setScene(new Scene(root, 600, 600));
-        primaryStage.show();
     }
 
     /**
