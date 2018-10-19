@@ -3,6 +3,7 @@ package Gui.Controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -68,6 +69,7 @@ public class RecordGui implements Initializable {
 	private String[] nameArray;
 	private String _name;
 	private Task<?> playCreatedName;
+	Task<?> playloop;
 	private Thread thread;
 	Task<?> recording;
 
@@ -209,25 +211,75 @@ public class RecordGui implements Initializable {
 	@FXML
 	public void playLoop() {
 		stop();
-		if (isSingleWord) {
-			try {
-				List<String> loop = fileManager.getFileDatesForName(PlayOldButton.getText());
-				for (int i = 0; i < loop.size(); i++) {
-					String date = loop.get(i);
-					File file = fileManager.getFile(PlayOldButton.getText(), date);
-					String location = file.toURI().toString();					
-					worker = new BashWorker("ffplay -nodisp -autoexit '" + location + "'");
-					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-					AudioFormat format = audioInputStream.getFormat();
-					long frames = audioInputStream.getFrameLength();
-					double durationInSeconds = (frames + 0.0) / format.getFrameRate();
-					int time = (int) (durationInSeconds * 1000);
-					Thread.sleep(time);
+		playloop = playloop();
+		new Thread(playloop).start();
+	}
+	
+	/**
+	 * play the loop 
+	 */
+	public Task<?> playloop() {
+		return new Task<Object>() {
+			@Override
+			protected Object call() throws Exception {
+				stop();
+				int i = 0;
+				if (isSingleWord) {
+					while (i < 3) {
+						try {
+							File audioFile = new File(fileCreator.fileString());
+							play(audioFile);
+							waitForIt(audioFile);
+							File audioFile1 = fileParser.getFile();
+							play(audioFile1);
+							i++;
+							waitForIt(audioFile1);
+						} catch (Exception e) {
+							break;
+						}
+
+					}
+				} else {
+					while (i < 3) {
+						try {
+							File audioFile = new File(fileCreator.fileString());
+							play(audioFile);
+							waitForIt(audioFile);
+							for (int j = 0; j < nameArray.length; j++) {
+								try {
+									File file = fileManager.getRandomGoodFile(nameArray[j]);
+									String location = file.toURI().toString();
+									worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
+									AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+									AudioFormat format = audioInputStream.getFormat();
+									long frames = audioInputStream.getFrameLength();
+									double durationInSeconds = (frames + 0.0) / format.getFrameRate();
+									int time = (int) (durationInSeconds * 1000);
+									Thread.sleep(time);
+								} catch (Exception e) {
+									break;
+								}
+							}
+							i++;
+						} catch (Exception e) {
+							break;
+						}
+					}
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
+				return true;
 			}
-		} else {
+		};
+	}
+
+	private void waitForIt(File audioFile) {
+		try {
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
+			AudioFormat format = audioInputStream.getFormat();
+			long frames = audioInputStream.getFrameLength();
+			double durationInSeconds = (frames + 0.0) / format.getFrameRate();
+			int time = (int) (durationInSeconds * 1000);
+			Thread.sleep(time);
+		} catch (Exception e) {
 
 		}
 	}
@@ -330,6 +382,9 @@ public class RecordGui implements Initializable {
 		if (playCreatedName != null) {
 			playCreatedName.cancel(true);
 		}
+		if (playloop != null) {
+			playloop.cancel(true);
+		}
 	}
 
 	/**
@@ -340,7 +395,9 @@ public class RecordGui implements Initializable {
 		_name = name;
 		isSingleWord = false;
 		nameArray = name.split("[ -]");
-		PlayOldButton.setText(">>" + name + "<<");
+		PlayOldButton.wrapTextProperty().setValue(true);
+		PlayOldButton.setText(name);
+		PlayOldButton.wrapTextProperty().setValue(true);
 	}
 
 	@SuppressWarnings("deprecation")
