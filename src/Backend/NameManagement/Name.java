@@ -85,4 +85,14 @@ public class Name {
         return dateFileList.get(key);
 
     }
+
+    Boolean hasUser(){
+        for (String name : dateFileList.keySet()) {
+            if(name.contains("ser")){
+                return true;
+            }
+        }
+        return false;
+    }
 }
+

@@ -232,11 +232,8 @@ public class PlayerGuiController implements Initializable {
     /**
      * Setup the needed variables
      */
-    void initData(List<String> names, Boolean ordered) {
+    void initData(List<String> names ) {
         chosenNames = new ArrayList<>(names);
-        if (!ordered) {
-            Collections.shuffle(chosenNames);
-        }
         index = 0;
         name = chosenNames.get(0);
 

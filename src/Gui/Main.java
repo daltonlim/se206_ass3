@@ -23,7 +23,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //Thread.setDefaultUncaughtExceptionHandler(this::uncaughtException);
+        Thread.setDefaultUncaughtExceptionHandler(FileLogger::uncaughtException);
         FileLogger.getInstance();
         AchievementManager.getInstance().incrementAchievement("Open");
         URL location = this.getClass().getResource("Controllers/WelcomeOther.fxml");

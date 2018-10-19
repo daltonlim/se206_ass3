@@ -369,6 +369,9 @@ public class RecordGui implements Initializable {
 		}
 	}
 
+	private void setProgressbar(){
+
+	}
 	public Task<?> MicroWorker() {
 		return new Task<Object>() {
 			@Override
