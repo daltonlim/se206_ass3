@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="537.0" prefWidth="580.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.RecordGui">
+<VBox prefHeight="600.0" prefWidth="600.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.RecordGui">
    <children>
       <Label alignment="CENTER" layoutX="7.0" prefHeight="89.0" prefWidth="605.0" text="You are currently recording for">
          <font>
@@ -54,24 +54,24 @@
             </Button>
          </children>
       </HBox>
-      <Label fx:id="States" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="382.0" prefHeight="77.0" prefWidth="585.0">
+      <Label fx:id="States" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="382.0" prefHeight="77.0" prefWidth="597.0">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <ProgressBar fx:id="progressbar" layoutX="7.0" layoutY="459.0" prefHeight="29.0" prefWidth="580.0" progress="0.0" />
+      <ProgressBar fx:id="progressbar" layoutX="7.0" layoutY="459.0" prefHeight="29.0" prefWidth="599.0" progress="0.0" />
       <HBox alignment="CENTER_LEFT" layoutX="7.0" layoutY="550.0">
          <children>
-            <Button fx:id="microphoneButton" layoutX="-10.0" layoutY="534.0" mnemonicParsing="false" onAction="#microphoneTest" prefHeight="13.0" prefWidth="10.0" style="-fx-background-color: transparent;">
+            <Button fx:id="microphoneButton" layoutX="-10.0" layoutY="534.0" mnemonicParsing="false" onAction="#microphoneTest" prefHeight="156.0" prefWidth="158.0" style="-fx-background-color: transparent;">
                <graphic>
-                  <ImageView fitHeight="89.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/icons/mic.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <ProgressBar fx:id="PB" layoutX="31.0" layoutY="536.0" prefHeight="29.0" prefWidth="200.0" progress="0.0" />
+            <ProgressBar fx:id="PB" layoutX="31.0" layoutY="536.0" prefHeight="29.0" prefWidth="274.0" progress="0.0" />
          </children>
       </HBox>
    </children>

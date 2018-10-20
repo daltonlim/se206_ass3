@@ -151,7 +151,7 @@ public class RecordGui implements Initializable {
 		stop();
 		String location = audioFile.toURI().toString();
 		location = location.replace("%20", " ");
-		bashWorker = new BashWorker("ffplay -af \"volume=10\" -nodisp -autoexit '" + location + "'");
+		bashWorker = new BashWorker("ffplay -af \"volume=5\" -nodisp -autoexit '" + location + "'");
 	}
 
 	/**
@@ -253,7 +253,7 @@ public class RecordGui implements Initializable {
 							String location = playlist.get(j).toURI().toString();
 							location = location.replace("%20", " ");
 							bashWorker = new BashWorker(
-									"ffplay -af \"volume=10\" -nodisp -autoexit '" + location + "'");
+									"ffplay -af \"volume=5\" -nodisp -autoexit '" + location + "'");
 							AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(playlist.get(j));
 							AudioFormat format = audioInputStream.getFormat();
 							long frames = audioInputStream.getFrameLength();
