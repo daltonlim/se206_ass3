@@ -179,7 +179,7 @@ public class PlayerGuiController implements Initializable {
             //Replace spaces succesfully
             location = location.replace("%20", " ");
             if (setVolume) {
-                worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+                worker = new BashWorker("ffplay -af \"volume=10\" -nodisp -autoexit '" + location + "'");
             } else {
                 worker = new BashWorker("ffplay -nodisp -autoexit -af " +
                         "silenceremove=1:0:-35dB:1:5:-35dB:0:peak '" + location + "'");
@@ -200,7 +200,7 @@ public class PlayerGuiController implements Initializable {
                         String location = file.toURI().toString();
                         location = location.replace("%20", " ");
                         if (setVolume) {
-                            worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+                            worker = new BashWorker("ffplay -af \"volume=10\" -nodisp -autoexit '" + location + "'");
                         } else {
                             worker = new BashWorker("ffplay -nodisp -autoexit -af " +
                                     "silenceremove=1:0:-35dB:1:5:-35dB:0:peak '" + location + "'");
