@@ -175,17 +175,4 @@ public class NameManager {
         }
         return possibilities;
     }
-
-    public List<String> getUserNames(){
-        List<String> userList = new ArrayList<>();
-        for (String name : nameList.keySet()) {
-            if(nameList.get(name).hasUser()){
-                userList.add(name);
-            }
-        }
-        return userList;
-    }
-    public boolean hasUser(String name){
-        return nameList.get(name).hasUser();
-    }
 }

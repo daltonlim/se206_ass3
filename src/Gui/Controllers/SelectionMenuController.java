@@ -22,6 +22,7 @@ import java.util.*;
 
 public class SelectionMenuController implements Initializable {
 
+    private boolean single;
     NameManager fileManager;
     private boolean ordered;
     @FXML
@@ -33,9 +34,11 @@ public class SelectionMenuController implements Initializable {
     @FXML
     private ComboBox cb;
     @FXML
-    private ToggleButton randomisedButton;
+    private ToggleButton singleButton;
     @FXML
-    private ToggleButton userRecordings;
+    private ToggleButton orderedButton;
+    @FXML
+    private ToggleButton randomisedButton;
 
     @FXML
     private void comboBox() {
@@ -48,10 +51,23 @@ public class SelectionMenuController implements Initializable {
     }
 
     /**
+     * FUnction to ensure the toggle button group cannot be disabled.
+     *
+     * @param button
+     */
+    private void setEnabledButton(ToggleButton button) {
+        singleButton.setDisable(false);
+        orderedButton.setDisable(false);
+        randomisedButton.setDisable(false);
+        button.setDisable(true);
+    }
+
+    /**
      * Initialiser method
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        single = true;
         fileManager = NameManager.getInstance();
         selectNamesButton.setDisable(true);
         setupList();
@@ -59,7 +75,10 @@ public class SelectionMenuController implements Initializable {
     }
 
     private void setupList() {
-        userRecordings();
+        //Add availableNames to the list
+        List<String> sortedList = fileManager.getAvailableNames();
+        Collections.sort(sortedList);
+        availibleNamesList.getItems().addAll(sortedList);
         checkAll();
     }
 
@@ -72,20 +91,24 @@ public class SelectionMenuController implements Initializable {
         /*Only allow addition, if max one is not enforced,
         or if it is, only allow if the list is empty
          */
+        if (!single || selectedNames.getItems().size() == 0) {
             selectedNames.getItems().add(name);
             availibleNamesList.getItems().remove(name);
             Collections.sort(selectedNames.getItems());
+        }
+        if (single) {
+            availibleNamesList.getItems().addAll(selectedNames.getItems());
+            selectedNames.getItems().remove(0);
+            Collections.sort(availibleNamesList.getItems());
+            selectedNames.getItems().add(name);
+            availibleNamesList.getItems().remove(name);
+        }
         // Resort
         checkAll();
     }
 
     //Make button clickable if one or more names are in names to play
     private void checkAll() {
-        if(randomisedButton.isSelected()){
-            Collections.shuffle(selectedNames.getItems());
-        }else {
-            Collections.sort(selectedNames.getItems());
-        }
         if (selectedNames.getItems().size() != 0) {
             selectNamesButton.setDisable(false);
         } else {
@@ -94,28 +117,15 @@ public class SelectionMenuController implements Initializable {
 
     }
 
-    @FXML
-    private void userRecordings() {
-        availibleNamesList.getItems().removeAll(availibleNamesList.getItems());
-        if (userRecordings.isSelected()) {
-            availibleNamesList.getItems().addAll(fileManager.getUserNames());
-        } else {
-            availibleNamesList.getItems().addAll(fileManager.getSingleNames());
-        }
-        Collections.sort(availibleNamesList.getItems());
-        availibleNamesList.getItems().removeAll(selectedNames.getItems());
-    }
-
     /**
-     * Removes a name from the selectedNames and adds it back to available names
+     * Removes a name from the selectedNames and adds it bach to available names
      */
     @FXML
     private void removeName() {
         if (selectedNames.getSelectionModel().getSelectedItems().get(0) != null) {
             String name = selectedNames.getSelectionModel().getSelectedItems().get(0).toString();
-            if (fileManager.hasUser(name) == userRecordings.isSelected()) {
-                availibleNamesList.getItems().add(name);
-            }
+
+            availibleNamesList.getItems().add(name);
             selectedNames.getItems().remove(name);
             //Resort
             Collections.sort(availibleNamesList.getItems());
@@ -124,15 +134,22 @@ public class SelectionMenuController implements Initializable {
     }
 
     /**
-     * Check if button is randomised and change the properties accordingly
+     * Set the single flag to true when the corresponding button is pressed
      */
     @FXML
-    private void randomisedCheck() {
-        if (randomisedButton.isSelected()) {
-            setRandomised();
-        } else {
-            setOrdered();
+    public void setSingle() {
+        setEnabledButton(singleButton);
+
+        single = true;
+        int runs = selectedNames.getItems().size();
+        for (int i = 1; i < runs; i++) {
+            availibleNamesList.getItems().add(selectedNames.getItems().get(1));
+            selectedNames.getItems().remove(1);
         }
+
+        Collections.sort(availibleNamesList.getItems());
+        checkAll();
+
     }
 
     /**
@@ -140,6 +157,8 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setRandomised() {
+        single = false;
+        setEnabledButton(randomisedButton);
         checkAll();
         ordered = false;
     }
@@ -149,6 +168,8 @@ public class SelectionMenuController implements Initializable {
      */
     @FXML
     public void setOrdered() {
+        setEnabledButton(orderedButton);
+        single = false;
         checkAll();
         ordered = true;
     }
@@ -213,9 +234,29 @@ public class SelectionMenuController implements Initializable {
         Parent root = loader.load();
 
         PlayerGuiController controller = loader.getController();
-        controller.initData(selectedNames.getItems());
+        controller.initData(selectedNames.getItems(), ordered);
 
 
+        SceneManager.getInstance().addScene(scene, controller);
+        Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
+
+        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.show();
+
+
+    }
+
+    /**
+     * Starts the Achievements scene
+     */
+    @FXML
+    public void getAchievements() throws Exception {
+        Scene scene = selectNamesButton.getScene();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Achievements.fxml"));
+
+        Parent root = loader.load();
+
+        Achievements controller = loader.getController();
         SceneManager.getInstance().addScene(scene, controller);
         Stage primaryStage = (Stage) selectNamesButton.getScene().getWindow();
 
@@ -247,6 +288,12 @@ public class SelectionMenuController implements Initializable {
     }
 
     private void addNames(TextFileParser textFileParser) {
+        if (single) {
+            availibleNamesList.getItems().addAll(selectedNames.getItems());
+            if (selectedNames.getItems().size() == 1)
+                selectedNames.getItems().remove(0);
+            Collections.sort(availibleNamesList.getItems());
+        }
         selectedNames.getItems().addAll(textFileParser.getNamesToAdd());
         availibleNamesList.getItems().removeAll(textFileParser.getNamesToAdd());
         Collections.sort(selectedNames.getItems());

@@ -147,21 +147,4 @@ public class FileLogger {
     public boolean isBad(File file) {
         return loggedList.contains(file.getName());
     }
-
-    /**
-     * Generates a file when an uncaught exception is caught. This allows the user to email if
-     * required.
-     */
-    public static void uncaughtException(Thread t, Throwable e) {
-        File file = new File("Log/errors.txt");
-        try {
-            FileWriter fw = new FileWriter(file, false);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw);
-            out.println(e.toString());
-            out.close();
-            bw.close();
-        } catch (IOException ex) {
-        }
-    }
 }

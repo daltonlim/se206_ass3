@@ -37,6 +37,7 @@ public class Achievements implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AchievementBox.fxml"));
         try {
             Parent root = loader.load();
+
             AchievementBox controller = loader.getController();
             controller.initData(name);
 

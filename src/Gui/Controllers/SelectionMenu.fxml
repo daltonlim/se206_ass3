@@ -12,20 +12,22 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" spacing="10.0" stylesheets="@../../resources/FlatBee.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.SelectionMenuController">
-   <children>
-      <Group>
+    <children>
+        <Group>
          <children>
             <HBox spacing="10.0">
                <children>
-                  <ToggleButton fx:id="userRecordings" mnemonicParsing="false" onAction="#userRecordings" text="User Recordings" />
-                  <ToggleButton fx:id="randomisedButton" mnemonicParsing="false" onAction="#randomisedCheck" text="Randomised List">
+                  <ToggleButton fx:id="singleButton" disable="true" mnemonicParsing="false" onAction="#setSingle" selected="true" text="Single">
                      <toggleGroup>
                         <ToggleGroup fx:id="fileSelection" />
-                     </toggleGroup></ToggleButton>
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton fx:id="orderedButton" mnemonicParsing="false" onAction="#setOrdered" text="Ordered List" toggleGroup="$fileSelection" />
+                  <ToggleButton fx:id="randomisedButton" mnemonicParsing="false" onAction="#setRandomised" text="Randomised List" toggleGroup="$fileSelection" />
                </children>
             </HBox>
          </children>
-      </Group>
+        </Group>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
             <Label contentDisplay="RIGHT" text="Search:" />
@@ -41,6 +43,7 @@
                      <children>
                         <Button fx:id="databaseSelect1" mnemonicParsing="false" onAction="#addDatabase" prefHeight="20.0" prefWidth="30.0" text="+" />
                         <Label text="Available Names" />
+                        <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="30.0" text="-" visible="false" />
                      </children>
                   </HBox>
                   <ListView fx:id="availibleNamesList" onMouseClicked="#addName" />
@@ -78,5 +81,5 @@
                </tooltip></Button>
          </children>
       </HBox>
-   </children>
+    </children>
 </VBox>
