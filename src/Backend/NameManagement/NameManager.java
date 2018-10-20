@@ -110,8 +110,8 @@ public class NameManager {
         }
 
         nameToAdd.addDate(fileParser);
-        if(!name.contains(" ") && !name.contains("-")){
-            if(!singleNames.contains(name)) {
+        if (!name.contains(" ") && !name.contains("-")) {
+            if (!singleNames.contains(name)) {
                 singleNames.add(name);
             }
         }
@@ -127,7 +127,7 @@ public class NameManager {
     public List<String> getFileDatesForName(String name) {
         List<String> toReturn = new ArrayList<>();
         if (nameList.get(name) != null) {
-            toReturn= nameList.get(name).returnDates();
+            toReturn = nameList.get(name).returnDates();
             Collections.sort(toReturn);
         }
         return toReturn;
@@ -138,30 +138,39 @@ public class NameManager {
         return available.randomBestName();
     }
 
-     public List<String> retrievePrefix(String nam){
-        String[] nameArray = nam.split("[ -]");
+    public List<String> retrievePrefix(String nam) {
+        String[] nameArray = nam.trim().split("[ -]");
         int offset = 0;
-       char lastChar = nam.charAt(nam.length() -1);
-        if(lastChar =='-'||lastChar == ' '){
-            offset = 1;
+        if (nam.length() > 0) {
+            char lastChar = nam.charAt(nam.length() - 1);
+            int lastInd = nam.length()-1;
+            while (nam.charAt(lastInd) == '-' || nam.charAt(lastInd) == ' ') {
+                offset++;
+                lastInd--;
+            }
         }
-        String prefix = nam.substring(0 ,nam.length() - nameArray[nameArray.length -1].length() - offset);
-        String name = nameArray[nameArray.length-1];
+        String prefix = nam.substring(0, nam.length() - nameArray[nameArray.length - 1].length() - offset);
+        prefix = prefix.trim();
+        if (prefix.length() > 0 && prefix.charAt(prefix.length() - 1) != '-') {
+            prefix += ' ';
+        }
+        String name = nameArray[nameArray.length - 1];
         List<String> possibilities = new ArrayList<>();
-        for(String string:singleNames){
+        for (String string : singleNames) {
 
-            if(string.startsWith(name)){
+            if (string.startsWith(name)) {
                 possibilities.add(prefix + string);
             }
         }
         return possibilities;
     }
-    public List<String> retrieveSinglePrefix(String nam){
-        List<String> possibilities = new ArrayList<>();
-        for(String string:singleNames){
 
-            if(string.startsWith(nam)){
-                possibilities.add( string);
+    public List<String> retrieveSinglePrefix(String nam) {
+        List<String> possibilities = new ArrayList<>();
+        for (String string : singleNames) {
+
+            if (string.startsWith(nam)) {
+                possibilities.add(string);
             }
         }
         return possibilities;

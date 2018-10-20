@@ -3,6 +3,7 @@ package Gui.Controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -72,6 +73,7 @@ public class RecordGui implements Initializable {
 	Task<?> playloop;
 	private Thread thread;
 	Task<?> recording;
+	List<File> playlist = new ArrayList<File>();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -83,6 +85,7 @@ public class RecordGui implements Initializable {
 
 	private void disableButtons(boolean b) {
 		PlayYoursButton.setDisable(b);
+		loopButton.setDisable(b);
 	}
 
 	/**
@@ -214,74 +217,58 @@ public class RecordGui implements Initializable {
 		playloop = playloop();
 		new Thread(playloop).start();
 	}
-	
+
 	/**
-	 * play the loop 
+	 * set the playlist which contains New recording and Old recording
+	 */
+	private void setPlayList() {
+		playlist.clear();
+		if (isSingleWord) {
+			File audioFileNew = new File(fileCreator.fileString());
+			File audioFileOld = fileParser.getFile();
+			playlist.add(audioFileNew);
+			playlist.add(audioFileOld);
+		} else {
+			File audioFileNew = new File(fileCreator.fileString());
+			playlist.add(audioFileNew);
+			for (int j = 0; j < nameArray.length; j++) {
+				playlist.add(fileManager.getRandomGoodFile(nameArray[j]));
+			}
+		}
+	}
+
+	/**
+	 * play the loop for 3 times
 	 */
 	public Task<?> playloop() {
 		return new Task<Object>() {
 			@Override
 			protected Object call() throws Exception {
-				stop();
 				int i = 0;
-				if (isSingleWord) {
-					while (i < 3) {
-						try {
-							File audioFile = new File(fileCreator.fileString());
-							play(audioFile);
-							waitForIt(audioFile);
-							File audioFile1 = fileParser.getFile();
-							play(audioFile1);
-							i++;
-							waitForIt(audioFile1);
-						} catch (Exception e) {
-							break;
+				while (i < 3) {
+					try {
+						setPlayList();
+						for (int j = 0; j < playlist.size(); j++) {
+							AchievementManager.getInstance().incrementAchievement("Play");
+							String location = playlist.get(j).toURI().toString();
+							location = location.replace("%20", " ");
+							bashWorker = new BashWorker(
+									"ffplay -af \"volume=10dB\" -nodisp -autoexit '" + location + "'");
+							AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(playlist.get(j));
+							AudioFormat format = audioInputStream.getFormat();
+							long frames = audioInputStream.getFrameLength();
+							double durationInSeconds = (frames + 0.0) / format.getFrameRate();
+							int time = (int) (durationInSeconds * 1000);
+							Thread.sleep(time);
 						}
-
-					}
-				} else {
-					while (i < 3) {
-						try {
-							File audioFile = new File(fileCreator.fileString());
-							play(audioFile);
-							waitForIt(audioFile);
-							for (int j = 0; j < nameArray.length; j++) {
-								try {
-									File file = fileManager.getRandomGoodFile(nameArray[j]);
-									String location = file.toURI().toString();
-									worker = new BashWorker("ffplay -af \"volume=10dB\" -nodisp -autoexit " + location);
-									AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-									AudioFormat format = audioInputStream.getFormat();
-									long frames = audioInputStream.getFrameLength();
-									double durationInSeconds = (frames + 0.0) / format.getFrameRate();
-									int time = (int) (durationInSeconds * 1000);
-									Thread.sleep(time);
-								} catch (Exception e) {
-									break;
-								}
-							}
-							i++;
-						} catch (Exception e) {
-							break;
-						}
+						i++;
+					} catch (Exception e) {
+						break;
 					}
 				}
 				return true;
 			}
 		};
-	}
-
-	private void waitForIt(File audioFile) {
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
-			AudioFormat format = audioInputStream.getFormat();
-			long frames = audioInputStream.getFrameLength();
-			double durationInSeconds = (frames + 0.0) / format.getFrameRate();
-			int time = (int) (durationInSeconds * 1000);
-			Thread.sleep(time);
-		} catch (Exception e) {
-
-		}
 	}
 
 	/**
@@ -385,6 +372,9 @@ public class RecordGui implements Initializable {
 		if (playloop != null) {
 			playloop.cancel(true);
 		}
+		if (recording != null) {
+			recording.cancel(true);
+		}
 	}
 
 	/**
@@ -405,7 +395,8 @@ public class RecordGui implements Initializable {
 	private void microphoneTest() throws IOException {
 		if (PB.isVisible()) {
 			PB.setVisible(false);
-			thread.stop();
+			PB.progressProperty().unbind();
+			stop();
 		} else {
 			PB.setVisible(true);
 			try {
@@ -480,7 +471,7 @@ public class RecordGui implements Initializable {
 							}
 
 							lastPeak = peak;
-							updateProgress(rms * 10000, 100);
+							updateProgress(rms * 100, 100);
 						}
 					}
 				} catch (Exception e) {

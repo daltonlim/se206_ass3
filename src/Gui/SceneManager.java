@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -110,6 +111,7 @@ public class SceneManager {
                 primaryStage.setTitle("Achievements Unlocked");
                 primaryStage.setX(mainStage.getX());
                 primaryStage.setY(mainStage.getY() - 150);
+                primaryStage.initStyle(StageStyle.UNDECORATED);
                 Scene scene = new Scene(root, 600, 120);
                 AchievementPopup controller = fxmlLoader.getController();
                 controller.initData(achievement);

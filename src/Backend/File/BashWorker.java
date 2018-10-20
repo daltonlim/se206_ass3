@@ -14,10 +14,6 @@ public class BashWorker extends SwingWorker<Void, Void> {
         this.execute();
     }
 
-    public BashWorker() {
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
     protected Void doInBackground() {
         try {

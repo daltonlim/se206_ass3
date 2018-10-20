@@ -69,14 +69,14 @@
     -jfx-button-type: FLAT;
     -fx-background-color: -gray;
     -fx-text-fill: -white;
-    -fx-background-radius: 30;
+    -fx-background-radius: 40;
 }
 
 .button {
     -jfx-button-type: FLAT;
     -fx-background-color: -gray;
     -fx-text-fill: -white;
-    -fx-background-radius: 30;
+    -fx-background-radius: 40;
 }
 
 .label {

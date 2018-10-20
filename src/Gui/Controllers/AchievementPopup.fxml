@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.AchievementPopup">
+<HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controllers.AchievementPopup">
    <children>
       <ImageView fitHeight="65.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/icons/icons8-trophy-96.png" />
+            <Image url="@../../resources/icons/award.png" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" prefHeight="100.0" prefWidth="496.0" spacing="20.0">
