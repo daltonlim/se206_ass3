@@ -1,0 +1,44 @@
+/*
+*		FLATBEE by KarlTheBee´
+* An javafx css style for a smooth & flat user interface
+* Website : github.com/karlthebee/flatbee
+* Mail    : karlthebee@gmail.com
+*
+*	Version 1.0.0
+*
+* The license is pretty much a CC-BY-NC 4.0 license (https://creativecommons.org/licenses/by-nc/4.0/).
+* In simple (non legal) english :
+* you can modify and distribute it, ship in in your application,
+* but not use/sell it commercially.:wq
+
+* And you have to give credits,
+* like "FlatBee theme by karlthebee (https://github.com/karlthebee/flatbee)"
+*/
+
+/*
+	* These are values you can edit safely.
+	The "color" is your main color (in this case greenish)
+	*/
+* {
+	-color : #39b3cc;
+	-white : #ec5362;
+	-gray : #5a697e;
+	-brown : #f3aa77;
+
+	-darkGray : derive(-gray,-32%);
+	-black : #495465;
+	-abort : #e74c3c;
+}
+
+.root{
+	-fx-background-color : -black;
+	-fx-fill-width : true;
+	-fx-color : -white;
+	-fx-fill-height : true;
+	-fx-font-family: 'Segoe UI';
+	/* remove the ugly focus shade */
+	-fx-font-size : 40.0;
+	-fx-focus-color : transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-text-base-color: -white;
+}
