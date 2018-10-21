@@ -28,7 +28,7 @@ public class FileCreator {
     public void generateAudio() {
         String date = getDate();
         this.date = date;
-        bashworker = new BashWorker("ffmpeg -f pulse -i default -t 5 '" + NameManager.userDirectory+
+        bashworker = new BashWorker("ffmpeg -f pulse -i default -t 10 '" + NameManager.userDirectory+
                 "/se206" + date + fileName + ".wav'");
 
     }

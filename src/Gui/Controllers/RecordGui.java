@@ -397,6 +397,7 @@ public class RecordGui implements Initializable {
 			PB.setVisible(false);
 			PB.progressProperty().unbind();
 			stop();
+			thread.stop();
 		} else {
 			PB.setVisible(true);
 			try {
