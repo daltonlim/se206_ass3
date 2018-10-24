@@ -26,10 +26,6 @@ How to use NameSayer:
 *********************
 A user manual may be found at https://github.com/daltonlim/se206_ass3/releases
 
-User recordings:
-*********************
-User made recordings may be found in the userDatabase folder
-
 References:
 *********************
 All images were sourced from https://www.flaticon.com/
